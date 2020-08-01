@@ -1,7 +1,6 @@
 var APPLICATION = (function () {
 
     function init() {
-        $('#body').html('Hello World');
         MODEL.init();
 
 
@@ -27,6 +26,11 @@ var APPLICATION = (function () {
             player.vrank = i + 1;
             player.displayPosition = player.position + player.posrank;
             player.rank = parseInt(player.rank, 10);
+        });
+
+        $.get('./template.html', function(template) {
+            var rendered = Mustache.render(template, {players: players});
+            $('#body').html(rendered);
         });
     }
 
