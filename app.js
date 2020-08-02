@@ -84,18 +84,24 @@ var APPLICATION = (function () {
 
     function determineBaseline(pos, players) {
 
-        let starters = MODEL.config().starters;
+        const config = MODEL.config();
+        let starters = config.starters;
+        let draftedPlayers = MODEL.drafted().length;
+        let totalNumDrafted = config.numTeams * config.rosterSize;
 
-        let replacementThreshold = starters.qb + starters.rb + starters.wr + starters.te + starters.flex + starters.dst + starters.k
-        replacementThreshold *= MODEL.config().numTeams;
+        let initialThreshold = starters.qb + starters.rb + starters.wr + starters.te + starters.flex + starters.dst + starters.k;
+        initialThreshold *= MODEL.config().numTeams;
+
+        let percentageDrafted = draftedPlayers/totalNumDrafted;
+        let replacementThreshold = initialThreshold + (totalNumDrafted-initialThreshold) * percentageDrafted;
 
         for (index in players) {
             let player = players[index];
             if (player.adp > replacementThreshold && player.pos === pos) {
+                console.log(player);
                 return player;
             }
         }
-
     }
 
     function sortByValue(players) {
