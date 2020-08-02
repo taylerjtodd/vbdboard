@@ -28,10 +28,28 @@ var APPLICATION = (function () {
             player.rank = parseInt(player.rank, 10);
         });
 
-        $.get('./template.html', function(template) {
-            var rendered = Mustache.render(template, {players: players});
+        window.addEventListener('hashchange', function () {
+            render()
+        }, false);
+
+        render();
+
+    }
+
+    function render() {
+        let hash = window.location.hash;
+        if (!hash) {
+            hash = "#board";
+        }
+
+        if(hash === "#board") {
+            let players = MODEL.players();
+            let template = $('#tableTemplate').html()
+            var rendered = Mustache.render(template, { players: players });
             $('#body').html(rendered);
-        });
+        } else {
+            $('#body').html('');
+        }
     }
 
     function determineBaseline(pos, players) {
@@ -55,15 +73,15 @@ var APPLICATION = (function () {
         let team = MODEL.team();
         let needFactor = {};
         let starters = config.starters;
-        for(pos in starters) {
-            if(pos === 'flex') continue;
+        for (pos in starters) {
+            if (pos === 'flex') continue;
             let startersForPos = starters[pos];
-            if(pos === 'rb' || pos === 'wr') {
+            if (pos === 'rb' || pos === 'wr') {
                 startersForPos += starters.flex / 2.0
             }
             let surplus = team[pos].length - startersForPos;
 
-            if(surplus > 0) {
+            if (surplus > 0) {
                 let expectedBenchRatio = startersForPos / config.numStarters;
                 const expectedBenchCount = expectedBenchRatio * config.benchSize * 2;
                 let rawNeed = expectedBenchCount - surplus;

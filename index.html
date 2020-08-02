@@ -2,20 +2,62 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/mustache@latest"></script>
 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css"/>
 
     <script src="./app.js"></script>
     <script src="./model.js"></script>
     <script src="./DataLoad.js"></script>
 
+	<link rel="stylesheet" href="./app.css"/>
+
+    <script id="tableTemplate" type="x-tmpl-mustache">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Value Rank</th>
+                    <th>Expert Rank</th>
+                    <th>ADP</th>
+                    <th>Player</th>
+                    <th>Position</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#players}}
+                    <tr class={{pos}}>
+                        <td>{{vrank}}</td>
+                        <td>{{rank}}</td>
+                        <td>{{adp}}</td>
+                        <td>{{name}}</td>
+                        <td>{{displayPosition}}</td>
+                        <td><div class=btn-group><button class="btn btn-success">Draft</button><button class="btn btn-danger">Remove</button></div></td>
+                    </tr>
+                {{/players}}
+            </tbody>
+        </table>
+    </script>
+
     <title>FF VBD Board</title>
 </head>
 <body>
+    <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link active" href="#board">Draft Board</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#team">Team</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#setup">Setup</a>
+        </li>
+      </ul>
     <div class="container" id="body">
     </div>
 </body>
