@@ -8,10 +8,6 @@ var APPLICATION = (function () {
 
         players.sort((a, b) => a.adp - b.adp);
 
-
-        for (pos in MODEL.config().starters) {
-
-        }
         for (pos in MODEL.config().starters) {
             if (pos === 'flex') {
                 continue;
@@ -42,14 +38,48 @@ var APPLICATION = (function () {
             hash = "#board";
         }
 
-        if(hash === "#board") {
+        if (hash === "#board") {
             let players = MODEL.players();
             let template = $('#tableTemplate').html()
             var rendered = Mustache.render(template, { players: players });
             $('#body').html(rendered);
+        } else if (hash === '#setup') {
+            let template = $('#setupTemplate').html()
+            var rendered = Mustache.render(template, {});
+            $('#body').html(rendered);
         } else {
-            $('#body').html('');
+            let players = MODEL.players();
+            let myPlayers = [];
+            let team = MODEL.team();
+            let addIfDrafted = draftedPlayer => {
+                players.forEach(player => {
+                    if (draftedPlayer.pos === 'dst' && draftedPlayer.pos === player.pos && draftedPlayer.name.subString(0, 6) === player.name.substring(0, 6)) {
+                        myPlayers.push(player);
+                    } else if (draftedPlayer.pos !== 'dst' && draftedPlayer.pos === player.pos && draftedPlayer.name === player.name) {
+                        myPlayers.push(player);
+                    }
+                })
+            };
+            team.qb.forEach(addIfDrafted);
+            team.rb.forEach(addIfDrafted);
+            team.wr.forEach(addIfDrafted);
+            team.te.forEach(addIfDrafted);
+            team.k.forEach(addIfDrafted);
+            team.dst.forEach(addIfDrafted);
+            let template = $('#tableTemplate').html();
+            var rendered = Mustache.render(template, { players: myPlayers, showAll: true });
+            $('#body').html(rendered);
         }
+    }
+
+    function draft(playerName, pos, myTeam) {
+        MODEL.drafted({ name: playerName, pos: pos }, myTeam);
+        init();
+    }
+
+    function resetDraft() {
+        MODEL.resetDraft();
+        init();
     }
 
     function determineBaseline(pos, players) {
@@ -80,6 +110,7 @@ var APPLICATION = (function () {
                 startersForPos += starters.flex / 2.0
             }
             let surplus = team[pos].length - startersForPos;
+            surplus++;
 
             if (surplus > 0) {
                 let expectedBenchRatio = startersForPos / config.numStarters;
@@ -115,7 +146,9 @@ var APPLICATION = (function () {
     };
 
     return {
-        init: init
+        init: init,
+        draft: draft,
+        resetDraft: resetDraft
     };
 
 })();

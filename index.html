@@ -31,17 +31,37 @@
             </thead>
             <tbody>
                 {{#players}}
+                    {{^drafted}}
                     <tr class={{pos}}>
                         <td>{{vrank}}</td>
                         <td>{{rank}}</td>
                         <td>{{adp}}</td>
                         <td>{{name}}</td>
                         <td>{{displayPosition}}</td>
-                        <td><div class=btn-group><button class="btn btn-success">Draft</button><button class="btn btn-danger">Remove</button></div></td>
+                        <td><div class=btn-group>
+                            <button class="btn btn-success" onclick="APPLICATION.draft('{{name}}', '{{pos}}', true)">Draft</button>
+                            <button class="btn btn-danger" onclick="APPLICATION.draft('{{name}}', '{{pos}}')">Remove</button>
+                        </div></td>
                     </tr>
+                    {{/drafted}}
+                    {{#drafted}}{{#showAll}}
+                    <tr class={{pos}}>
+                        <td>{{vrank}}</td>
+                        <td>{{rank}}</td>
+                        <td>{{adp}}</td>
+                        <td>{{name}}</td>
+                        <td>{{displayPosition}}</td>
+                        <td></td>
+                    </tr>
+                    {{/showAll}}{{/drafted}}
                 {{/players}}
             </tbody>
         </table>
+    </script>
+	<link rel="stylesheet" href="./app.css"/>
+
+    <script id="setupTemplate" type="x-tmpl-mustache">
+        <button class="btn btn-danger" onclick="APPLICATION.resetDraft()">Reset Draft</button>
     </script>
 
     <title>FF VBD Board</title>
