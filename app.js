@@ -84,6 +84,8 @@ var APPLICATION = (function () {
 
     function determineBaseline(pos, players) {
 
+        // TODO this isn't quite right
+
         const config = MODEL.config();
         let starters = config.starters;
         let draftedPlayers = MODEL.drafted().length;
@@ -141,7 +143,8 @@ var APPLICATION = (function () {
 
     function insertPointDif(players, baseline) {
         players.forEach(function (player) {
-            player.pointDif = player.ppg - baseline.ppg;
+            player.pointDif = 16 * (player.ppg - baseline.ppg);
+            player.pointDif = player.pointDif.toFixed(1);
         });
         players.sort(function (a, b) {
             return b.pointDif - a.pointDif;

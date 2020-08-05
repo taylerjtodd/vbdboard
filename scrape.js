@@ -34,7 +34,7 @@ var SCRAPE = (function () {
 			var cols = $(this).find('td');
 
 			var retVal = {};
-			retVal.name = $(cols[0]).find('a').text();
+			retVal.name = $(cols[0]).find('a').text().replace("'", '');
 			retVal.position = pos;
 			retVal.points = $(cols[cols.length - 1]).text();
 			retVal.ppg = Math.round(retVal.points / 1.6) / 10;
@@ -65,7 +65,7 @@ var SCRAPE = (function () {
 			}
 
 			var retVal = {};
-			retVal.name = $(cols[2]).find('a').find('span').html();
+			retVal.name = $(cols[2]).find('a').find('span').html().replace("'", '');
 			retVal.rank = $(cols[7]).html();
 			retVal.adp = $(cols[9]).html();
 			switch ($(cols[3]).html().substr(0, 2)) {
