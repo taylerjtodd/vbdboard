@@ -37,7 +37,7 @@ var MODEL = (function () {
                 if (pl) {
                     Object.assign(pl, player);
                     draftedPlayers.forEach((draftedPlayer) => {
-                        if (draftedPlayer.pos === player.pos && draftedPlayer.name.subString(0, 6) === player.name.substring(0, 6)) {
+                        if (draftedPlayer.pos === player.pos && draftedPlayer.name.substring(0, 6) === player.name.substring(0, 6)) {
                             pl.drafted = true;
                         }
                     });

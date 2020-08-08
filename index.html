@@ -32,7 +32,7 @@
             <tbody>
                 {{#players}}
                     {{^drafted}}
-                    <tr class={{pos}}>
+                    <tr class="{{pos}} {{#adpWarning}}adpWarning{{/adpWarning}}">
                         <td>{{vrank}} ({{pointDif}})</td>
                         <td>{{rank}} ({{tier}})</td>
                         <td>{{adp}}</td>

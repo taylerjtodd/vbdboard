@@ -16,3 +16,7 @@
 .dst {
     background-color: #ffb765
 }
+.adpWarning {
+    font-style: italic;
+    font-weight: bold;
+}
