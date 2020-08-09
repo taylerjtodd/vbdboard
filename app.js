@@ -58,16 +58,11 @@ var APPLICATION = (function () {
             $('#body').html(rendered);
             $('.table').DataTable({
                 ordering:false,
-                paging:false,
-                // createdRow: function( row, data, dataIndex){
-                //     if( data[2] ==  `someVal`){
-                //         $(row).addClass('redClass');
-                //     }
-                // }
+                paging:false
             });
         } else if (hash === '#setup') {
             let template = $('#setupTemplate').html()
-            var rendered = Mustache.render(template, {});
+            var rendered = Mustache.render(template, MODEL.config());
             $('#body').html(rendered);
         } else {
             let players = MODEL.players();
@@ -94,16 +89,6 @@ var APPLICATION = (function () {
         }
     }
 
-    function draft(playerName, pos, myTeam) {
-        MODEL.drafted({ name: playerName, pos: pos }, myTeam);
-        init();
-    }
-
-    function resetDraft() {
-        MODEL.resetDraft();
-        init();
-    }
-
     function determineBaseline(pos, players) {
 
         // TODO this isn't quite right. QBs and TEs need to be dropped after one is picked
@@ -112,12 +97,11 @@ var APPLICATION = (function () {
         let starters = config.starters;
         let draftedPlayers = MODEL.drafted().length;
         let totalNumDrafted = config.numTeams * config.rosterSize;
-
-        let initialThreshold = starters.qb + starters.rb + starters.wr + starters.te + starters.flex + starters.dst + starters.k;
-        initialThreshold *= MODEL.config().numTeams;
-
         let percentageDrafted = draftedPlayers/totalNumDrafted;
-        let replacementThreshold = initialThreshold + (totalNumDrafted-initialThreshold) * percentageDrafted;
+
+        let initialThreshold = config.baselineRangeStart;
+        let finalTrheshold = config.baselineRangeEnd;
+        let replacementThreshold = initialThreshold + (finalTrheshold-initialThreshold) * percentageDrafted;
 
         let positionalIndex = -1;
         let draftedAtPosition = MODEL.drafted().filter(p => p.pos === pos).length;
@@ -166,12 +150,12 @@ var APPLICATION = (function () {
         }
 
         players.forEach((b) => {
-            b.sortFactor = b.pointDif * needFactor[b.pos];
+            b.sortFactor = b.pointDif * needFactor[b.pos] * config.buffPercentages[b.pos];
         })
 
         players.sort(function (a, b) {
             if(b.sortFactor === a.sortFactor) {
-                return b.pointDif = a.pointDif;
+                return b.pointDif - a.pointDif;
             }
             return b.sortFactor - a.sortFactor;
         });
@@ -196,10 +180,45 @@ var APPLICATION = (function () {
         });
     };
 
+    
+    function draft(playerName, pos, myTeam) {
+        MODEL.drafted({ name: playerName, pos: pos }, myTeam);
+        init();
+    }
+
+    function resetDraft() {
+        MODEL.resetDraft();
+        init();
+    }
+
+    function resetConfig() {
+        MODEL.resetConfig();
+        init();
+    }
+
+    function buff(pos) {
+        MODEL.buff(pos);
+        init();
+    }
+
+    function nerf(pos) {
+        MODEL.nerf(pos);
+        init();
+    }
+
+    function updateBaselines() {
+        MODEL.updateBaselines($('#startRange').val(), $('#endRange').val());
+        init();
+    }
+
     return {
         init: init,
         draft: draft,
-        resetDraft: resetDraft
+        resetDraft: resetDraft,
+        resetConfig: resetConfig,
+        buff: buff,
+        nerf: nerf,
+        updateBaselines: updateBaselines,
     };
 
 })();

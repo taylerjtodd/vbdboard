@@ -34,8 +34,7 @@
                     <th>Value Rank (VORP)</th>
                     <th>Expert Rank (Tier)</th>
                     <th>ADP</th>
-                    <th>Player</th>
-                    <th>Position</th>
+                    <th>Player (Positional Rank)</th>
                     <th></th>
                 </tr>
             </thead>
@@ -46,8 +45,7 @@
                         <td>{{vrank}} ({{pointDif}})</td>
                         <td>{{rank}} ({{tier}})</td>
                         <td>{{adp}}</td>
-                        <td>{{name}}</td>
-                        <td>{{displayPosition}}</td>
+                        <td>{{name}} ({{displayPosition}})</td>
                         <td><div class=btn-group>
                             <button class="btn btn-success" onclick="APPLICATION.draft('{{name}}', '{{pos}}', true)">Draft</button>
                             <button class="btn btn-danger" onclick="APPLICATION.draft('{{name}}', '{{pos}}')">Remove</button>
@@ -70,7 +68,88 @@
     </script>
 
     <script id="setupTemplate" type="x-tmpl-mustache">
-        <button class="btn btn-danger" onclick="APPLICATION.resetDraft()">Reset Draft</button>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6">
+                <h2>Positional Buffs</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Position</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Quarterback</td>
+                            <td>
+                                <span><button class="btn btn-danger" onclick="APPLICATION.nerf('qb')">-</button></span>
+                                <span>{{buffPercentages.qb}}</span>
+                                <span><button class="btn btn-success" onclick="APPLICATION.buff('qb')">+</button></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Running Back</td>
+                            <td>
+                                <span><button class="btn btn-danger" onclick="APPLICATION.nerf('rb')">-</button></span>
+                                <span>{{buffPercentages.rb}}</span>
+                                <span><button class="btn btn-success" onclick="APPLICATION.buff('rb')">+</button></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Wide Receiver</td>
+                            <td>
+                                <span><button class="btn btn-danger" onclick="APPLICATION.nerf('wr')">-</button></span>
+                                <span>{{buffPercentages.wr}}</span>
+                                <span><button class="btn btn-success" onclick="APPLICATION.buff('wr')">+</button></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Tight End</td>
+                            <td>
+                                <span><button class="btn btn-danger" onclick="APPLICATION.nerf('te')">-</button></span>
+                                <span>{{buffPercentages.te}}</span>
+                                <span><button class="btn btn-success" onclick="APPLICATION.buff('te')">+</button></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Defense</td>
+                            <td>
+                                <span><button class="btn btn-danger" onclick="APPLICATION.nerf('dst')">-</button></span>
+                                <span>{{buffPercentages.dst}}</span>
+                                <span><button class="btn btn-success" onclick="APPLICATION.buff('dst')">+</button></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Kicker</td>
+                            <td>
+                                <span><button class="btn btn-danger" onclick="APPLICATION.nerf('k')">-</button></span>
+                                <span>{{buffPercentages.k}}</span>
+                                <span><button class="btn btn-success" onclick="APPLICATION.buff('k')">+</button></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                <h2>Baseline Range</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="startRange">Starting Baseline</label>
+                        <input class="form-control" type="number" min="1" max="200" value="{{baselineRangeStart}}" id="startRange" onchange="APPLICATION.updateBaselines()">
+                    </div>
+                    <div class="form-group">
+                        <label for="endRange">Ending Baseline</label>
+                        <input class="form-control" type="number" min="1" max="200" value="{{baselineRangeEnd}}" id="endRange" onchange="APPLICATION.updateBaselines()">
+                    </div>
+                </form>
+                <p>
+                <div class="btn-group">
+                    <button class="btn btn-danger" onclick="APPLICATION.resetDraft()">Reset Draft</button>
+                    <button class="btn btn-danger" onclick="APPLICATION.resetConfig()">Reset Config</button>
+                </div>
+            </div>
+        </div>
+
     </script>
 
     <title>FF VBD Board</title>
@@ -88,7 +167,7 @@
             <a class="nav-link" href="#setup">Setup</a>
         </li>
     </ul>
-    <div class="container" id="body">
+    <div class="container-fluid" id="body">
     </div>
 </body>
 

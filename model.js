@@ -7,25 +7,7 @@ var MODEL = (function () {
     let draftedPlayers;
 
     function init() {
-        const savedConfig = localStorage.getItem('config');
-        if (savedConfig) {
-            config = JSON.parse(savedConfig);
-        } else {
-            config.numTeams = 10;
-            config.starters = {
-                qb: 1.0,
-                rb: 2.0,
-                wr: 2.0,
-                te: 1.0,
-                flex: 1.0,
-                dst: 1.0,
-                k: 1.0
-            };
-            config.benchSize = 7;
-            config.numStarters = config.starters.qb + config.starters.rb + config.starters.wr + config.starters.te + config.starters.flex + config.starters.dst + config.starters.k;
-            config.rosterSize = config.numStarters + config.benchSize;
-            config.scoring = 'standard';
-        }
+        config = loadConfig();
 
         players = loadPlayers();
         projections = loadProjections();
@@ -62,6 +44,42 @@ var MODEL = (function () {
 
     }
 
+    function loadConfig() {
+        const savedConfig = localStorage.getItem('config');
+        if (savedConfig) {
+            config = JSON.parse(savedConfig);
+        }
+        else {
+            config.numTeams = 10;
+            config.starters = {
+                qb: 1.0,
+                rb: 2.0,
+                wr: 2.0,
+                te: 1.0,
+                flex: 1.0,
+                dst: 1.0,
+                k: 1.0
+            };
+            config.benchSize = 7;
+            config.numStarters = config.starters.qb + config.starters.rb + config.starters.wr + config.starters.te + config.starters.flex + config.starters.dst + config.starters.k;
+            config.rosterSize = config.numStarters + config.benchSize;
+            config.scoring = 'standard';
+            config.baselineRangeStart = 50;
+            config.baselineRangeEnd = 170;
+
+            config.buffPercentages = {
+                qb: 1.0,
+                rb: 1.0,
+                wr: 1.0,
+                te: 1.0,
+                flex: 1.0,
+                dst: 1.0,
+                k: 1.0
+            }
+        }
+        return config;
+    }
+    
     function loadPlayers() {
         return DataLoad.ranks();
     }
@@ -108,6 +126,37 @@ var MODEL = (function () {
         localStorage.removeItem('team');
     }
 
+    function resetConfig() {
+        localStorage.removeItem('config');
+    }
+
+    
+    function buff(pos) {
+        config.buffPercentages[pos] += 0.1;
+        localStorage.setItem('config', JSON.stringify(config));
+    }
+
+    function nerf(pos) {
+        config.buffPercentages[pos] -= 0.1;
+        if(config.buffPercentages[pos] < 0) {
+            config.buffPercentages[pos] = 0.0;
+        }
+        localStorage.setItem('config', JSON.stringify(config));
+    }
+
+    function updateBaselines(start, end) {
+        config.baselineRangeStart = Number(start);
+        config.baselineRangeEnd = Number(end);
+        if(config.baselineRangeStart < config.numTeams) {
+            config.baselineRangeStart = config.numTeams;
+        }
+        if(config.baselineRangeEnd < config.numTeams * config.rosterSize) {
+            config.baselineRangeEnd = config.numTeams * config.rosterSize;
+        }
+
+        localStorage.setItem('config', JSON.stringify(config));
+    }
+
     return {
         config: () => { return config; },
         players: () => { return players; },
@@ -115,6 +164,10 @@ var MODEL = (function () {
         team: () => { return team; },
         drafted: drafted,
         resetDraft: resetDraft,
-        init: init
+        resetConfig: resetConfig,
+        buff: buff,
+        nerf: nerf,
+        updateBaselines : updateBaselines ,
+        init: init,
     }
 })();
