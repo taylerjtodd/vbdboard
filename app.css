@@ -1,19 +1,19 @@
-.rb {
+#players .rb {
     background-color: #f86b6b
 }
-.qb {
+#players .qb {
     background-color: #65c1ff
 }
-.wr {
+#players .wr {
     background-color: #5db661
 }
-.te {
+#players .te {
     background-color: #f0ff65
 }
-.k {
+#players .k {
     background-color: #db65ff
 }
-.dst {
+#players .dst {
     background-color: #ffb765
 }
 .adpWarning {

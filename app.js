@@ -56,6 +56,15 @@ var APPLICATION = (function () {
             let template = $('#tableTemplate').html()
             var rendered = Mustache.render(template, { players: players });
             $('#body').html(rendered);
+            $('.table').DataTable({
+                ordering:false,
+                paging:false,
+                // createdRow: function( row, data, dataIndex){
+                //     if( data[2] ==  `someVal`){
+                //         $(row).addClass('redClass');
+                //     }
+                // }
+            });
         } else if (hash === '#setup') {
             let template = $('#setupTemplate').html()
             var rendered = Mustache.render(template, {});
