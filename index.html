@@ -27,6 +27,43 @@
 
     <link rel="stylesheet" href="./app.css" />
 
+    <script id="myTeam" type="x-tmpl-mustache">
+        <table class="table" id="players">
+            <thead>
+                <tr>
+                    <th>Value Rank (VORP)</th>
+                    <th>Expert Rank (Tier)</th>
+                    <th>ADP</th>
+                    <th>Player (Positional Rank)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#players}}
+                    <tr class={{pos}}>
+                        <td>{{vrank}}</td>
+                        <td>{{rank}}</td>
+                        <td>{{adp}}</td>
+                        <td>{{name}} ({{displayPosition}})</td>
+                    </tr>
+                {{/players}}
+            </tbody>
+        </table>
+    </script>
+
+    <script id="allTeamsTemplate" type="x-tmpl-mustache">
+        <table class="table" id="players">
+            <tbody>
+                {{#rounds}}
+                    <tr >
+                        {{#picks}}
+                            <td class="{{pos}}">{{name}}</td>
+                        {{/picks}}
+                    </tr>
+                {{/rounds}}
+            </tbody>
+        </table>
+    </script>
+
     <script id="tableTemplate" type="x-tmpl-mustache">
         <table class="table" id="players">
             <thead>
@@ -52,16 +89,18 @@
                         </div></td>
                     </tr>
                     {{/drafted}}
-                    {{#drafted}}{{#showAll}}
-                    <tr class={{pos}}>
+                    {{#drafted}}
+                    <tr class="{{pos}} drafted">
                         <td>{{vrank}}</td>
                         <td>{{rank}}</td>
                         <td>{{adp}}</td>
-                        <td>{{name}}</td>
-                        <td>{{displayPosition}}</td>
-                        <td></td>
+                        <td>{{name}} ({{displayPosition}})</td>
+                        <td><div class=btn-group>
+                            <button class="btn" onclick="APPLICATION.moveUp('{{drafted}}')">^</button>
+                            <button class="btn" onclick="APPLICATION.moveDown('{{drafted}}')">v</button>
+                        </div></td>
                     </tr>
-                    {{/showAll}}{{/drafted}}
+                    {{/drafted}}
                 {{/players}}
             </tbody>
         </table>
@@ -161,7 +200,10 @@
             <a class="nav-link active" href="#board">Draft Board</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#team">Team</a>
+            <a class="nav-link" href="#team">My Team</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#allTeams">All Teams</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#setup">Setup</a>

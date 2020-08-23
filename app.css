@@ -16,6 +16,24 @@
 #players .dst {
     background-color: #ffb765
 }
+#players .rb.drafted {
+    background-color: #8d5b5b
+}
+#players .qb.drafted {
+    background-color: #6691ad
+}
+#players .wr.drafted {
+    background-color: #537755
+}
+#players .te.drafted {
+    background-color: #b5bd6d
+}
+#players .k.drafted {
+    background-color: #a87fb4
+}
+#players .dst.drafted {
+    background-color: #b49b7d
+}
 .adpWarning {
     font-style: italic;
     font-weight: bold;

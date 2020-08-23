@@ -64,6 +64,29 @@ var APPLICATION = (function () {
             let template = $('#setupTemplate').html()
             var rendered = Mustache.render(template, MODEL.config());
             $('#body').html(rendered);
+        } else if (hash === '#allTeams') {
+            let template = $('#allTeamsTemplate').html();
+            let rounds = [];
+            let draftedPlayers = MODEL.drafted();
+            
+            let numRounds = MODEL.config().rosterSize;
+            let picksPerRound = MODEL.config().numTeams;
+            for(let j = 0; j < numRounds; j++) {
+                rounds.push({picks: []});
+                for(let k = 0; k < picksPerRound; k++) {
+                    rounds[j].picks[k] = {};
+                }
+            }
+            draftedPlayers.forEach((player, i) => {
+                let round = Math.floor(i / picksPerRound);
+                let pick = i % picksPerRound;
+                if(round%2) {
+                    pick = picksPerRound - pick - 1
+                }
+                rounds[round].picks[pick] = player;
+            });
+            var rendered = Mustache.render(template, {rounds: rounds});
+            $('#body').html(rendered);
         } else {
             let players = MODEL.players();
             let myPlayers = [];
@@ -83,8 +106,8 @@ var APPLICATION = (function () {
             team.te.forEach(addIfDrafted);
             team.k.forEach(addIfDrafted);
             team.dst.forEach(addIfDrafted);
-            let template = $('#tableTemplate').html();
-            var rendered = Mustache.render(template, { players: myPlayers, showAll: true });
+            let template = $('#myTeam').html();
+            var rendered = Mustache.render(template, { players: myPlayers});
             $('#body').html(rendered);
         }
     }
@@ -153,7 +176,14 @@ var APPLICATION = (function () {
             b.sortFactor = b.pointDif * needFactor[b.pos] * config.buffPercentages[b.pos];
         })
 
+        const numPlayers = players.length;
         players.sort(function (a, b) {
+            const aDraftPosition = a.drafted ? a.drafted : numPlayers;
+            const bDraftPosition = b.drafted ? b.drafted : numPlayers;
+            const draftOrderSort = aDraftPosition - bDraftPosition;
+            if(draftOrderSort != 0) {
+                return draftOrderSort;
+            }
             if(b.sortFactor === a.sortFactor) {
                 return b.pointDif - a.pointDif;
             }
@@ -186,6 +216,16 @@ var APPLICATION = (function () {
         init();
     }
 
+    function moveUp(draftPosition) {
+        MODEL.updateDraftPosition(draftPosition, -1);
+        init();
+    }
+
+    function moveDown(draftPosition) {
+        MODEL.updateDraftPosition(draftPosition, 1);
+        init();
+    }
+
     function resetDraft() {
         MODEL.resetDraft();
         init();
@@ -214,6 +254,8 @@ var APPLICATION = (function () {
     return {
         init: init,
         draft: draft,
+        moveUp: moveUp,
+        moveDown: moveDown,
         resetDraft: resetDraft,
         resetConfig: resetConfig,
         buff: buff,

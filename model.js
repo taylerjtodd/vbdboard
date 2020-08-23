@@ -18,9 +18,9 @@ var MODEL = (function () {
                 let pl = projections[player.pos].find(p => p.name.substring(0, 6) === player.name.substring(0, 6));
                 if (pl) {
                     Object.assign(pl, player);
-                    draftedPlayers.forEach((draftedPlayer) => {
+                    draftedPlayers.forEach((draftedPlayer, i) => {
                         if (draftedPlayer.pos === player.pos && draftedPlayer.name.substring(0, 6) === player.name.substring(0, 6)) {
-                            pl.drafted = true;
+                            pl.drafted = i+1;
                         }
                     });
                 }
@@ -28,9 +28,9 @@ var MODEL = (function () {
                 let pl = projections[player.pos].find(p => p.name == player.name);
                 if (pl) {
                     Object.assign(pl, player);
-                    draftedPlayers.forEach((draftedPlayer) => {
+                    draftedPlayers.forEach((draftedPlayer, i) => {
                         if (draftedPlayer.pos === player.pos && draftedPlayer.name === player.name) {
-                            pl.drafted = true;
+                            pl.drafted = i+1;
                         }
                     });
                 }
@@ -121,6 +121,22 @@ var MODEL = (function () {
         }
     }
 
+    function updateDraftPosition(draftPosition, direction) {
+        
+        let index = draftPosition - 1;
+        let swapIndex = index + direction;
+
+        if(swapIndex < 0 || swapIndex >= draftedPlayers.length) {
+            return;
+        }
+
+        let player = draftedPlayers[index];
+        let swapPlayer = draftedPlayers[swapIndex];
+        draftedPlayers[index] = swapPlayer;
+        draftedPlayers[swapIndex] = player;
+        localStorage.setItem('draftedPlayers', JSON.stringify(draftedPlayers));
+    }
+
     function resetDraft() {
         localStorage.removeItem('draftedPlayers');
         localStorage.removeItem('team');
@@ -130,7 +146,6 @@ var MODEL = (function () {
         localStorage.removeItem('config');
     }
 
-    
     function buff(pos) {
         config.buffPercentages[pos] += 0.1;
         localStorage.setItem('config', JSON.stringify(config));
@@ -163,6 +178,7 @@ var MODEL = (function () {
         projections: () => { return projections; },
         team: () => { return team; },
         drafted: drafted,
+        updateDraftPosition: updateDraftPosition,
         resetDraft: resetDraft,
         resetConfig: resetConfig,
         buff: buff,
