@@ -53,8 +53,11 @@ var APPLICATION = (function () {
 
         if (hash === "#board") {
             let players = MODEL.players();
+            let filter = MODEL.filter();
             let template = $('#tableTemplate').html()
-            var rendered = Mustache.render(template, { players: players });
+            var rendered = Mustache.render(template, { players: players.filter(p => {
+                return filter[p.pos];
+            }), filter: filter });
             $('#body').html(rendered);
             $('.table').DataTable({
                 ordering:false,
@@ -246,6 +249,13 @@ var APPLICATION = (function () {
         init();
     }
 
+    function filter(pos, previousState) {
+        const filters = MODEL.filter();
+        filters[pos] = !previousState;
+        MODEL.filter(filters);
+        init();
+    }
+
     function updateBaselines() {
         MODEL.updateBaselines($('#startRange').val(), $('#endRange').val());
         init();
@@ -261,6 +271,7 @@ var APPLICATION = (function () {
         buff: buff,
         nerf: nerf,
         updateBaselines: updateBaselines,
+        filter: filter,
     };
 
 })();

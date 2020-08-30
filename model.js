@@ -20,7 +20,7 @@ var MODEL = (function () {
                     Object.assign(pl, player);
                     draftedPlayers.forEach((draftedPlayer, i) => {
                         if (draftedPlayer.pos === player.pos && draftedPlayer.name.substring(0, 6) === player.name.substring(0, 6)) {
-                            pl.drafted = i+1;
+                            pl.drafted = i + 1;
                         }
                     });
                 }
@@ -30,7 +30,7 @@ var MODEL = (function () {
                     Object.assign(pl, player);
                     draftedPlayers.forEach((draftedPlayer, i) => {
                         if (draftedPlayer.pos === player.pos && draftedPlayer.name === player.name) {
-                            pl.drafted = i+1;
+                            pl.drafted = i + 1;
                         }
                     });
                 }
@@ -79,7 +79,7 @@ var MODEL = (function () {
         }
         return config;
     }
-    
+
     function loadPlayers() {
         return DataLoad.ranks();
     }
@@ -122,11 +122,11 @@ var MODEL = (function () {
     }
 
     function updateDraftPosition(draftPosition, direction) {
-        
+
         let index = draftPosition - 1;
         let swapIndex = index + direction;
 
-        if(swapIndex < 0 || swapIndex >= draftedPlayers.length) {
+        if (swapIndex < 0 || swapIndex >= draftedPlayers.length) {
             return;
         }
 
@@ -153,7 +153,7 @@ var MODEL = (function () {
 
     function nerf(pos) {
         config.buffPercentages[pos] -= 0.1;
-        if(config.buffPercentages[pos] < 0) {
+        if (config.buffPercentages[pos] < 0) {
             config.buffPercentages[pos] = 0.0;
         }
         localStorage.setItem('config', JSON.stringify(config));
@@ -162,14 +162,25 @@ var MODEL = (function () {
     function updateBaselines(start, end) {
         config.baselineRangeStart = Number(start);
         config.baselineRangeEnd = Number(end);
-        if(config.baselineRangeStart < config.numTeams) {
+        if (config.baselineRangeStart < config.numTeams) {
             config.baselineRangeStart = config.numTeams;
         }
-        if(config.baselineRangeEnd < config.numTeams * config.rosterSize) {
+        if (config.baselineRangeEnd < config.numTeams * config.rosterSize) {
             config.baselineRangeEnd = config.numTeams * config.rosterSize;
         }
 
         localStorage.setItem('config', JSON.stringify(config));
+    }
+
+    function filter(positions) {
+        if (!positions) {
+            let storedValue = localStorage.getItem('filter');
+            if (storedValue) {
+                return JSON.parse(storedValue);
+            } else return {'qb':true, 'rb':true, 'wr':true, 'te':true, 'dst':true, 'k':true};
+        } else {
+            localStorage.setItem('filter', JSON.stringify(positions));
+        }
     }
 
     return {
@@ -183,7 +194,8 @@ var MODEL = (function () {
         resetConfig: resetConfig,
         buff: buff,
         nerf: nerf,
-        updateBaselines : updateBaselines ,
+        updateBaselines: updateBaselines,
         init: init,
+        filter: filter
     }
 })();
