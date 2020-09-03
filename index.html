@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="./app.css" />
 
     <script id="myTeam" type="x-tmpl-mustache">
+        <h1>My Team</h1>
         <table class="table" id="players">
             <thead>
                 <tr>
@@ -51,6 +52,7 @@
     </script>
 
     <script id="allTeamsTemplate" type="x-tmpl-mustache">
+        <h1>Draft Results</h1>
         <table class="table" id="players">
             <tbody>
                 {{#rounds}}
@@ -65,36 +67,45 @@
     </script>
 
     <script id="tableTemplate" type="x-tmpl-mustache">
+        <h1>Draft Board</h1>
         <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-primary {{#filter.qb}}active{{/filter.qb}}  ">
+            <button class="positionFilter btn btn-lg btn-dark" id="allFilter" onclick="APPLICATION.filter('all')">All</button>
+            <label class="btn btn-lg btn-primary {{#filter.qb}}active{{/filter.qb}}  ">
                 <input class="positionFilter" type="checkbox" {{#filter.qb}}checked{{/filter.qb}} autocomplete="off" id="qbFilter"
                         onchange="APPLICATION.filter('qb', {{filter.qb}})">
                     {{^filter.qb}}<s>{{/filter.qb}}QB{{^filter.qb}}</s>{{/filter.qb}}
             </label>
-            <label class="btn btn-danger {{#filter.rb}}active{{/filter.rb}}  ">
+            <label class="btn btn-lg btn-danger {{#filter.rb}}active{{/filter.rb}}  ">
                 <input class="positionFilter" type="checkbox" {{#filter.rb}}checked{{/filter.rb}} autocomplete="off" id="rbFilter"
                         onchange="APPLICATION.filter('rb', {{filter.rb}})">
                     {{^filter.rb}}<s>{{/filter.rb}}RB{{^filter.rb}}</s>{{/filter.rb}}
             </label>
-            <label class="btn btn-success {{#filter.wr}}active{{/filter.wr}}  ">
+            <label class="btn btn-lg btn-success {{#filter.wr}}active{{/filter.wr}}  ">
                 <input class="positionFilter" type="checkbox" {{#filter.wr}}checked{{/filter.wr}} autocomplete="off" id="wrFilter"
                         onchange="APPLICATION.filter('wr', {{filter.wr}})">
                     {{^filter.wr}}<s>{{/filter.wr}}WR{{^filter.wr}}</s>{{/filter.wr}}
             </label>
-            <label class="btn btn-warning {{#filter.te}}active{{/filter.te}}  ">
+            <label class="btn btn-lg btn-warning {{#filter.te}}active{{/filter.te}}  ">
                 <input class="positionFilter" type="checkbox" {{#filter.te}}checked{{/filter.te}} autocomplete="off" id="teFilter"
                         onchange="APPLICATION.filter('te', {{filter.te}})">
                     {{^filter.te}}<s>{{/filter.te}}TE{{^filter.te}}</s>{{/filter.te}}
             </label>
-            <label class="btn btn-secondary {{#filter.dst}}active{{/filter.dst}}  ">
+            <label class="btn btn-lg btn-secondary {{#filter.dst}}active{{/filter.dst}}  ">
                 <input class="positionFilter" type="checkbox" {{#filter.dst}}checked{{/filter.dst}} autocomplete="off" id="dstFilter"
                         onchange="APPLICATION.filter('dst', {{filter.dst}})">
                     {{^filter.dst}}<s>{{/filter.dst}}DST{{^filter.dst}}</s>{{/filter.dst}}
             </label>
-            <label class="btn btn-light {{#filter.k}}active{{/filter.k}}  ">
+            <label class="btn btn-lg btn-light {{#filter.k}}active{{/filter.k}}  ">
                 <input class="positionFilter" type="checkbox" {{#filter.k}}checked{{/filter.k}} autocomplete="off" id="kFilter"
                         onchange="APPLICATION.filter('k', {{filter.k}})">
                     {{^filter.k}}<s>{{/filter.k}}K{{^filter.k}}</s>{{/filter.k}}
+            </label>
+            <button class="positionFilter btn btn-lg btn-dark" id="noneFilter" onclick="APPLICATION.filter('none')">None</button>
+            
+            <label class="btn btn-lg btn-muted {{#filter.drafted}}active{{/filter.drafted}}  ">
+                <input class="positionFilter" type="checkbox" {{#filter.drafted}}checked{{/filter.drafted}} autocomplete="off" id="draftedFilter"
+                        onchange="APPLICATION.filter('drafted', {{filter.drafted}})">
+                    {{^filter.drafted}}<s>{{/filter.drafted}}Drafted{{^filter.drafted}}</s>{{/filter.drafted}}
             </label>
         </div>
         <table class="table" id="players">
@@ -116,12 +127,12 @@
                         <td>{{adp}}</td>
                         <td>{{name}} ({{displayPosition}})</td>
                         <td><div class=btn-group>
-                            <button class="btn btn-success" onclick="APPLICATION.draft('{{name}}', '{{pos}}', true)">Draft</button>
-                            <button class="btn btn-danger" onclick="APPLICATION.draft('{{name}}', '{{pos}}')">Remove</button>
+                            <button class="btn btn-lg btn-success" onclick="APPLICATION.draft('{{name}}', '{{pos}}', true)">Draft</button>
+                            <button class="btn btn-lg btn-danger" onclick="APPLICATION.draft('{{name}}', '{{pos}}')">Remove</button>
                         </div></td>
                     </tr>
                     {{/drafted}}
-                    {{#drafted}}
+                    {{#drafted}}{{#filter.drafted}}
                     <tr class="{{pos}} drafted">
                         <td>{{vrank}}</td>
                         <td>{{rank}}</td>
@@ -132,13 +143,14 @@
                             <button class="btn" onclick="APPLICATION.moveDown('{{drafted}}')">v</button>
                         </div></td>
                     </tr>
-                    {{/drafted}}
+                    {{/filter.drafted}}{{/drafted}}
                 {{/players}}
             </tbody>
         </table>
     </script>
 
     <script id="setupTemplate" type="x-tmpl-mustache">
+        <h1>Setup</h1>
         <div class="row">
             <div class="col-xs-12 col-sm-6">
                 <h2>Positional Buffs</h2>
@@ -153,49 +165,49 @@
                         <tr>
                             <td>Quarterback</td>
                             <td>
-                                <span><button class="btn btn-danger" onclick="APPLICATION.nerf('qb')">-</button></span>
+                                <span><button class="btn btn-lg btn-danger" onclick="APPLICATION.nerf('qb')">-</button></span>
                                 <span>{{buffPercentages.qb}}</span>
-                                <span><button class="btn btn-success" onclick="APPLICATION.buff('qb')">+</button></span>
+                                <span><button class="btn btn-lg btn-success" onclick="APPLICATION.buff('qb')">+</button></span>
                             </td>
                         </tr>
                         <tr>
                             <td>Running Back</td>
                             <td>
-                                <span><button class="btn btn-danger" onclick="APPLICATION.nerf('rb')">-</button></span>
+                                <span><button class="btn btn-lg btn-danger" onclick="APPLICATION.nerf('rb')">-</button></span>
                                 <span>{{buffPercentages.rb}}</span>
-                                <span><button class="btn btn-success" onclick="APPLICATION.buff('rb')">+</button></span>
+                                <span><button class="btn btn-lg btn-success" onclick="APPLICATION.buff('rb')">+</button></span>
                             </td>
                         </tr>
                         <tr>
                             <td>Wide Receiver</td>
                             <td>
-                                <span><button class="btn btn-danger" onclick="APPLICATION.nerf('wr')">-</button></span>
+                                <span><button class="btn btn-lg btn-danger" onclick="APPLICATION.nerf('wr')">-</button></span>
                                 <span>{{buffPercentages.wr}}</span>
-                                <span><button class="btn btn-success" onclick="APPLICATION.buff('wr')">+</button></span>
+                                <span><button class="btn btn-lg btn-success" onclick="APPLICATION.buff('wr')">+</button></span>
                             </td>
                         </tr>
                         <tr>
                             <td>Tight End</td>
                             <td>
-                                <span><button class="btn btn-danger" onclick="APPLICATION.nerf('te')">-</button></span>
+                                <span><button class="btn btn-lg btn-danger" onclick="APPLICATION.nerf('te')">-</button></span>
                                 <span>{{buffPercentages.te}}</span>
-                                <span><button class="btn btn-success" onclick="APPLICATION.buff('te')">+</button></span>
+                                <span><button class="btn btn-lg btn-success" onclick="APPLICATION.buff('te')">+</button></span>
                             </td>
                         </tr>
                         <tr>
                             <td>Defense</td>
                             <td>
-                                <span><button class="btn btn-danger" onclick="APPLICATION.nerf('dst')">-</button></span>
+                                <span><button class="btn btn-lg btn-danger" onclick="APPLICATION.nerf('dst')">-</button></span>
                                 <span>{{buffPercentages.dst}}</span>
-                                <span><button class="btn btn-success" onclick="APPLICATION.buff('dst')">+</button></span>
+                                <span><button class="btn btn-lg btn-success" onclick="APPLICATION.buff('dst')">+</button></span>
                             </td>
                         </tr>
                         <tr>
                             <td>Kicker</td>
                             <td>
-                                <span><button class="btn btn-danger" onclick="APPLICATION.nerf('k')">-</button></span>
+                                <span><button class="btn btn-lg btn-danger" onclick="APPLICATION.nerf('k')">-</button></span>
                                 <span>{{buffPercentages.k}}</span>
-                                <span><button class="btn btn-success" onclick="APPLICATION.buff('k')">+</button></span>
+                                <span><button class="btn btn-lg btn-success" onclick="APPLICATION.buff('k')">+</button></span>
                             </td>
                         </tr>
                     </tbody>
@@ -215,8 +227,8 @@
                 </form>
                 <p>
                 <div class="btn-group">
-                    <button class="btn btn-danger" onclick="APPLICATION.resetDraft()">Reset Draft</button>
-                    <button class="btn btn-danger" onclick="APPLICATION.resetConfig()">Reset Config</button>
+                    <button class="btn btn-lg btn-danger" onclick="APPLICATION.resetDraft()">Reset Draft</button>
+                    <button class="btn btn-lg btn-danger" onclick="APPLICATION.resetConfig()">Reset Config</button>
                 </div>
             </div>
         </div>
@@ -227,20 +239,25 @@
 </head>
 
 <body>
-    <ul class="nav">
-        <li class="nav-item">
-            <a class="nav-link active" href="#board">Draft Board</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#team">My Team</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#allTeams">All Teams</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#setup">Setup</a>
-        </li>
-    </ul>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <ul class="nav">
+            <li class="navbar-brand">
+                <a class="nav-link active" href="https://twitter.com/taylerjtodd" target="_blank"> @taylerjtodd</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#board">Draft Board</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#team">My Team</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#allTeams">Draft Results</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#setup">Setup</a>
+            </li>
+        </ul>
+    </nav>
     <div class="container-fluid" id="body">
     </div>
 </body>

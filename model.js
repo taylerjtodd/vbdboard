@@ -147,12 +147,12 @@ var MODEL = (function () {
     }
 
     function buff(pos) {
-        config.buffPercentages[pos] += 0.1;
+        config.buffPercentages[pos] += 0.25;
         localStorage.setItem('config', JSON.stringify(config));
     }
 
     function nerf(pos) {
-        config.buffPercentages[pos] -= 0.1;
+        config.buffPercentages[pos] -= 0.25;
         if (config.buffPercentages[pos] < 0) {
             config.buffPercentages[pos] = 0.0;
         }

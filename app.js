@@ -9,10 +9,10 @@ var APPLICATION = (function () {
         let undraftedCount = 0;
         for (let index = 0; index < players.length; index++) {
             const player = players[index];
-            if(undraftedCount === MODEL.config().numTeams * 2 + MODEL.drafted().length) {
+            if (undraftedCount === MODEL.config().numTeams * 2 + MODEL.drafted().length) {
                 break;
             }
-            if(!player.drafted) {
+            if (!player.drafted) {
                 player.adpWarning = true;
                 undraftedCount++;
             }
@@ -55,13 +55,16 @@ var APPLICATION = (function () {
             let players = MODEL.players();
             let filter = MODEL.filter();
             let template = $('#tableTemplate').html()
-            var rendered = Mustache.render(template, { players: players.filter(p => {
-                return filter[p.pos];
-            }), filter: filter });
+            var rendered = Mustache.render(template, {
+                players: players.filter(p => {
+                    return filter[p.pos];
+                }),
+                filter: filter
+            });
             $('#body').html(rendered);
             $('.table').DataTable({
-                ordering:false,
-                paging:false
+                ordering: false,
+                paging: false
             });
         } else if (hash === '#setup') {
             let template = $('#setupTemplate').html()
@@ -71,24 +74,24 @@ var APPLICATION = (function () {
             let template = $('#allTeamsTemplate').html();
             let rounds = [];
             let draftedPlayers = MODEL.drafted();
-            
+
             let numRounds = MODEL.config().rosterSize;
             let picksPerRound = MODEL.config().numTeams;
-            for(let j = 0; j < numRounds; j++) {
-                rounds.push({picks: []});
-                for(let k = 0; k < picksPerRound; k++) {
+            for (let j = 0; j < numRounds; j++) {
+                rounds.push({ picks: [] });
+                for (let k = 0; k < picksPerRound; k++) {
                     rounds[j].picks[k] = {};
                 }
             }
             draftedPlayers.forEach((player, i) => {
                 let round = Math.floor(i / picksPerRound);
                 let pick = i % picksPerRound;
-                if(round%2) {
+                if (round % 2) {
                     pick = picksPerRound - pick - 1
                 }
                 rounds[round].picks[pick] = player;
             });
-            var rendered = Mustache.render(template, {rounds: rounds});
+            var rendered = Mustache.render(template, { rounds: rounds });
             $('#body').html(rendered);
         } else {
             let players = MODEL.players();
@@ -110,7 +113,7 @@ var APPLICATION = (function () {
             team.k.forEach(addIfDrafted);
             team.dst.forEach(addIfDrafted);
             let template = $('#myTeam').html();
-            var rendered = Mustache.render(template, { players: myPlayers});
+            var rendered = Mustache.render(template, { players: myPlayers });
             $('#body').html(rendered);
         }
     }
@@ -123,18 +126,18 @@ var APPLICATION = (function () {
         let starters = config.starters;
         let draftedPlayers = MODEL.drafted().length;
         let totalNumDrafted = config.numTeams * config.rosterSize;
-        let percentageDrafted = draftedPlayers/totalNumDrafted;
+        let percentageDrafted = draftedPlayers / totalNumDrafted;
 
         let initialThreshold = config.baselineRangeStart;
         let finalTrheshold = config.baselineRangeEnd;
-        let replacementThreshold = initialThreshold + (finalTrheshold-initialThreshold) * percentageDrafted;
+        let replacementThreshold = initialThreshold + (finalTrheshold - initialThreshold) * percentageDrafted;
 
         let positionalIndex = -1;
         let draftedAtPosition = MODEL.drafted().filter(p => p.pos === pos).length;
 
         for (index in players) {
             let player = players[index];
-            if(player.pos === pos) {
+            if (player.pos === pos) {
                 positionalIndex++;
                 if (player.adp > replacementThreshold && positionalIndex > draftedAtPosition) {
                     return player;
@@ -142,7 +145,7 @@ var APPLICATION = (function () {
             }
         }
         let allByPosition = MODEL.projections()[pos]
-        return allByPosition[allByPosition.length-1];
+        return allByPosition[allByPosition.length - 1];
     }
 
     function sortByValue(players) {
@@ -161,12 +164,12 @@ var APPLICATION = (function () {
 
             if (surplus > 0) {
                 let expectedBenchRatio = startersForPos / config.numStarters;
-                if(pos === 'k' || pos === 'dst') {
+                if (pos === 'k' || pos === 'dst') {
                     expectedBenchRatio = 0;
                 }
                 const expectedBenchCount = expectedBenchRatio * config.benchSize * 1.75;
                 let rawNeed = expectedBenchCount - surplus;
-                if(rawNeed < 0) {
+                if (rawNeed < 0) {
                     rawNeed = 0;
                 }
                 needFactor[pos] = rawNeed / expectedBenchCount
@@ -184,10 +187,10 @@ var APPLICATION = (function () {
             const aDraftPosition = a.drafted ? a.drafted : numPlayers;
             const bDraftPosition = b.drafted ? b.drafted : numPlayers;
             const draftOrderSort = aDraftPosition - bDraftPosition;
-            if(draftOrderSort != 0) {
+            if (draftOrderSort != 0) {
                 return draftOrderSort;
             }
-            if(b.sortFactor === a.sortFactor) {
+            if (b.sortFactor === a.sortFactor) {
                 return b.pointDif - a.pointDif;
             }
             return b.sortFactor - a.sortFactor;
@@ -213,7 +216,7 @@ var APPLICATION = (function () {
         });
     };
 
-    
+
     function draft(playerName, pos, myTeam) {
         MODEL.drafted({ name: playerName, pos: pos }, myTeam);
         init();
@@ -251,7 +254,23 @@ var APPLICATION = (function () {
 
     function filter(pos, previousState) {
         const filters = MODEL.filter();
-        filters[pos] = !previousState;
+        if (pos === 'all') {
+            filters.qb = true;
+            filters.rb = true;
+            filters.wr = true;
+            filters.te = true;
+            filters.dst = true;
+            filters.k = true;
+        } else if (pos === 'none') {
+            filters.qb = false;
+            filters.rb = false;
+            filters.wr = false;
+            filters.te = false;
+            filters.dst = false;
+            filters.k = false;
+        } else {
+            filters[pos] = !previousState;
+        }
         MODEL.filter(filters);
         init();
     }
