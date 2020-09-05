@@ -63,9 +63,8 @@ var MODEL = (function () {
             config.benchSize = 7;
             config.numStarters = config.starters.qb + config.starters.rb + config.starters.wr + config.starters.te + config.starters.flex + config.starters.dst + config.starters.k;
             config.rosterSize = config.numStarters + config.benchSize;
-            config.scoring = 'standard';
-            config.baselineRangeStart = 50;
-            config.baselineRangeEnd = 170;
+            config.baselineRangeStart = config.numStarters * config.numTeams;
+            config.baselineRangeEnd = config.numTeams * (config.rosterSize + 1);
 
             config.buffPercentages = {
                 qb: 1.0,
@@ -172,6 +171,12 @@ var MODEL = (function () {
         localStorage.setItem('config', JSON.stringify(config));
     }
 
+    function updateNumTeams(numTeams) {
+        config.numTeams = numTeams;
+
+        localStorage.setItem('config', JSON.stringify(config));
+    }
+
     function filter(positions) {
         if (!positions) {
             let storedValue = localStorage.getItem('filter');
@@ -196,6 +201,7 @@ var MODEL = (function () {
         nerf: nerf,
         updateBaselines: updateBaselines,
         init: init,
-        filter: filter
+        filter: filter,
+        updateNumTeams: updateNumTeams
     }
 })();

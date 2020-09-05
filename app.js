@@ -280,6 +280,11 @@ var APPLICATION = (function () {
         init();
     }
 
+    function updateNumTeams() {
+        MODEL.updateNumTeams($('#numTeams').val());
+        init();
+    }
+
     return {
         init: init,
         draft: draft,
@@ -291,6 +296,7 @@ var APPLICATION = (function () {
         nerf: nerf,
         updateBaselines: updateBaselines,
         filter: filter,
+        updateNumTeams: updateNumTeams,
     };
 
 })();
