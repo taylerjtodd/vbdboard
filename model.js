@@ -80,7 +80,10 @@ var MODEL = (function () {
     }
 
     function loadPlayers() {
-        return DataLoad.ranks();
+        return DataLoad.ranks().map(p => {
+            p.name = p.name.replace("'", "");
+            return p;
+        });
     }
 
     function loadProjections() {
