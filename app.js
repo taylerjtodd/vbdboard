@@ -179,21 +179,22 @@ var APPLICATION = (function () {
         }
 
         players.forEach((b) => {
-            b.sortFactor = b.pointDif * needFactor[b.pos] * config.buffPercentages[b.pos];
+            b.sortFactor = Number(b.pointDif) * needFactor[b.pos] * config.buffPercentages[b.pos];
         })
 
         const numPlayers = players.length;
-        players.sort(function (a, b) {
+        players.sort((a, b) => {
             const aDraftPosition = a.drafted ? a.drafted : numPlayers;
             const bDraftPosition = b.drafted ? b.drafted : numPlayers;
             const draftOrderSort = aDraftPosition - bDraftPosition;
-            if (draftOrderSort != 0) {
+            if (draftOrderSort !== 0) {
                 return draftOrderSort;
             }
             if (b.sortFactor === a.sortFactor) {
-                return b.pointDif - a.pointDif;
+                return Number(b.pointDif) - Number(a.pointDif);
+            } else {
+                return b.sortFactor - a.sortFactor;
             }
-            return b.sortFactor - a.sortFactor;
         });
     }
 
@@ -205,11 +206,11 @@ var APPLICATION = (function () {
 
     function insertPointDif(players, baseline) {
         players.forEach(function (player) {
-            player.pointDif = 16 * (player.ppg - baseline.ppg);
+            player.pointDif = 17 * (player.ppg - baseline.ppg);
             player.pointDif = player.pointDif.toFixed(1);
         });
         players.sort(function (a, b) {
-            return b.pointDif - a.pointDif;
+            return Number(b.pointDif) - Number(a.pointDif);
         });
         players.forEach(function (player, i) {
             player.posrank = pad(i + 1, 2);

@@ -82,6 +82,9 @@ var MODEL = (function () {
     function loadPlayers() {
         return DataLoad.ranks().map(p => {
             p.name = p.name.replace("'", "");
+            if(p.name === 'Cordarrelle Patterson') {
+                p.pos = 'rb';
+            }
             return p;
         });
     }
