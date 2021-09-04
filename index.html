@@ -68,45 +68,57 @@
 
     <script id="tableTemplate" type="x-tmpl-mustache">
         <h1>Draft Board</h1>
-        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <button class="positionFilter btn btn-lg btn-dark" id="allFilter" onclick="APPLICATION.filter('all')">All</button>
-            <label class="btn btn-lg btn-primary {{#filter.qb}}active{{/filter.qb}}  ">
-                <input class="positionFilter" type="checkbox" {{#filter.qb}}checked{{/filter.qb}} autocomplete="off" id="qbFilter"
-                        onchange="APPLICATION.filter('qb', {{filter.qb}})">
-                    {{^filter.qb}}<s>{{/filter.qb}}QB{{^filter.qb}}</s>{{/filter.qb}}
-            </label>
-            <label class="btn btn-lg btn-danger {{#filter.rb}}active{{/filter.rb}}  ">
-                <input class="positionFilter" type="checkbox" {{#filter.rb}}checked{{/filter.rb}} autocomplete="off" id="rbFilter"
-                        onchange="APPLICATION.filter('rb', {{filter.rb}})">
-                    {{^filter.rb}}<s>{{/filter.rb}}RB{{^filter.rb}}</s>{{/filter.rb}}
-            </label>
-            <label class="btn btn-lg btn-success {{#filter.wr}}active{{/filter.wr}}  ">
-                <input class="positionFilter" type="checkbox" {{#filter.wr}}checked{{/filter.wr}} autocomplete="off" id="wrFilter"
-                        onchange="APPLICATION.filter('wr', {{filter.wr}})">
-                    {{^filter.wr}}<s>{{/filter.wr}}WR{{^filter.wr}}</s>{{/filter.wr}}
-            </label>
-            <label class="btn btn-lg btn-warning {{#filter.te}}active{{/filter.te}}  ">
-                <input class="positionFilter" type="checkbox" {{#filter.te}}checked{{/filter.te}} autocomplete="off" id="teFilter"
-                        onchange="APPLICATION.filter('te', {{filter.te}})">
-                    {{^filter.te}}<s>{{/filter.te}}TE{{^filter.te}}</s>{{/filter.te}}
-            </label>
-            <label class="btn btn-lg btn-secondary {{#filter.dst}}active{{/filter.dst}}  ">
-                <input class="positionFilter" type="checkbox" {{#filter.dst}}checked{{/filter.dst}} autocomplete="off" id="dstFilter"
-                        onchange="APPLICATION.filter('dst', {{filter.dst}})">
-                    {{^filter.dst}}<s>{{/filter.dst}}DST{{^filter.dst}}</s>{{/filter.dst}}
-            </label>
-            <label class="btn btn-lg btn-light {{#filter.k}}active{{/filter.k}}  ">
-                <input class="positionFilter" type="checkbox" {{#filter.k}}checked{{/filter.k}} autocomplete="off" id="kFilter"
-                        onchange="APPLICATION.filter('k', {{filter.k}})">
-                    {{^filter.k}}<s>{{/filter.k}}K{{^filter.k}}</s>{{/filter.k}}
-            </label>
-            <button class="positionFilter btn btn-lg btn-dark" id="noneFilter" onclick="APPLICATION.filter('none')">None</button>
-            
-            <label class="btn btn-lg btn-muted {{#filter.drafted}}active{{/filter.drafted}}  ">
-                <input class="positionFilter" type="checkbox" {{#filter.drafted}}checked{{/filter.drafted}} autocomplete="off" id="draftedFilter"
-                        onchange="APPLICATION.filter('drafted', {{filter.drafted}})">
-                    {{^filter.drafted}}<s>{{/filter.drafted}}Drafted{{^filter.drafted}}</s>{{/filter.drafted}}
-            </label>
+        
+        <div class="row">
+            <div class="col-xs-12 col-sm-6">
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <button class="positionFilter btn btn-lg btn-dark" id="allFilter" onclick="APPLICATION.filter('all')">All</button>
+                    <label class="btn btn-lg btn-primary {{#filter.qb}}active{{/filter.qb}}  ">
+                        <input class="positionFilter" type="checkbox" {{#filter.qb}}checked{{/filter.qb}} autocomplete="off" id="qbFilter"
+                                onchange="APPLICATION.filter('qb', {{filter.qb}})">
+                            {{^filter.qb}}<s>{{/filter.qb}}QB{{^filter.qb}}</s>{{/filter.qb}}
+                    </label>
+                    <label class="btn btn-lg btn-danger {{#filter.rb}}active{{/filter.rb}}  ">
+                        <input class="positionFilter" type="checkbox" {{#filter.rb}}checked{{/filter.rb}} autocomplete="off" id="rbFilter"
+                                onchange="APPLICATION.filter('rb', {{filter.rb}})">
+                            {{^filter.rb}}<s>{{/filter.rb}}RB{{^filter.rb}}</s>{{/filter.rb}}
+                    </label>
+                    <label class="btn btn-lg btn-success {{#filter.wr}}active{{/filter.wr}}  ">
+                        <input class="positionFilter" type="checkbox" {{#filter.wr}}checked{{/filter.wr}} autocomplete="off" id="wrFilter"
+                                onchange="APPLICATION.filter('wr', {{filter.wr}})">
+                            {{^filter.wr}}<s>{{/filter.wr}}WR{{^filter.wr}}</s>{{/filter.wr}}
+                    </label>
+                    <label class="btn btn-lg btn-warning {{#filter.te}}active{{/filter.te}}  ">
+                        <input class="positionFilter" type="checkbox" {{#filter.te}}checked{{/filter.te}} autocomplete="off" id="teFilter"
+                                onchange="APPLICATION.filter('te', {{filter.te}})">
+                            {{^filter.te}}<s>{{/filter.te}}TE{{^filter.te}}</s>{{/filter.te}}
+                    </label>
+                    <label class="btn btn-lg btn-secondary {{#filter.dst}}active{{/filter.dst}}  ">
+                        <input class="positionFilter" type="checkbox" {{#filter.dst}}checked{{/filter.dst}} autocomplete="off" id="dstFilter"
+                                onchange="APPLICATION.filter('dst', {{filter.dst}})">
+                            {{^filter.dst}}<s>{{/filter.dst}}DST{{^filter.dst}}</s>{{/filter.dst}}
+                    </label>
+                    <label class="btn btn-lg btn-light {{#filter.k}}active{{/filter.k}}  ">
+                        <input class="positionFilter" type="checkbox" {{#filter.k}}checked{{/filter.k}} autocomplete="off" id="kFilter"
+                                onchange="APPLICATION.filter('k', {{filter.k}})">
+                            {{^filter.k}}<s>{{/filter.k}}K{{^filter.k}}</s>{{/filter.k}}
+                    </label>
+                    <button class="positionFilter btn btn-lg btn-dark" id="noneFilter" onclick="APPLICATION.filter('none')">None</button>
+                    
+                    <label class="btn btn-lg btn-muted {{#filter.drafted}}active{{/filter.drafted}}  ">
+                        <input class="positionFilter" type="checkbox" {{#filter.drafted}}checked{{/filter.drafted}} autocomplete="off" id="draftedFilter"
+                                onchange="APPLICATION.filter('drafted', {{filter.drafted}})">
+                            {{^filter.drafted}}<s>{{/filter.drafted}}Drafted{{^filter.drafted}}</s>{{/filter.drafted}}
+                    </label>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <button class="btn btn-lg btn-dark" onclick="APPLICATION.presetBaselines(0)">Near Baseline</button>
+                    <button class="btn btn-lg btn-dark" onclick="APPLICATION.presetBaselines(0.5)">Mid Baseline</button>
+                    <button class="btn btn-lg btn-dark" onclick="APPLICATION.presetBaselines(1)">Far Baseline</button>
+                </div>
+            </div>
         </div>
         <table class="table" id="players">
             <thead>

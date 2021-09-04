@@ -281,8 +281,15 @@ var APPLICATION = (function () {
         init();
     }
 
+    function presetBaselines(startingRatio) {
+        let config = MODEL.config();
+        let totalDraftCount = config.numTeams * config.rosterSize;
+        MODEL.updateBaselines(totalDraftCount * startingRatio + config.numTeams, totalDraftCount + config.numTeams);
+        init();
+    }
+
     function updateNumTeams() {
-        MODEL.updateNumTeams($('#numTeams').val());
+        MODEL.updateNumTeams(Number($('#numTeams').val()));
         init();
     }
 
@@ -298,6 +305,7 @@ var APPLICATION = (function () {
         updateBaselines: updateBaselines,
         filter: filter,
         updateNumTeams: updateNumTeams,
+        presetBaselines: presetBaselines
     };
 
 })();
