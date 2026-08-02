@@ -1,0 +1,482 @@
+[
+  {
+    "type": "projection",
+    "name": "Josh Allen",
+    "position": "QB",
+    "points": "372.1",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Drake Maye",
+    "position": "QB",
+    "points": "326.9",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Lamar Jackson",
+    "position": "QB",
+    "points": "324.9",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Jayden Daniels",
+    "position": "QB",
+    "points": "324.5",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Jalen Hurts",
+    "position": "QB",
+    "points": "320.6",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Jaxson Dart",
+    "position": "QB",
+    "points": "311.7",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Joe Burrow",
+    "position": "QB",
+    "points": "310.7",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Dak Prescott",
+    "position": "QB",
+    "points": "306.2",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Brock Purdy",
+    "position": "QB",
+    "points": "306.0",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Trevor Lawrence",
+    "position": "QB",
+    "points": "304.0",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Jahmyr Gibbs",
+    "position": "RB",
+    "points": "372.6",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Bijan Robinson",
+    "position": "RB",
+    "points": "370.0",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Christian McCaffrey",
+    "position": "RB",
+    "points": "334.8",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Jonathan Taylor",
+    "position": "RB",
+    "points": "312.4",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "De'Von Achane",
+    "position": "RB",
+    "points": "292.0",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Chase Brown",
+    "position": "RB",
+    "points": "277.7",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Ashton Jeanty",
+    "position": "RB",
+    "points": "276.8",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Derrick Henry",
+    "position": "RB",
+    "points": "273.1",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "James Cook III",
+    "position": "RB",
+    "points": "270.2",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Saquon Barkley",
+    "position": "RB",
+    "points": "265.9",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Puka Nacua",
+    "position": "WR",
+    "points": "339.8",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Ja'Marr Chase",
+    "position": "WR",
+    "points": "335.5",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Jaxon Smith-Njigba",
+    "position": "WR",
+    "points": "324.1",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Amon-Ra St. Brown",
+    "position": "WR",
+    "points": "319.5",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Drake London",
+    "position": "WR",
+    "points": "287.1",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Rashee Rice",
+    "position": "WR",
+    "points": "273.3",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "CeeDee Lamb",
+    "position": "WR",
+    "points": "273.3",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Justin Jefferson",
+    "position": "WR",
+    "points": "269.6",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "A.J. Brown",
+    "position": "WR",
+    "points": "257.4",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Chris Olave",
+    "position": "WR",
+    "points": "257.3",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Trey McBride",
+    "position": "TE",
+    "points": "254.3",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Brock Bowers",
+    "position": "TE",
+    "points": "243.7",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Colston Loveland",
+    "position": "TE",
+    "points": "209.3",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Tyler Warren",
+    "position": "TE",
+    "points": "201.8",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Kyle Pitts Sr.",
+    "position": "TE",
+    "points": "195.6",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Harold Fannin Jr.",
+    "position": "TE",
+    "points": "190.3",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Sam LaPorta",
+    "position": "TE",
+    "points": "183.1",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Travis Kelce",
+    "position": "TE",
+    "points": "181.8",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Dallas Goedert",
+    "position": "TE",
+    "points": "179.3",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Tucker Kraft",
+    "position": "TE",
+    "points": "174.9",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Brandon Aubrey",
+    "position": "K",
+    "points": "153.0",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Jason Myers",
+    "position": "K",
+    "points": "150.4",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Cameron Dicker",
+    "position": "K",
+    "points": "144.1",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Ka'imi Fairbairn",
+    "position": "K",
+    "points": "144.0",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Harrison Mevis",
+    "position": "K",
+    "points": "136.9",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Jake Bates",
+    "position": "K",
+    "points": "135.9",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Chase McLaughlin",
+    "position": "K",
+    "points": "132.9",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Cairo Santos",
+    "position": "K",
+    "points": "132.9",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Eddy Pineiro",
+    "position": "K",
+    "points": "132.6",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Tyler Loop",
+    "position": "K",
+    "points": "132.5",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Houston Texans",
+    "position": "DST",
+    "points": "120.5",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Denver Broncos",
+    "position": "DST",
+    "points": "118.2",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Pittsburgh Steelers",
+    "position": "DST",
+    "points": "112.8",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Minnesota Vikings",
+    "position": "DST",
+    "points": "112.7",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Seattle Seahawks",
+    "position": "DST",
+    "points": "110.7",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Los Angeles Chargers",
+    "position": "DST",
+    "points": "107.7",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Buffalo Bills",
+    "position": "DST",
+    "points": "107.6",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Detroit Lions",
+    "position": "DST",
+    "points": "107.3",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Los Angeles Rams",
+    "position": "DST",
+    "points": "107.1",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Atlanta Falcons",
+    "position": "DST",
+    "points": "104.3",
+    "ppg": "0",
+    "tier": 0
+  }
+]
