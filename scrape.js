@@ -49,7 +49,7 @@ var SCRAPE = (function () {
 
 		var retArr = [];
 		var currentTier = '';
-		$('#rank-data').find('tr').each(function (i, row) {
+		$('#ranking-table').find('tr').each(function (i, row) {
 			if (i < 2) {
 				return;
 			}
