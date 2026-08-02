@@ -1,0 +1,1 @@
+After we have some scrapes in place, we should be able to update the dataload to use the raw data from the spiders instead of hard coding it.

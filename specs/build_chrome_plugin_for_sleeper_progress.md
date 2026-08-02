@@ -1,0 +1,1 @@
+It would be cool to have a chrome plugin that could get the current draft state from sleeper and use that to update the draft on the fly. Additionally, it would be cool to display the value based rankings over top of the sleeper UI.
