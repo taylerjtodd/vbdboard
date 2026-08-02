@@ -1,0 +1,1 @@
+I think we need to configure a github action to deploy to github pages.
