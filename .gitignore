@@ -1,0 +1,20 @@
+# Python / scraper
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+dist/
+*.egg
+
+# Scrapy
+.scrapy/
+
+# Next.js site build artifacts
+site/out/
+site/.next/
+site/node_modules/
+
+# Misc
+.DS_Store
+*.pem
