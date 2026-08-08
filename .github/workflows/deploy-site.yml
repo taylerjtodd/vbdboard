@@ -32,6 +32,8 @@ jobs:
 
       - name: Build Next.js site
         run: npm run build
+        env:
+          NEXT_PUBLIC_BASE_PATH: /vbdboard
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
