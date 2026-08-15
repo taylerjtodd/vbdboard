@@ -37,9 +37,12 @@ export async function loadPlayerData(): Promise<{
   };
 
   try {
-    const res = await fetch('/players.json');
+    let res = await fetch('/vbdboard/players.json');
     if (!res.ok) {
-      throw new Error(`HTTP ${res.status} — failed to load /players.json`);
+      res = await fetch('/players.json');
+      if   (!res.ok) {
+        throw new Error(`HTTP ${res.status} — failed to load /players.json`);
+      }
     }
 
     const players: CombinedPlayer[] = await res.json();
