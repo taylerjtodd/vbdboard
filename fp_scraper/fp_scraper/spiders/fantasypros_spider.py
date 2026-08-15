@@ -5,6 +5,26 @@ class FantasyProsSpider(scrapy.Spider):
     name = "fantasypros"
 
     def start_requests(self):
+        import os
+        import json
+
+        # Load cookies from the JSON file provided by the user
+        cookies = {}
+        cookies_path = os.path.join(
+            os.path.dirname(os.path.dirname(__file__)),
+            'www.fantasypros.com_cookies.json'
+        )
+        if os.path.exists(cookies_path):
+            try:
+                with open(cookies_path, 'r') as f:
+                    cookies_list = json.load(f)
+                    cookies = {c['name']: c['value'] for c in cookies_list}
+                self.logger.info(f"Successfully loaded {len(cookies)} cookies from {cookies_path}")
+            except Exception as e:
+                self.logger.error(f"Failed to load cookies from {cookies_path}: {e}")
+        else:
+            self.logger.warning(f"Cookies file not found at {cookies_path}")
+
         # Projections URLs
         projections = [
             'https://www.fantasypros.com/nfl/projections/qb.php?week=draft',
@@ -26,10 +46,10 @@ class FantasyProsSpider(scrapy.Spider):
         ]
 
         for url in projections:
-            yield scrapy.Request(url=url, callback=self.parse_projections)
+            yield scrapy.Request(url=url, cookies=cookies, callback=self.parse_projections)
             
         for url in rankings:
-            yield scrapy.Request(url=url, callback=self.parse_rankings)
+            yield scrapy.Request(url=url, cookies=cookies, callback=self.parse_rankings)
 
     def parse_projections(self, response):
         position = re.search(r'/projections/([a-z]+)\.php', response.url).group(1).upper()

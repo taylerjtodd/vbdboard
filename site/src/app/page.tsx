@@ -9,6 +9,8 @@ import { SetupConfig } from '../components/SetupConfig';
 import {
   DraftedPlayer,
   Player,
+  PlayerProjection,
+  PlayerRank,
   Position,
   PositionFilter,
   RosterConfig,
@@ -31,10 +33,16 @@ import {
   saveFilter,
   saveTeam,
 } from '../lib/storage';
+import { loadPlayerData } from '../data/initialData';
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<TabType>('board');
   const [isHydrated, setIsHydrated] = useState(false);
+  const [isLoadingData, setIsLoadingData] = useState(true);
+  const [projections, setProjections] = useState<Record<Position, PlayerProjection[]>>({
+    qb: [], rb: [], wr: [], te: [], dst: [], k: [],
+  });
+  const [ranks, setRanks] = useState<PlayerRank[]>([]);
 
   const [config, setConfig] = useState<RosterConfig>(DEFAULT_CONFIG);
   const [draftedPlayers, setDraftedPlayers] = useState<DraftedPlayer[]>([]);
@@ -55,13 +63,20 @@ export default function Home() {
     k: true,
   });
 
-  // Hydrate from localStorage on client render
+  // Hydrate from localStorage + fetch player data on client render
   useEffect(() => {
     setConfig(loadStoredConfig());
     setDraftedPlayers(loadStoredDraftedPlayers());
     setTeam(loadStoredTeam());
     setFilter(loadStoredFilter());
     setIsHydrated(true);
+
+    // Fetch scraped player data
+    loadPlayerData().then(({ projections: p, ranks: r }) => {
+      setProjections(p);
+      setRanks(r);
+      setIsLoadingData(false);
+    });
 
     // Sync tab with URL hash if present
     const hash = window.location.hash.replace('#', '');
@@ -106,8 +121,8 @@ export default function Home() {
 
   // VBD Engine recalculated state
   const { players, baselines } = useMemo(() => {
-    return calculateVbd(config, draftedPlayers, team);
-  }, [config, draftedPlayers, team]);
+    return calculateVbd(config, draftedPlayers, team, projections, ranks);
+  }, [config, draftedPlayers, team, projections, ranks]);
 
   // Total draft statistics
   const totalPicks = config.numTeams * config.rosterSize;
@@ -241,11 +256,11 @@ export default function Home() {
     });
   };
 
-  if (!isHydrated) {
+  if (!isHydrated || isLoadingData) {
     return (
       <div className="min-h-screen bg-slate-950 flex items-center justify-center text-slate-400">
         <div className="animate-pulse font-medium text-sm">
-          Loading VBD Board...
+          {!isHydrated ? 'Loading VBD Board...' : 'Loading player data...'}
         </div>
       </div>
     );

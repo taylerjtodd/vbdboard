@@ -1,7 +1,8 @@
-import { INITIAL_PROJECTIONS, INITIAL_RANKS } from '../data/initialData';
 import {
   DraftedPlayer,
   Player,
+  PlayerProjection,
+  PlayerRank,
   Position,
   RosterConfig,
   StartersConfig,
@@ -66,7 +67,8 @@ export function determineBaseline(
   pos: Position,
   players: Player[],
   config: RosterConfig,
-  draftedPlayers: DraftedPlayer[]
+  draftedPlayers: DraftedPlayer[],
+  projections: Record<Position, PlayerProjection[]>
 ): Player {
   const totalNumDrafted = config.numTeams * config.rosterSize;
   const percentageDrafted = draftedPlayers.length / totalNumDrafted;
@@ -91,7 +93,7 @@ export function determineBaseline(
     }
   }
 
-  const allByPosition = INITIAL_PROJECTIONS[pos] || [];
+  const allByPosition = projections[pos] || [];
   const lastProj = allByPosition[allByPosition.length - 1];
 
   return {
@@ -184,10 +186,12 @@ function sortByValue(
 export function calculateVbd(
   config: RosterConfig,
   draftedPlayers: DraftedPlayer[],
-  myTeam: TeamRoster
+  myTeam: TeamRoster,
+  projections: Record<Position, PlayerProjection[]>,
+  ranks: PlayerRank[]
 ): { players: Player[]; baselines: Record<Position, Player> } {
   // 1. Clean ranks & build projections mapping
-  const rankList = INITIAL_RANKS.map((p) => {
+  const rankList = ranks.map((p) => {
     const cleanName = p.name.replace("'", '');
     const pos = cleanName === 'Cordarrelle Patterson' ? 'rb' : p.pos;
     return {
@@ -209,7 +213,7 @@ export function calculateVbd(
   const positions: Position[] = ['qb', 'rb', 'wr', 'te', 'dst', 'k'];
 
   positions.forEach((pos) => {
-    const projList = INITIAL_PROJECTIONS[pos] || [];
+    const projList = projections[pos] || [];
     projList.forEach((proj) => {
       let rankItem: (typeof rankList)[0] | undefined;
 
@@ -275,7 +279,7 @@ export function calculateVbd(
   const activePositions: Position[] = ['qb', 'rb', 'wr', 'te', 'dst', 'k'];
 
   activePositions.forEach((pos) => {
-    const baseline = determineBaseline(pos, allPlayers, config, draftedPlayers);
+    const baseline = determineBaseline(pos, allPlayers, config, draftedPlayers, projections);
     baselines[pos] = baseline;
     insertPointDif(projectionsByPos[pos], baseline);
   });
