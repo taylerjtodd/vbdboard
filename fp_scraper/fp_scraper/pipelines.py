@@ -12,6 +12,7 @@ class FpScraperPipeline:
     def __init__(self):
         self.projections = []
         self.rankings = []
+        self.adps = []
 
     def process_item(self, item, spider):
         # clean names
@@ -22,6 +23,8 @@ class FpScraperPipeline:
             self.projections.append(item)
         elif item.get('type') == 'ranking':
             self.rankings.append(item)
+        elif item.get('type') == 'adp':
+            self.adps.append(item)
         return item
 
     def close_spider(self, spider):
@@ -37,3 +40,6 @@ class FpScraperPipeline:
             
         with open(os.path.join(data_dir, 'ranks.json'), 'w') as f:
             json.dump(self.rankings, f, indent=2)
+
+        with open(os.path.join(data_dir, 'adp.json'), 'w') as f:
+            json.dump(self.adps, f, indent=2)

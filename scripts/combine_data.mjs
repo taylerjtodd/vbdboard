@@ -1,13 +1,15 @@
 /**
  * combine_data.mjs
  *
- * Merges data/projections.json and data/ranks.json into site/public/players.json.
+ * Merges data/projections.json, data/ranks.json, and data/adp.json into
+ * site/public/players.json.
  * Run from the repo root after every scrape:
  *   node scripts/combine_data.mjs
  *
  * Join logic:
  *   - Primary key: name (lowercased + trimmed)
  *   - Source of truth for roster: ranks.json (iterate ranks, look up each in projections)
+ *   - ADP: populated from adp.json (Sleeper column). Falls back to 0 if missing.
  *   - Dropped silently: players in projections with no matching rank entry
  *   - Logged to stdout: players in ranks with no matching projection entry
  */
@@ -22,10 +24,12 @@ const ROOT = resolve(__dirname, '..');
 // --- Read source files ---
 const projectionsPath = resolve(ROOT, 'data', 'projections.json');
 const ranksPath = resolve(ROOT, 'data', 'ranks.json');
+const adpPath = resolve(ROOT, 'data', 'adp.json');
 const outputPath = resolve(ROOT, 'site', 'public', 'players.json');
 
 let projections;
 let ranks;
+let adpData = [];
 
 try {
   projections = JSON.parse(readFileSync(projectionsPath, 'utf-8'));
@@ -41,6 +45,12 @@ try {
   process.exit(1);
 }
 
+try {
+  adpData = JSON.parse(readFileSync(adpPath, 'utf-8'));
+} catch (err) {
+  console.warn(`WARN: Could not read ${adpPath} — ADP will default to 0. Run a fresh scrape to generate it.`);
+}
+
 // --- Build projection lookup: normalised name -> projection entry ---
 /** @param {string} name */
 const normalise = (name) => name.toLowerCase().trim();
@@ -49,6 +59,15 @@ const normalise = (name) => name.toLowerCase().trim();
 const projectionMap = new Map();
 for (const proj of projections) {
   projectionMap.set(normalise(proj.name), proj);
+}
+
+// --- Build ADP (Sleeper) lookup: normalised name -> sleeper_adp ---
+/** @type {Map<string, number>} */
+const adpMap = new Map();
+for (const entry of adpData) {
+  if (entry.name) {
+    adpMap.set(normalise(entry.name), parseFloat(entry.sleeper_adp) || 0);
+  }
 }
 
 // --- Iterate ranks as primary list ---
@@ -87,6 +106,10 @@ for (const rankEntry of ranks) {
   const points = parseFloat(proj.points) || 0;
   const ppg = parseFloat((points / 17).toFixed(1));
 
+  // Prefer Sleeper ADP from adp.json; fall back to rank entry's adp (usually 0)
+  const sleeperAdp = adpMap.get(key);
+  const adp = sleeperAdp !== undefined ? sleeperAdp : (parseFloat(rankEntry.adp) || 0);
+
   combined.push({
     name: rankEntry.name,
     position: (proj.position || rankEntry.pos).toLowerCase(),
@@ -94,7 +117,7 @@ for (const rankEntry of ranks) {
     ppg: ppg,
     rank: posRank,
     tier: rankEntry.tier || 0,
-    adp: parseFloat(rankEntry.adp) || 0,
+    adp,
   });
 
   matchedCount++;

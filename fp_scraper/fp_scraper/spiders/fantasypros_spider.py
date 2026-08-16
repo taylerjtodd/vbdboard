@@ -45,11 +45,16 @@ class FantasyProsSpider(scrapy.Spider):
             'https://www.fantasypros.com/nfl/rankings/dst-cheatsheets.php',
         ]
 
+        # ADP URL
+        adp_url = 'https://www.fantasypros.com/nfl/adp/ppr-overall.php'
+
         for url in projections:
             yield scrapy.Request(url=url, cookies=cookies, callback=self.parse_projections)
             
         for url in rankings:
             yield scrapy.Request(url=url, cookies=cookies, callback=self.parse_rankings)
+
+        yield scrapy.Request(url=adp_url, cookies=cookies, callback=self.parse_adp)
 
     def parse_projections(self, response):
         position = re.search(r'/projections/([a-z]+)\.php', response.url).group(1).upper()
@@ -106,3 +111,43 @@ class FantasyProsSpider(scrapy.Spider):
                         }
                 except Exception as e:
                     self.logger.error(f"Failed to parse ecrData: {e}")
+
+    def parse_adp(self, response):
+        import json
+
+        script_text = response.xpath(
+            '//script[contains(text(), "FP.reportConfig")]/text()'
+        ).get()
+        if not script_text:
+            self.logger.error("parse_adp: could not find FP.reportConfig script block")
+            return
+
+        match = re.search(r'window\.FP\.reportConfig\s*=\s*({.*?});\s*$', script_text, re.DOTALL | re.MULTILINE)
+        if not match:
+            match = re.search(r'FP\.reportConfig\s*=\s*({.*});', script_text, re.DOTALL)
+
+        if not match:
+            self.logger.error("parse_adp: regex did not match FP.reportConfig")
+            return
+
+        try:
+            data = json.loads(match.group(1))
+            rows = data.get('table', {}).get('rows', [])
+            for row in rows:
+                player = row.get('player', {})
+                name = player.get('name', '')
+                if not name:
+                    continue
+                pos_raw = row.get('pos', '')
+                # pos_raw is like "RB1", "WR3" — strip trailing digits
+                pos = re.sub(r'\d+$', '', pos_raw).upper()
+                # src_4350 is the Sleeper ADP column
+                sleeper_adp = row.get('src_4350')
+                yield {
+                    'type': 'adp',
+                    'name': name.strip(),
+                    'pos': pos,
+                    'sleeper_adp': float(sleeper_adp) if sleeper_adp is not None else 0.0,
+                }
+        except Exception as e:
+            self.logger.error(f"Failed to parse FP.reportConfig: {e}")

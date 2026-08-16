@@ -192,11 +192,9 @@ export function calculateVbd(
 ): { players: Player[]; baselines: Record<Position, Player> } {
   // 1. Clean ranks & build projections mapping
   const rankList = ranks.map((p) => {
-    const cleanName = p.name.replace("'", '');
-    const pos = cleanName === 'Cordarrelle Patterson' ? 'rb' : p.pos;
+    const pos = p.name === 'Cordarrelle Patterson' ? 'rb' : p.pos;
     return {
       ...p,
-      name: cleanName,
       pos,
     };
   });
