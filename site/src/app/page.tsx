@@ -19,6 +19,7 @@ import {
 import {
   calculateVbd,
   DEFAULT_CONFIG,
+  isPlayerMatch,
   recalculateConfigBounds,
 } from '../lib/vbdEngine';
 import {
@@ -62,6 +63,8 @@ export default function Home() {
     dst: true,
     k: true,
   });
+  const [sleeperDraftId, setSleeperDraftId] = useState<string | null>(null);
+  const [mySlot, setMySlot] = useState<number | null>(null);
 
   // Hydrate from localStorage + fetch player data on client render
   useEffect(() => {
@@ -70,6 +73,15 @@ export default function Home() {
     setTeam(loadStoredTeam());
     setFilter(loadStoredFilter());
     setIsHydrated(true);
+
+    // Check URL params for Sleeper draft integration
+    const urlParams = new URLSearchParams(window.location.search);
+    const sDraftId = urlParams.get('sleeper_draft_id');
+    const sSlot = urlParams.get('my_slot');
+    if (sDraftId) {
+      setSleeperDraftId(sDraftId);
+      if (sSlot) setMySlot(parseInt(sSlot, 10));
+    }
 
     // Fetch scraped player data
     loadPlayerData().then(({ projections: p, ranks: r }) => {
@@ -84,6 +96,53 @@ export default function Home() {
       setActiveTab(hash as TabType);
     }
   }, []);
+
+  // Poll Sleeper Draft if sleeper_draft_id is present
+  useEffect(() => {
+    if (!sleeperDraftId) return;
+
+    let isMounted = true;
+    const syncSleeperPicks = async () => {
+      try {
+        const res = await fetch(`https://api.sleeper.app/v1/draft/${sleeperDraftId}/picks`);
+        if (!res.ok) return;
+        const picks = await res.json();
+        if (!isMounted || !Array.isArray(picks)) return;
+
+        const newDrafted: DraftedPlayer[] = [];
+        const newTeam: TeamRoster = { qb: [], rb: [], wr: [], te: [], dst: [], k: [] };
+
+        picks.forEach((pick: any) => {
+          let pos = (pick.metadata?.position || '').toLowerCase() as Position;
+          if (pos === ('def' as any)) pos = 'dst';
+          const name =
+            pick.metadata?.player_name ||
+            `${pick.metadata?.first_name || ''} ${pick.metadata?.last_name || ''}`.trim();
+
+          const entry: DraftedPlayer = { name, pos };
+          newDrafted.push(entry);
+
+          if (mySlot && (pick.draft_slot === mySlot || pick.roster_id === mySlot)) {
+            if (newTeam[pos]) {
+              newTeam[pos].push(entry);
+            }
+          }
+        });
+
+        setDraftedPlayers(newDrafted);
+        if (mySlot) setTeam(newTeam);
+      } catch (err) {
+        console.debug('Sleeper sync error:', err);
+      }
+    };
+
+    syncSleeperPicks();
+    const interval = setInterval(syncSleeperPicks, 3000);
+    return () => {
+      isMounted = false;
+      clearInterval(interval);
+    };
+  }, [sleeperDraftId, mySlot]);
 
   // Update hash when tab changes
   const handleTabChange = (tab: TabType) => {
@@ -143,11 +202,7 @@ export default function Home() {
     positions.forEach((pos) => {
       (team[pos] || []).forEach((dp) => {
         const match = players.find(
-          (p) =>
-            p.pos === pos &&
-            (pos === 'dst'
-              ? p.name.substring(0, 6) === dp.name.substring(0, 6)
-              : p.name === dp.name)
+          (p) => p.pos === pos && isPlayerMatch(p.name, dp.name, pos)
         );
         if (match) {
           total += match.pointDif || 0;
@@ -173,27 +228,13 @@ export default function Home() {
 
   const handleUndraft = (player: Player) => {
     setDraftedPlayers((prev) =>
-      prev.filter(
-        (dp) =>
-          !(
-            dp.pos === player.pos &&
-            (player.pos === 'dst'
-              ? dp.name.substring(0, 6) === player.name.substring(0, 6)
-              : dp.name === player.name)
-          )
-      )
+      prev.filter((dp) => !(dp.pos === player.pos && isPlayerMatch(dp.name, player.name, player.pos)))
     );
 
     setTeam((prev) => ({
       ...prev,
       [player.pos]: (prev[player.pos] || []).filter(
-        (dp) =>
-          !(
-            dp.pos === player.pos &&
-            (player.pos === 'dst'
-              ? dp.name.substring(0, 6) === player.name.substring(0, 6)
-              : dp.name === player.name)
-          )
+        (dp) => !(dp.pos === player.pos && isPlayerMatch(dp.name, player.name, player.pos))
       ),
     }));
   };
@@ -276,6 +317,7 @@ export default function Home() {
         myTeamCount={myTeamCount}
         totalTeamVBD={totalTeamVBD}
         onResetDraft={handleResetDraft}
+        sleeperDraftId={sleeperDraftId}
       />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">

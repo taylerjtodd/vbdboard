@@ -1,15 +1,10 @@
-import {
-  DraftedPlayer,
-  Player,
-  PlayerProjection,
-  PlayerRank,
-  Position,
-  RosterConfig,
-  StartersConfig,
-  TeamRoster,
-} from '../types/vbd';
+/**
+ * vbdCore.js
+ * Core Value-Based Drafting (VBD) calculation engine for the Chrome Extension.
+ * Shared mathematical model matching site/src/lib/vbdEngine.ts.
+ */
 
-export const DEFAULT_CONFIG: RosterConfig = {
+export const DEFAULT_CONFIG = {
   numTeams: 10,
   starters: {
     qb: 1.0,
@@ -35,18 +30,21 @@ export const DEFAULT_CONFIG: RosterConfig = {
   },
 };
 
-export function recalculateConfigBounds(config: RosterConfig): RosterConfig {
+export function recalculateConfigBounds(config) {
   const numStarters =
-    config.starters.qb +
-    config.starters.rb +
-    config.starters.wr +
-    config.starters.te +
-    config.starters.flex +
-    config.starters.dst +
-    config.starters.k;
-  const rosterSize = numStarters + config.benchSize;
-  const baselineRangeStart = numStarters * config.numTeams;
-  const baselineRangeEnd = config.numTeams * (rosterSize + 1);
+    Number(config.starters.qb || 0) +
+    Number(config.starters.rb || 0) +
+    Number(config.starters.wr || 0) +
+    Number(config.starters.te || 0) +
+    Number(config.starters.flex || 0) +
+    Number(config.starters.dst || 0) +
+    Number(config.starters.k || 0);
+
+  const benchSize = Number(config.benchSize || 0);
+  const numTeams = Number(config.numTeams || 10);
+  const rosterSize = numStarters + benchSize;
+  const baselineRangeStart = numStarters * numTeams;
+  const baselineRangeEnd = numTeams * (rosterSize + 1);
 
   return {
     ...config,
@@ -57,21 +55,15 @@ export function recalculateConfigBounds(config: RosterConfig): RosterConfig {
   };
 }
 
-function pad(num: number, size: number): string {
-  let s = num + '';
+function pad(num, size) {
+  let s = String(num);
   while (s.length < size) s = '0' + s;
   return s;
 }
 
-export function determineBaseline(
-  pos: Position,
-  players: Player[],
-  config: RosterConfig,
-  draftedPlayers: DraftedPlayer[],
-  projections: Record<Position, PlayerProjection[]>
-): Player {
+export function determineBaseline(pos, players, config, draftedPlayers, projections) {
   const totalNumDrafted = config.numTeams * config.rosterSize;
-  const percentageDrafted = draftedPlayers.length / totalNumDrafted;
+  const percentageDrafted = totalNumDrafted > 0 ? (draftedPlayers.length / totalNumDrafted) : 0;
 
   const initialThreshold = config.baselineRangeStart;
   const finalThreshold = config.baselineRangeEnd;
@@ -108,9 +100,9 @@ export function determineBaseline(
   };
 }
 
-function insertPointDif(players: Player[], baseline: Player) {
+function insertPointDif(players, baseline) {
   players.forEach((player) => {
-    const diff = 17 * (player.ppg - baseline.ppg);
+    const diff = 17 * ((player.ppg || 0) - (baseline.ppg || 0));
     player.pointDif = Number(diff.toFixed(1));
   });
 
@@ -121,29 +113,25 @@ function insertPointDif(players: Player[], baseline: Player) {
   });
 }
 
-function sortByValue(
-  players: Player[],
-  config: RosterConfig,
-  team: TeamRoster
-) {
-  const needFactor: Record<string, number> = {};
+function sortByValue(players, config, team) {
+  const needFactor = {};
   const starters = config.starters;
 
   for (const posKey in starters) {
     if (posKey === 'flex') continue;
-    const pos = posKey as Position;
-    let startersForPos = starters[pos];
+    const pos = posKey;
+    let startersForPos = Number(starters[pos] || 0);
 
     if (pos === 'rb' || pos === 'wr') {
-      startersForPos += starters.flex / 2.0;
+      startersForPos += Number(starters.flex || 0) / 2.0;
     }
 
-    const posTeamCount = team[pos] ? team[pos].length : 0;
+    const posTeamCount = team && team[pos] ? team[pos].length : 0;
     let surplus = posTeamCount - startersForPos;
     surplus++;
 
     if (surplus > 0) {
-      let expectedBenchRatio = startersForPos / config.numStarters;
+      let expectedBenchRatio = config.numStarters > 0 ? (startersForPos / config.numStarters) : 0;
       if (pos === 'k' || pos === 'dst') {
         expectedBenchRatio = 0;
       }
@@ -161,7 +149,7 @@ function sortByValue(
   players.forEach((b) => {
     const posNeed = needFactor[b.pos] !== undefined ? needFactor[b.pos] : 1;
     const posBuff =
-      config.buffPercentages[b.pos] !== undefined
+      config.buffPercentages && config.buffPercentages[b.pos] !== undefined
         ? config.buffPercentages[b.pos]
         : 1.0;
     b.sortFactor = (b.pointDif || 0) * posNeed * posBuff;
@@ -183,7 +171,7 @@ function sortByValue(
   });
 }
 
-export function normalizePlayerName(name: string): string {
+export function normalizePlayerName(name) {
   if (!name) return '';
   return name
     .toLowerCase()
@@ -194,7 +182,7 @@ export function normalizePlayerName(name: string): string {
     .trim();
 }
 
-export function isPlayerMatch(nameA: string, nameB: string, pos: Position): boolean {
+export function isPlayerMatch(nameA, nameB, pos) {
   if (pos === 'dst') {
     return normalizePlayerName(nameA).substring(0, 6) === normalizePlayerName(nameB).substring(0, 6);
   }
@@ -203,23 +191,15 @@ export function isPlayerMatch(nameA: string, nameB: string, pos: Position): bool
   return normA === normB || normA.startsWith(normB) || normB.startsWith(normA);
 }
 
-export function calculateVbd(
-  config: RosterConfig,
-  draftedPlayers: DraftedPlayer[],
-  myTeam: TeamRoster,
-  projections: Record<Position, PlayerProjection[]>,
-  ranks: PlayerRank[]
-): { players: Player[]; baselines: Record<Position, Player> } {
-  // 1. Clean ranks & build projections mapping
+export function calculateVbd(config, draftedPlayers, myTeam, projections, ranks) {
+  const normalizedConfig = recalculateConfigBounds(config);
+
   const rankList = ranks.map((p) => {
     const pos = p.name === 'Cordarrelle Patterson' ? 'rb' : p.pos;
-    return {
-      ...p,
-      pos,
-    };
+    return { ...p, pos };
   });
 
-  const projectionsByPos: Record<Position, Player[]> = {
+  const projectionsByPos = {
     qb: [],
     rb: [],
     wr: [],
@@ -228,7 +208,7 @@ export function calculateVbd(
     dst: [],
   };
 
-  const positions: Position[] = ['qb', 'rb', 'wr', 'te', 'dst', 'k'];
+  const positions = ['qb', 'rb', 'wr', 'te', 'dst', 'k'];
 
   positions.forEach((pos) => {
     const projList = projections[pos] || [];
@@ -239,15 +219,15 @@ export function calculateVbd(
         return dp.pos === pos && isPlayerMatch(dp.name, proj.name, pos);
       });
 
-      const player: Player = {
+      const player = {
         name: proj.name,
         position: pos,
         pos: pos,
-        points: Number(proj.points),
-        ppg: proj.ppg,
+        points: Number(proj.points || 0),
+        ppg: Number(proj.ppg || 0),
         tier: rankItem ? rankItem.tier : proj.tier || 0,
-        rank: rankItem ? rankItem.rank : 999,
-        adp: rankItem ? rankItem.adp : 999,
+        rank: rankItem ? (typeof rankItem.rank === 'string' ? parseInt(rankItem.rank, 10) : rankItem.rank) : 999,
+        adp: rankItem ? Number(rankItem.adp) : 999,
         drafted: draftedIdx !== -1 ? draftedIdx + 1 : undefined,
       };
 
@@ -255,48 +235,74 @@ export function calculateVbd(
     });
   });
 
-  let allPlayers: Player[] = [];
+  let allPlayers = [];
   positions.forEach((pos) => {
     allPlayers = allPlayers.concat(projectionsByPos[pos]);
   });
 
-  // 2. Calculate ADP reach warnings
+  // ADP reach warnings
   allPlayers.sort((a, b) => a.adp - b.adp);
   let undraftedCount = 0;
-  const maxUndraftedToWarn = config.numTeams * 2 + draftedPlayers.length;
+  const maxUndraftedToWarn = normalizedConfig.numTeams * 2 + draftedPlayers.length;
 
   for (let index = 0; index < allPlayers.length; index++) {
     const player = allPlayers[index];
-    if (undraftedCount === maxUndraftedToWarn) {
-      break;
-    }
+    if (undraftedCount === maxUndraftedToWarn) break;
     if (!player.drafted) {
       player.adpWarning = true;
       undraftedCount++;
     }
   }
 
-  // 3. Baselines & Point Differences
-  const baselines: Partial<Record<Position, Player>> = {};
-  const activePositions: Position[] = ['qb', 'rb', 'wr', 'te', 'dst', 'k'];
-
-  activePositions.forEach((pos) => {
-    const baseline = determineBaseline(pos, allPlayers, config, draftedPlayers, projections);
+  // Baselines & Point Differences
+  const baselines = {};
+  positions.forEach((pos) => {
+    const baseline = determineBaseline(pos, allPlayers, normalizedConfig, draftedPlayers, projections);
     baselines[pos] = baseline;
     insertPointDif(projectionsByPos[pos], baseline);
   });
 
-  // 4. Value sorting & V-Rank assignment
-  sortByValue(allPlayers, config, myTeam);
+  // Value sorting
+  sortByValue(allPlayers, normalizedConfig, myTeam);
 
   allPlayers.forEach((player, i) => {
     player.vrank = i + 1;
     player.displayPosition = `${player.position.toUpperCase()}${player.posrank}`;
-    player.rank = typeof player.rank === 'string' ? parseInt(player.rank, 10) : player.rank;
   });
 
   return {
     players: allPlayers,
-    baselines: baselines as Record<Position, Player>,
+    baselines,
   };
+}
+
+/**
+ * Transforms combined players.json array into projections & ranks structures
+ */
+export function parseCombinedPlayers(players) {
+  const projections = { qb: [], rb: [], wr: [], te: [], dst: [], k: [] };
+  const ranks = [];
+
+  for (const p of players) {
+    const pos = (p.position || p.pos || '').toLowerCase();
+    if (!projections[pos]) continue;
+
+    projections[pos].push({
+      name: p.name,
+      position: pos,
+      points: p.points,
+      ppg: p.ppg !== undefined ? p.ppg : Number(((p.points || 0) / 17).toFixed(1)),
+      tier: p.tier || 0,
+    });
+
+    ranks.push({
+      name: p.name,
+      tier: p.tier || 0,
+      rank: p.rank || 999,
+      adp: p.adp || 999,
+      pos,
+    });
+  }
+
+  return { projections, ranks };
 }

@@ -51,10 +51,32 @@ try {
   console.warn(`WARN: Could not read ${adpPath} — ADP will default to 0. Run a fresh scrape to generate it.`);
 }
 
-// --- Build projection lookup: normalised name -> projection entry ---
+// --- Name normalization helpers ---
 /** @param {string} name */
-const normalise = (name) => name.toLowerCase().trim();
+const normalise = (name) => {
+  if (!name) return '';
+  return name
+    .toLowerCase()
+    .replace(/\./g, '')
+    .replace(/[\,\'\-]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .replace(/\b(jr|sr|ii|iii|iv|v)\b$/gi, '')
+    .trim();
+};
 
+/** Known name conversions between FantasyPros and Sleeper */
+const NAME_STANDARDIZATIONS = {
+  'james cook iii': 'James Cook',
+  'kenneth walker iii': 'Kenneth Walker',
+};
+
+const standardizeName = (name) => {
+  if (!name) return '';
+  const key = name.toLowerCase().trim();
+  return NAME_STANDARDIZATIONS[key] || name;
+};
+
+// --- Build projection lookup: normalised name -> projection entry ---
 /** @type {Map<string, object>} */
 const projectionMap = new Map();
 for (const proj of projections) {
@@ -111,7 +133,7 @@ for (const rankEntry of ranks) {
   const adp = sleeperAdp !== undefined ? sleeperAdp : (parseFloat(rankEntry.adp) || 0);
 
   combined.push({
-    name: rankEntry.name,
+    name: standardizeName(rankEntry.name),
     position: (proj.position || rankEntry.pos).toLowerCase(),
     points: points,
     ppg: ppg,
@@ -123,15 +145,24 @@ for (const rankEntry of ranks) {
   matchedCount++;
 }
 
-// --- Ensure output directory exists ---
+// --- Ensure output directories exist ---
 const outputDir = dirname(outputPath);
 if (!existsSync(outputDir)) {
   mkdirSync(outputDir, { recursive: true });
 }
 
+const extensionDataDir = resolve(ROOT, 'extension', 'data');
+if (!existsSync(extensionDataDir)) {
+  mkdirSync(extensionDataDir, { recursive: true });
+}
+const extensionOutputPath = resolve(extensionDataDir, 'players.json');
+
 // --- Write output ---
-writeFileSync(outputPath, JSON.stringify(combined, null, 2), 'utf-8');
+const jsonString = JSON.stringify(combined, null, 2);
+writeFileSync(outputPath, jsonString, 'utf-8');
+writeFileSync(extensionOutputPath, jsonString, 'utf-8');
 
 console.log(`\nDone.`);
-console.log(`  Matched:  ${matchedCount} players written to ${outputPath}`);
+console.log(`  Matched:  ${matchedCount} players written to ${outputPath} and ${extensionOutputPath}`);
 console.log(`  Unmatched (ranked but no projection): ${missedCount}`);
+

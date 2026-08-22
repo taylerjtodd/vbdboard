@@ -60,6 +60,6 @@ export interface DraftedPlayer {
   pos: Position;
 }
 
-export type TeamRoster = Record<Position, Player[]>;
+export type TeamRoster = Record<Position, DraftedPlayer[]>;
 
 export type PositionFilter = Record<Position, boolean>;

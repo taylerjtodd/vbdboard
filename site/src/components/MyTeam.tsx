@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Player, Position, RosterConfig, TeamRoster } from '../types/vbd';
+import { isPlayerMatch } from '../lib/vbdEngine';
 import { Shield, Sparkles, User, Award } from 'lucide-react';
 
 interface MyTeamProps {
@@ -36,13 +37,7 @@ export const MyTeam: React.FC<MyTeamProps> = ({ team, allPlayers, config }) => {
   POSITIONS.forEach((pos) => {
     const list = team[pos] || [];
     list.forEach((dp) => {
-      const match = allPlayers.find(
-        (p) =>
-          p.pos === pos &&
-          (pos === 'dst'
-            ? p.name.substring(0, 6) === dp.name.substring(0, 6)
-            : p.name === dp.name)
-      );
+      const match = allPlayers.find((p) => p.pos === pos && isPlayerMatch(p.name, dp.name, pos));
       if (match) {
         myDraftedFullPlayers.push(match);
       }

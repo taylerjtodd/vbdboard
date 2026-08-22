@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sleeper VBD Assistant</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <header class="popup-header">
+      <div class="brand">
+        <span class="logo-badge">VBD</span>
+        <span class="title">Sleeper Assistant</span>
+      </div>
+      <span class="version-tag" id="app-version">v1.0.0</span>
+    </header>
+
+    <div class="status-card" id="status-card">
+      <div class="status-indicator">
+        <span class="status-dot active"></span>
+        <span class="status-text" id="status-text">Ready</span>
+      </div>
+      <p class="status-help" id="status-help">
+        Navigate to any Sleeper Draft room to see real-time VBD overlays.
+      </p>
+    </div>
+
+    <section class="section">
+      <h3 class="section-title">Draft Settings</h3>
+      <div class="form-row">
+        <label for="num-teams">Number of Teams</label>
+        <input type="number" id="num-teams" min="4" max="32" value="10">
+      </div>
+      <div class="form-row">
+        <label for="bench-size">Bench Size</label>
+        <input type="number" id="bench-size" min="0" max="20" value="7">
+      </div>
+      <div class="form-row checkbox-row">
+        <input type="checkbox" id="auto-detect" checked>
+        <label for="auto-detect">Auto-detect from Sleeper draft settings</label>
+      </div>
+    </section>
+
+    <section class="section">
+      <h3 class="section-title">Baseline Range</h3>
+      <div class="form-row">
+        <label for="base-start">Start Pick</label>
+        <input type="number" id="base-start" min="1" max="500" value="90">
+      </div>
+      <div class="form-row">
+        <label for="base-end">End Pick</label>
+        <input type="number" id="base-end" min="1" max="500" value="170">
+      </div>
+    </section>
+
+    <footer class="popup-footer">
+      <button class="btn btn-secondary" id="save-btn">Save Settings</button>
+      <a class="btn btn-primary" id="open-site-btn" target="_blank" href="http://localhost:3000">
+        Open Standalone Board ↗
+      </a>
+    </footer>
+  </div>
+  <script type="module" src="popup.js"></script>
+</body>
+</html>
