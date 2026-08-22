@@ -2,11 +2,13 @@
 
 import React from 'react';
 import { DraftedPlayer, Position, RosterConfig } from '../types/vbd';
-import { LayoutGrid, UserCheck } from 'lucide-react';
+import { LayoutGrid, UserCheck, Star } from 'lucide-react';
 
 interface DraftGridProps {
   draftedPlayers: DraftedPlayer[];
   config: RosterConfig;
+  mySlot?: number;
+  onClaimSlot?: (slot: number) => void;
 }
 
 const POS_COLORS: Record<Position, { bg: string; text: string; border: string }> = {
@@ -18,7 +20,12 @@ const POS_COLORS: Record<Position, { bg: string; text: string; border: string }>
   k: { bg: 'bg-purple-500/20', text: 'text-purple-300', border: 'border-purple-500/40' },
 };
 
-export const DraftGrid: React.FC<DraftGridProps> = ({ draftedPlayers, config }) => {
+export const DraftGrid: React.FC<DraftGridProps> = ({
+  draftedPlayers,
+  config,
+  mySlot = 1,
+  onClaimSlot,
+}) => {
   const numRounds = config.rosterSize;
   const numTeams = config.numTeams;
 
@@ -57,6 +64,24 @@ export const DraftGrid: React.FC<DraftGridProps> = ({ draftedPlayers, config }) 
             </p>
           </div>
         </div>
+
+        {/* Claim Draft Slot Dropdown */}
+        <div className="flex items-center space-x-3 bg-slate-950/70 border border-slate-800 px-4 py-2 rounded-xl">
+          <UserCheck className="w-4 h-4 text-cyan-400" />
+          <span className="text-xs text-slate-400 font-medium">My Draft Spot:</span>
+          <select
+            value={mySlot}
+            onChange={(e) => onClaimSlot && onClaimSlot(parseInt(e.target.value, 10))}
+            aria-label="Select your draft slot"
+            className="bg-slate-900 text-cyan-300 font-semibold border border-cyan-500/30 rounded-lg px-2.5 py-1 text-xs focus:outline-none focus:border-cyan-400"
+          >
+            {Array.from({ length: numTeams }).map((_, idx) => (
+              <option key={`slot-opt-${idx + 1}`} value={idx + 1}>
+                Spot {idx + 1} (Team {idx + 1})
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
 
       <div className="bg-slate-900/80 backdrop-blur-md border border-slate-800 rounded-2xl shadow-xl overflow-x-auto">
@@ -64,23 +89,56 @@ export const DraftGrid: React.FC<DraftGridProps> = ({ draftedPlayers, config }) 
           <thead>
             <tr className="bg-slate-950 border-b border-slate-800 text-slate-400">
               <th className="p-3 w-16 text-center font-bold">Round</th>
-              {Array.from({ length: numTeams }).map((_, teamIdx) => (
-                <th key={teamIdx} className="p-3 font-semibold text-center min-w-[140px]">
-                  Team {teamIdx + 1}
-                </th>
-              ))}
+              {Array.from({ length: numTeams }).map((_, teamIdx) => {
+                const isMyTeam = teamIdx + 1 === mySlot;
+                return (
+                  <th
+                    key={`th-team-${teamIdx + 1}`}
+                    className={`p-3 font-semibold text-center min-w-[140px] transition-colors ${
+                      isMyTeam
+                        ? 'bg-cyan-950/60 border-x border-cyan-500/30 text-cyan-300'
+                        : ''
+                    }`}
+                  >
+                    <div className="flex flex-col items-center gap-1">
+                      <span className="flex items-center gap-1 font-bold">
+                        {isMyTeam && <Star className="w-3 h-3 fill-cyan-400 text-cyan-400" />}
+                        Team {teamIdx + 1}
+                      </span>
+                      {onClaimSlot && (
+                        <button
+                          onClick={() => onClaimSlot(teamIdx + 1)}
+                          className={`text-[10px] px-2 py-0.5 rounded-full transition-all ${
+                            isMyTeam
+                              ? 'bg-cyan-500 text-slate-950 font-extrabold shadow-sm'
+                              : 'bg-slate-800/80 hover:bg-cyan-500/20 text-slate-400 hover:text-cyan-300 border border-slate-700 hover:border-cyan-500/30'
+                          }`}
+                        >
+                          {isMyTeam ? 'My Team' : 'Claim'}
+                        </button>
+                      )}
+                    </div>
+                  </th>
+                );
+              })}
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-800/60">
             {rounds.map((roundObj, roundIdx) => (
-              <tr key={roundIdx} className="hover:bg-slate-800/30">
+              <tr key={`round-row-${roundIdx + 1}`} className="hover:bg-slate-800/30">
                 <td className="p-3 font-bold text-slate-400 text-center bg-slate-950/40">
                   R{roundIdx + 1}
                 </td>
                 {roundObj.picks.map((player, teamIdx) => {
+                  const isMyTeam = teamIdx + 1 === mySlot;
                   if (!player) {
                     return (
-                      <td key={teamIdx} className="p-2 text-center text-slate-700">
+                      <td
+                        key={`cell-${roundIdx}-${teamIdx}`}
+                        className={`p-2 text-center text-slate-700 ${
+                          isMyTeam ? 'bg-cyan-950/20 border-x border-cyan-500/20' : ''
+                        }`}
+                      >
                         -
                       </td>
                     );
@@ -88,7 +146,12 @@ export const DraftGrid: React.FC<DraftGridProps> = ({ draftedPlayers, config }) 
 
                   const colors = POS_COLORS[player.pos];
                   return (
-                    <td key={teamIdx} className="p-1.5">
+                    <td
+                      key={`cell-${roundIdx}-${teamIdx}`}
+                      className={`p-1.5 ${
+                        isMyTeam ? 'bg-cyan-950/20 border-x border-cyan-500/20' : ''
+                      }`}
+                    >
                       <div
                         className={`p-2 rounded-lg border flex flex-col justify-between h-full ${colors.bg} ${colors.border}`}
                       >

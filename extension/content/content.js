@@ -6,7 +6,7 @@
 
 (async () => {
   // Dynamically import helper modules via chrome.runtime.getURL
-  const { extractDraftId, fetchDraft, fetchDraftPicks, mapSleeperSettingsToConfig } = await import(
+  const { extractDraftId, fetchDraft, fetchDraftPicks, fetchDraftUsers, mapSleeperSettingsToConfig } = await import(
     chrome.runtime.getURL('lib/sleeperApi.js')
   );
   const { calculateVbd, parseCombinedPlayers, DEFAULT_CONFIG } = await import(
@@ -45,6 +45,8 @@
   let projections = null;
   let ranks = null;
   let draftMetadata = null;
+  let draftUsers = [];
+  let slotLabels = {};
   let picks = [];
   let draftedPlayers = [];
   let myTeamRoster = { qb: [], rb: [], wr: [], te: [], dst: [], k: [] };
@@ -79,13 +81,31 @@
     isCollapsed = Boolean(storedCollapsed);
     if (storedSlot) myDraftSlot = Number(storedSlot);
 
-    // 3. Fetch Draft Meta & Settings
+    // 3. Fetch Draft Meta, Settings & Users
     try {
       draftMetadata = await fetchDraft(draftId);
       const autoDetect = await getStorageItem(STORAGE_KEYS.AUTO_DETECT_CONFIG, true);
       if (autoDetect && draftMetadata) {
         config = mapSleeperSettingsToConfig(draftMetadata, config);
         await setStorageItem(STORAGE_KEYS.CONFIG, config);
+      }
+
+      try {
+        draftUsers = await fetchDraftUsers(draftId);
+        if (Array.isArray(draftUsers) && draftMetadata?.draft_order) {
+          const userMap = new Map(draftUsers.map((u) => [u.user_id, u]));
+          Object.entries(draftMetadata.draft_order).forEach(([userId, slotNum]) => {
+            const user = userMap.get(userId);
+            const teamName = user?.metadata?.team_name;
+            const displayName = user?.display_name || user?.username;
+            const label = teamName ? `${displayName} (${teamName})` : displayName;
+            if (label) {
+              slotLabels[slotNum] = `Slot ${slotNum} — ${label}`;
+            }
+          });
+        }
+      } catch (err) {
+        console.debug('[Sleeper VBD] Could not fetch draft users:', err);
       }
     } catch (err) {
       console.warn('[Sleeper VBD] Could not fetch draft metadata:', err);
@@ -289,18 +309,18 @@
         <div class="vbd-body" style="padding-top: 10px;">
           <div class="vbd-team-summary">
             <div>
-              <div style="font-size:10px; color:#94a3b8;">MY DRAFT SLOT</div>
-              <select id="vbd-slot-select" style="background:#1e293b; color:#f8fafc; border:1px solid #475569; border-radius:4px; padding:2px 4px; font-size:11px; margin-top:2px;">
+              <div style="font-size:10px; color:#94a3b8; font-weight:700;">CLAIM DRAFT SPOT</div>
+              <select id="vbd-slot-select" style="background:#1e293b; color:#38bdf8; font-weight:600; border:1px solid #475569; border-radius:4px; padding:3px 6px; font-size:11px; margin-top:3px; max-width:180px;">
                 ${Array.from({ length: config.numTeams || 10 }, (_, i) => i + 1)
                   .map(
                     (slot) =>
-                      `<option value="${slot}" ${slot === myDraftSlot ? 'selected' : ''}>Slot ${slot}</option>`
+                      `<option value="${slot}" ${slot === myDraftSlot ? 'selected' : ''}>${slotLabels[slot] || `Spot ${slot} (Team ${slot})`}</option>`
                   )
                   .join('')}
               </select>
             </div>
             <div style="text-align:right;">
-              <div style="font-size:10px; color:#94a3b8;">TEAM VBD SCORE</div>
+              <div style="font-size:10px; color:#94a3b8; font-weight:700;">TEAM VBD SCORE</div>
               <div style="font-size:14px; font-weight:800; color:#34d399; margin-top:2px;">+${teamVbdTotal.toFixed(1)}</div>
             </div>
           </div>
@@ -361,7 +381,7 @@
       }
 
       <div class="vbd-footer">
-        <a class="vbd-open-site-btn" id="vbd-open-site" target="_blank" href="http://localhost:3000?sleeper_draft_id=${draftId}">
+        <a class="vbd-open-site-btn" id="vbd-open-site" target="_blank" href="http://localhost:3000?sleeper_draft_id=${draftId}&my_slot=${myDraftSlot}">
           Open Full Standalone Board ↗
         </a>
       </div>

@@ -28,10 +28,12 @@ import {
   loadStoredConfig,
   loadStoredDraftedPlayers,
   loadStoredFilter,
+  loadStoredMySlot,
   loadStoredTeam,
   saveConfig,
   saveDraftedPlayers,
   saveFilter,
+  saveMySlot,
   saveTeam,
 } from '../lib/storage';
 import { loadPlayerData } from '../data/initialData';
@@ -64,7 +66,7 @@ export default function Home() {
     k: true,
   });
   const [sleeperDraftId, setSleeperDraftId] = useState<string | null>(null);
-  const [mySlot, setMySlot] = useState<number | null>(null);
+  const [mySlot, setMySlot] = useState<number>(1);
 
   // Hydrate from localStorage + fetch player data on client render
   useEffect(() => {
@@ -72,6 +74,7 @@ export default function Home() {
     setDraftedPlayers(loadStoredDraftedPlayers());
     setTeam(loadStoredTeam());
     setFilter(loadStoredFilter());
+    setMySlot(loadStoredMySlot());
     setIsHydrated(true);
 
     // Check URL params for Sleeper draft integration
@@ -80,7 +83,11 @@ export default function Home() {
     const sSlot = urlParams.get('my_slot');
     if (sDraftId) {
       setSleeperDraftId(sDraftId);
-      if (sSlot) setMySlot(parseInt(sSlot, 10));
+      if (sSlot) {
+        const parsedSlot = parseInt(sSlot, 10);
+        setMySlot(parsedSlot);
+        saveMySlot(parsedSlot);
+      }
     }
 
     // Fetch scraped player data
@@ -270,6 +277,30 @@ export default function Home() {
     }
   };
 
+  const handleClaimSlot = (slot: number) => {
+    setMySlot(slot);
+    saveMySlot(slot);
+
+    // Rebuild team roster for the newly claimed slot based on current drafted players
+    const newTeam: TeamRoster = { qb: [], rb: [], wr: [], te: [], dst: [], k: [] };
+    const numTeams = config.numTeams;
+
+    draftedPlayers.forEach((player, i) => {
+      const round = Math.floor(i / numTeams);
+      let pickInRound = i % numTeams;
+      if (round % 2 === 1) {
+        pickInRound = numTeams - 1 - pickInRound;
+      }
+      const slotForPick = pickInRound + 1;
+
+      if (slotForPick === slot && newTeam[player.pos]) {
+        newTeam[player.pos].push(player);
+      }
+    });
+
+    setTeam(newTeam);
+  };
+
   const handleBuff = (pos: Position) => {
     setConfig((prev) => {
       const current = prev.buffPercentages[pos] || 1.0;
@@ -335,11 +366,22 @@ export default function Home() {
         )}
 
         {activeTab === 'team' && (
-          <MyTeam team={team} allPlayers={players} config={config} />
+          <MyTeam
+            team={team}
+            allPlayers={players}
+            config={config}
+            mySlot={mySlot}
+            onClaimSlot={handleClaimSlot}
+          />
         )}
 
         {activeTab === 'grid' && (
-          <DraftGrid draftedPlayers={draftedPlayers} config={config} />
+          <DraftGrid
+            draftedPlayers={draftedPlayers}
+            config={config}
+            mySlot={mySlot}
+            onClaimSlot={handleClaimSlot}
+          />
         )}
 
         {activeTab === 'setup' && (

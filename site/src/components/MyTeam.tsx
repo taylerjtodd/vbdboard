@@ -9,6 +9,8 @@ interface MyTeamProps {
   team: TeamRoster;
   allPlayers: Player[];
   config: RosterConfig;
+  mySlot?: number;
+  onClaimSlot?: (slot: number) => void;
 }
 
 const POSITIONS: Position[] = ['qb', 'rb', 'wr', 'te', 'dst', 'k'];
@@ -31,7 +33,13 @@ const POS_COLORS: Record<Position, { bg: string; text: string; border: string }>
   k: { bg: 'bg-purple-500/15', text: 'text-purple-300', border: 'border-purple-500/30' },
 };
 
-export const MyTeam: React.FC<MyTeamProps> = ({ team, allPlayers, config }) => {
+export const MyTeam: React.FC<MyTeamProps> = ({
+  team,
+  allPlayers,
+  config,
+  mySlot = 1,
+  onClaimSlot,
+}) => {
   // Resolve full player data for my drafted players
   const myDraftedFullPlayers: Player[] = [];
   POSITIONS.forEach((pos) => {
@@ -66,6 +74,23 @@ export const MyTeam: React.FC<MyTeamProps> = ({ team, allPlayers, config }) => {
         </div>
 
         <div className="flex items-center space-x-6">
+          {/* Claim Draft Spot */}
+          <div className="flex items-center space-x-2 bg-slate-950/70 border border-slate-800 px-3 py-1.5 rounded-xl">
+            <span className="text-xs text-slate-400">Draft Slot:</span>
+            <select
+              value={mySlot}
+              onChange={(e) => onClaimSlot && onClaimSlot(parseInt(e.target.value, 10))}
+              aria-label="Change your draft slot"
+              className="bg-slate-900 text-cyan-300 font-semibold border border-cyan-500/30 rounded-lg px-2 py-1 text-xs focus:outline-none focus:border-cyan-400"
+            >
+              {Array.from({ length: config.numTeams }).map((_, idx) => (
+                <option key={`myteam-slot-${idx + 1}`} value={idx + 1}>
+                  Spot {idx + 1} (Team {idx + 1})
+                </option>
+              ))}
+            </select>
+          </div>
+
           <div className="text-center sm:text-right">
             <div className="text-xs text-slate-400 flex items-center justify-center sm:justify-end space-x-1">
               <Sparkles className="w-3.5 h-3.5 text-amber-400" />

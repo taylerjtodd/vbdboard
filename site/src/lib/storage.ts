@@ -6,6 +6,7 @@ const STORAGE_KEYS = {
   DRAFTED: 'vbd_drafted_players',
   TEAM: 'vbd_my_team',
   FILTER: 'vbd_position_filter',
+  MY_SLOT: 'vbd_my_slot',
 };
 
 const DEFAULT_FILTER: PositionFilter = {
@@ -105,6 +106,26 @@ export function saveFilter(filter: PositionFilter) {
     localStorage.setItem(STORAGE_KEYS.FILTER, JSON.stringify(filter));
   } catch (e) {
     console.error('Failed to save filter to localStorage', e);
+  }
+}
+
+export function loadStoredMySlot(): number {
+  if (typeof window === 'undefined') return 1;
+  try {
+    const item = localStorage.getItem(STORAGE_KEYS.MY_SLOT);
+    return item ? parseInt(item, 10) || 1 : 1;
+  } catch (e) {
+    console.error('Failed to load mySlot from localStorage', e);
+    return 1;
+  }
+}
+
+export function saveMySlot(slot: number) {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.setItem(STORAGE_KEYS.MY_SLOT, String(slot));
+  } catch (e) {
+    console.error('Failed to save mySlot to localStorage', e);
   }
 }
 
