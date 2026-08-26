@@ -381,7 +381,7 @@
       }
 
       <div class="vbd-footer">
-        <a class="vbd-open-site-btn" id="vbd-open-site" target="_blank" href="http://localhost:3000?sleeper_draft_id=${draftId}&my_slot=${myDraftSlot}">
+        <a class="vbd-open-site-btn" id="vbd-open-site" target="_blank" href="https://taylerjtodd.github.io/vbdboard/?sleeper_draft_id=${draftId}&my_slot=${myDraftSlot}">
           Open Full Standalone Board ↗
         </a>
       </div>
