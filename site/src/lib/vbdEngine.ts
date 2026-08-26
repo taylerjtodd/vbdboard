@@ -10,21 +10,21 @@ import {
 } from '../types/vbd';
 
 export const DEFAULT_CONFIG: RosterConfig = {
-  numTeams: 10,
+  numTeams: 12,
   starters: {
     qb: 1.0,
     rb: 2.0,
     wr: 2.0,
     te: 1.0,
-    flex: 1.0,
+    flex: 2.0,
     dst: 1.0,
     k: 1.0,
   },
-  benchSize: 7,
-  numStarters: 9,
-  rosterSize: 16,
-  baselineRangeStart: 90,
-  baselineRangeEnd: 170,
+  benchSize: 5,
+  numStarters: 10,
+  rosterSize: 15,
+  baselineRangeStart: 120,
+  baselineRangeEnd: 180,
   buffPercentages: {
     qb: 1.0,
     rb: 1.0,
