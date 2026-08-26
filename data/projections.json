@@ -19,7 +19,7 @@
     "type": "projection",
     "name": "Drake Maye",
     "position": "QB",
-    "points": "323.0",
+    "points": "322.9",
     "ppg": "0",
     "tier": 0
   },
@@ -83,7 +83,7 @@
     "type": "projection",
     "name": "Patrick Mahomes II",
     "position": "QB",
-    "points": "302.9",
+    "points": "303.0",
     "ppg": "0",
     "tier": 0
   },
@@ -163,7 +163,7 @@
     "type": "projection",
     "name": "Malik Willis",
     "position": "QB",
-    "points": "270.2",
+    "points": "271.5",
     "ppg": "0",
     "tier": 0
   },
@@ -235,7 +235,7 @@
     "type": "projection",
     "name": "Fernando Mendoza",
     "position": "QB",
-    "points": "192.9",
+    "points": "191.8",
     "ppg": "0",
     "tier": 0
   },
@@ -275,7 +275,7 @@
     "type": "projection",
     "name": "Kirk Cousins",
     "position": "QB",
-    "points": "47.2",
+    "points": "47.0",
     "ppg": "0",
     "tier": 0
   },
@@ -299,7 +299,7 @@
     "type": "projection",
     "name": "Christian McCaffrey",
     "position": "RB",
-    "points": "334.8",
+    "points": "334.7",
     "ppg": "0",
     "tier": 0
   },
@@ -315,7 +315,7 @@
     "type": "projection",
     "name": "De'Von Achane",
     "position": "RB",
-    "points": "292.4",
+    "points": "292.3",
     "ppg": "0",
     "tier": 0
   },
@@ -324,14 +324,6 @@
     "name": "Chase Brown",
     "position": "RB",
     "points": "278.5",
-    "ppg": "0",
-    "tier": 0
-  },
-  {
-    "type": "projection",
-    "name": "Ashton Jeanty",
-    "position": "RB",
-    "points": "276.7",
     "ppg": "0",
     "tier": 0
   },
@@ -347,7 +339,7 @@
     "type": "projection",
     "name": "James Cook III",
     "position": "RB",
-    "points": "270.5",
+    "points": "270.6",
     "ppg": "0",
     "tier": 0
   },
@@ -361,9 +353,17 @@
   },
   {
     "type": "projection",
+    "name": "Ashton Jeanty",
+    "position": "RB",
+    "points": "261.5",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
     "name": "Kenneth Walker III",
     "position": "RB",
-    "points": "258.0",
+    "points": "257.9",
     "ppg": "0",
     "tier": 0
   },
@@ -451,7 +451,7 @@
     "type": "projection",
     "name": "Quinshon Judkins",
     "position": "RB",
-    "points": "214.1",
+    "points": "214.7",
     "ppg": "0",
     "tier": 0
   },
@@ -475,7 +475,7 @@
     "type": "projection",
     "name": "David Montgomery",
     "position": "RB",
-    "points": "196.3",
+    "points": "195.9",
     "ppg": "0",
     "tier": 0
   },
@@ -483,7 +483,7 @@
     "type": "projection",
     "name": "TreVeyon Henderson",
     "position": "RB",
-    "points": "191.9",
+    "points": "192.1",
     "ppg": "0",
     "tier": 0
   },
@@ -491,7 +491,7 @@
     "type": "projection",
     "name": "Rhamondre Stevenson",
     "position": "RB",
-    "points": "190.9",
+    "points": "191.1",
     "ppg": "0",
     "tier": 0
   },
@@ -601,14 +601,6 @@
   },
   {
     "type": "projection",
-    "name": "Blake Corum",
-    "position": "RB",
-    "points": "138.6",
-    "ppg": "0",
-    "tier": 0
-  },
-  {
-    "type": "projection",
     "name": "Tyjae Spears",
     "position": "RB",
     "points": "138.1",
@@ -617,9 +609,17 @@
   },
   {
     "type": "projection",
+    "name": "Blake Corum",
+    "position": "RB",
+    "points": "136.6",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
     "name": "Woody Marks",
     "position": "RB",
-    "points": "124.7",
+    "points": "124.4",
     "ppg": "0",
     "tier": 0
   },
@@ -659,7 +659,7 @@
     "type": "projection",
     "name": "Dylan Sampson",
     "position": "RB",
-    "points": "107.9",
+    "points": "108.6",
     "ppg": "0",
     "tier": 0
   },
@@ -668,6 +668,14 @@
     "name": "Tyrone Tracy Jr.",
     "position": "RB",
     "points": "103.1",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Mike Washington Jr.",
+    "position": "RB",
+    "points": "100.9",
     "ppg": "0",
     "tier": 0
   },
@@ -745,14 +753,6 @@
   },
   {
     "type": "projection",
-    "name": "Mike Washington Jr.",
-    "position": "RB",
-    "points": "83.5",
-    "ppg": "0",
-    "tier": 0
-  },
-  {
-    "type": "projection",
     "name": "Emari Demercado",
     "position": "RB",
     "points": "82.7",
@@ -771,7 +771,15 @@
     "type": "projection",
     "name": "Jordan James",
     "position": "RB",
-    "points": "75.9",
+    "points": "75.8",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Jonah Coleman",
+    "position": "RB",
+    "points": "74.1",
     "ppg": "0",
     "tier": 0
   },
@@ -819,7 +827,7 @@
     "type": "projection",
     "name": "Kyle Juszczyk",
     "position": "RB",
-    "points": "54.8",
+    "points": "54.7",
     "ppg": "0",
     "tier": 0
   },
@@ -859,15 +867,7 @@
     "type": "projection",
     "name": "Jawhar Jordan",
     "position": "RB",
-    "points": "50.6",
-    "ppg": "0",
-    "tier": 0
-  },
-  {
-    "type": "projection",
-    "name": "Jonah Coleman",
-    "position": "RB",
-    "points": "49.4",
+    "points": "50.1",
     "ppg": "0",
     "tier": 0
   },
@@ -899,7 +899,7 @@
     "type": "projection",
     "name": "Jaxon Smith-Njigba",
     "position": "WR",
-    "points": "324.1",
+    "points": "326.2",
     "ppg": "0",
     "tier": 0
   },
@@ -923,7 +923,7 @@
     "type": "projection",
     "name": "Rashee Rice",
     "position": "WR",
-    "points": "274.0",
+    "points": "274.1",
     "ppg": "0",
     "tier": 0
   },
@@ -955,15 +955,7 @@
     "type": "projection",
     "name": "A.J. Brown",
     "position": "WR",
-    "points": "255.2",
-    "ppg": "0",
-    "tier": 0
-  },
-  {
-    "type": "projection",
-    "name": "Nico Collins",
-    "position": "WR",
-    "points": "252.4",
+    "points": "256.1",
     "ppg": "0",
     "tier": 0
   },
@@ -972,6 +964,14 @@
     "name": "George Pickens",
     "position": "WR",
     "points": "252.0",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "Nico Collins",
+    "position": "WR",
+    "points": "248.2",
     "ppg": "0",
     "tier": 0
   },
@@ -1099,7 +1099,7 @@
     "type": "projection",
     "name": "Mike Evans",
     "position": "WR",
-    "points": "203.8",
+    "points": "203.6",
     "ppg": "0",
     "tier": 0
   },
@@ -1115,7 +1115,7 @@
     "type": "projection",
     "name": "Marvin Harrison Jr.",
     "position": "WR",
-    "points": "197.3",
+    "points": "197.2",
     "ppg": "0",
     "tier": 0
   },
@@ -1235,7 +1235,7 @@
     "type": "projection",
     "name": "Deebo Samuel Sr.",
     "position": "WR",
-    "points": "168.8",
+    "points": "168.6",
     "ppg": "0",
     "tier": 0
   },
@@ -1273,6 +1273,14 @@
   },
   {
     "type": "projection",
+    "name": "Romeo Doubs",
+    "position": "WR",
+    "points": "163.7",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
     "name": "Matthew Golden",
     "position": "WR",
     "points": "161.5",
@@ -1283,7 +1291,7 @@
     "type": "projection",
     "name": "KC Concepcion",
     "position": "WR",
-    "points": "159.6",
+    "points": "161.1",
     "ppg": "0",
     "tier": 0
   },
@@ -1305,17 +1313,9 @@
   },
   {
     "type": "projection",
-    "name": "Romeo Doubs",
+    "name": "Denzel Boston",
     "position": "WR",
-    "points": "156.5",
-    "ppg": "0",
-    "tier": 0
-  },
-  {
-    "type": "projection",
-    "name": "De'Zhaun Stribling",
-    "position": "WR",
-    "points": "151.5",
+    "points": "151.4",
     "ppg": "0",
     "tier": 0
   },
@@ -1329,17 +1329,9 @@
   },
   {
     "type": "projection",
-    "name": "Denzel Boston",
+    "name": "De'Zhaun Stribling",
     "position": "WR",
-    "points": "150.4",
-    "ppg": "0",
-    "tier": 0
-  },
-  {
-    "type": "projection",
-    "name": "Tank Dell",
-    "position": "WR",
-    "points": "149.3",
+    "points": "150.7",
     "ppg": "0",
     "tier": 0
   },
@@ -1353,9 +1345,17 @@
   },
   {
     "type": "projection",
+    "name": "Tank Dell",
+    "position": "WR",
+    "points": "147.7",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
     "name": "Jerry Jeudy",
     "position": "WR",
-    "points": "145.4",
+    "points": "146.4",
     "ppg": "0",
     "tier": 0
   },
@@ -1363,7 +1363,7 @@
     "type": "projection",
     "name": "Tre Tucker",
     "position": "WR",
-    "points": "142.3",
+    "points": "142.1",
     "ppg": "0",
     "tier": 0
   },
@@ -1403,7 +1403,7 @@
     "type": "projection",
     "name": "Jalen Nailor",
     "position": "WR",
-    "points": "130.5",
+    "points": "127.2",
     "ppg": "0",
     "tier": 0
   },
@@ -1433,6 +1433,14 @@
   },
   {
     "type": "projection",
+    "name": "Caleb Douglas",
+    "position": "WR",
+    "points": "115.4",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
     "name": "Adonai Mitchell",
     "position": "WR",
     "points": "113.8",
@@ -1443,15 +1451,7 @@
     "type": "projection",
     "name": "Malik Washington",
     "position": "WR",
-    "points": "112.0",
-    "ppg": "0",
-    "tier": 0
-  },
-  {
-    "type": "projection",
-    "name": "Jaylin Noel",
-    "position": "WR",
-    "points": "111.9",
+    "points": "112.1",
     "ppg": "0",
     "tier": 0
   },
@@ -1465,9 +1465,9 @@
   },
   {
     "type": "projection",
-    "name": "Germie Bernard",
+    "name": "Jaylin Noel",
     "position": "WR",
-    "points": "109.2",
+    "points": "110.7",
     "ppg": "0",
     "tier": 0
   },
@@ -1475,7 +1475,7 @@
     "type": "projection",
     "name": "Kayshon Boutte",
     "position": "WR",
-    "points": "109.1",
+    "points": "110.3",
     "ppg": "0",
     "tier": 0
   },
@@ -1483,7 +1483,7 @@
     "type": "projection",
     "name": "Trey McBride",
     "position": "TE",
-    "points": "254.3",
+    "points": "254.2",
     "ppg": "0",
     "tier": 0
   },
@@ -1491,7 +1491,7 @@
     "type": "projection",
     "name": "Brock Bowers",
     "position": "TE",
-    "points": "244.1",
+    "points": "244.0",
     "ppg": "0",
     "tier": 0
   },
@@ -1523,7 +1523,7 @@
     "type": "projection",
     "name": "Harold Fannin Jr.",
     "position": "TE",
-    "points": "191.2",
+    "points": "192.2",
     "ppg": "0",
     "tier": 0
   },
@@ -1531,7 +1531,15 @@
     "type": "projection",
     "name": "Travis Kelce",
     "position": "TE",
-    "points": "182.0",
+    "points": "182.1",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
+    "name": "George Kittle",
+    "position": "TE",
+    "points": "181.1",
     "ppg": "0",
     "tier": 0
   },
@@ -1556,14 +1564,6 @@
     "name": "Tucker Kraft",
     "position": "TE",
     "points": "178.4",
-    "ppg": "0",
-    "tier": 0
-  },
-  {
-    "type": "projection",
-    "name": "George Kittle",
-    "position": "TE",
-    "points": "175.6",
     "ppg": "0",
     "tier": 0
   },
@@ -1609,6 +1609,14 @@
   },
   {
     "type": "projection",
+    "name": "Hunter Henry",
+    "position": "TE",
+    "points": "152.9",
+    "ppg": "0",
+    "tier": 0
+  },
+  {
+    "type": "projection",
     "name": "Brenton Strange",
     "position": "TE",
     "points": "151.8",
@@ -1617,17 +1625,9 @@
   },
   {
     "type": "projection",
-    "name": "Hunter Henry",
-    "position": "TE",
-    "points": "150.4",
-    "ppg": "0",
-    "tier": 0
-  },
-  {
-    "type": "projection",
     "name": "Dalton Schultz",
     "position": "TE",
-    "points": "149.7",
+    "points": "148.5",
     "ppg": "0",
     "tier": 0
   },
@@ -1763,7 +1763,7 @@
     "type": "projection",
     "name": "Michael Mayer",
     "position": "TE",
-    "points": "90.2",
+    "points": "90.0",
     "ppg": "0",
     "tier": 0
   },
@@ -2025,17 +2025,17 @@
   },
   {
     "type": "projection",
-    "name": "Matt Gay",
+    "name": "Ryan Fitzgerald",
     "position": "K",
-    "points": "108.1",
+    "points": "107.9",
     "ppg": "0",
     "tier": 0
   },
   {
     "type": "projection",
-    "name": "Ryan Fitzgerald",
+    "name": "Matt Gay",
     "position": "K",
-    "points": "107.9",
+    "points": "107.1",
     "ppg": "0",
     "tier": 0
   },
@@ -2065,15 +2065,15 @@
   },
   {
     "type": "projection",
-    "name": "Cade York",
+    "name": "Tanner Brown",
     "position": "K",
-    "points": "36.0",
+    "points": "0.0",
     "ppg": "0",
     "tier": 0
   },
   {
     "type": "projection",
-    "name": "Tanner Brown",
+    "name": "Spencer Shrader",
     "position": "K",
     "points": "0.0",
     "ppg": "0",
@@ -2267,7 +2267,7 @@
     "type": "projection",
     "name": "Kansas City Chiefs",
     "position": "DST",
-    "points": "93.2",
+    "points": "92.6",
     "ppg": "0",
     "tier": 0
   },
@@ -2307,7 +2307,7 @@
     "type": "projection",
     "name": "Las Vegas Raiders",
     "position": "DST",
-    "points": "89.8",
+    "points": "89.7",
     "ppg": "0",
     "tier": 0
   },
