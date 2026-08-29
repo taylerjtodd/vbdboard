@@ -3,6 +3,7 @@
 import React from 'react';
 import { DraftedPlayer, Position, RosterConfig } from '../types/vbd';
 import { LayoutGrid, UserCheck, Star } from 'lucide-react';
+import { isRoundReversed } from '../lib/vbdEngine';
 
 interface DraftGridProps {
   draftedPlayers: DraftedPlayer[];
@@ -40,8 +41,8 @@ export const DraftGrid: React.FC<DraftGridProps> = ({
     const round = Math.floor(i / numTeams);
     let pickInRound = i % numTeams;
 
-    if (round % 2 === 1) {
-      // Snake draft reverse order on even rounds (0-based round 1)
+    if (isRoundReversed(round, config.thirdRoundReversal)) {
+      // Reversed order for this round
       pickInRound = numTeams - 1 - pickInRound;
     }
 
@@ -59,8 +60,13 @@ export const DraftGrid: React.FC<DraftGridProps> = ({
           </div>
           <div>
             <h2 className="text-lg font-bold text-white">Draft Board Grid</h2>
-            <p className="text-xs text-slate-400">
-              Snake draft visualization across {numTeams} teams & {numRounds} rounds
+            <p className="text-xs text-slate-400 flex items-center gap-1.5 flex-wrap">
+              <span>{config.thirdRoundReversal ? '3rd Round Reversal (3RR)' : 'Snake'} draft visualization across {numTeams} teams & {numRounds} rounds</span>
+              {config.thirdRoundReversal && (
+                <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+                  3RR Active
+                </span>
+              )}
             </p>
           </div>
         </div>
@@ -124,11 +130,18 @@ export const DraftGrid: React.FC<DraftGridProps> = ({
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-800/60">
-            {rounds.map((roundObj, roundIdx) => (
-              <tr key={`round-row-${roundIdx + 1}`} className="hover:bg-slate-800/30">
-                <td className="p-3 font-bold text-slate-400 text-center bg-slate-950/40">
-                  R{roundIdx + 1}
-                </td>
+            {rounds.map((roundObj, roundIdx) => {
+              const isReversed = isRoundReversed(roundIdx, config.thirdRoundReversal);
+              return (
+                <tr key={`round-row-${roundIdx + 1}`} className="hover:bg-slate-800/30">
+                  <td className="p-3 font-bold text-slate-400 text-center bg-slate-950/40 whitespace-nowrap">
+                    <div className="flex items-center justify-center gap-1">
+                      <span>R{roundIdx + 1}</span>
+                      <span className={`text-[10px] font-mono ${isReversed ? 'text-amber-400/80' : 'text-cyan-400/80'}`}>
+                        {isReversed ? '←' : '→'}
+                      </span>
+                    </div>
+                  </td>
                 {roundObj.picks.map((player, teamIdx) => {
                   const isMyTeam = teamIdx + 1 === mySlot;
                   if (!player) {
@@ -168,7 +181,8 @@ export const DraftGrid: React.FC<DraftGridProps> = ({
                   );
                 })}
               </tr>
-            ))}
+            );
+          })}
           </tbody>
         </table>
       </div>

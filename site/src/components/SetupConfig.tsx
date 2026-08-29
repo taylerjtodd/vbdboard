@@ -140,6 +140,84 @@ export const SetupConfig: React.FC<SetupConfigProps> = ({
               />
             </div>
 
+            {/* Third Round Reversal (3RR) Toggle */}
+            <div className="bg-slate-950/70 rounded-xl p-4 border border-slate-800 space-y-3">
+              <div className="flex items-center justify-between">
+                <div>
+                  <div className="flex items-center space-x-2">
+                    <span className="text-xs font-bold text-white">Third Round Reversal (3RR)</span>
+                    <span
+                      className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
+                        config.thirdRoundReversal
+                          ? 'bg-cyan-500/20 text-cyan-300 border-cyan-500/40'
+                          : 'bg-slate-800 text-slate-400 border-slate-700'
+                      }`}
+                    >
+                      {config.thirdRoundReversal ? 'Enabled' : 'Disabled'}
+                    </span>
+                  </div>
+                  <p className="text-[11px] text-slate-400 mt-0.5">
+                    Reverses draft order each round, with Round 3 also reversed to balance early draft advantages.
+                  </p>
+                </div>
+                <label className="relative inline-flex items-center cursor-pointer ml-3 shrink-0">
+                  <input
+                    type="checkbox"
+                    checked={Boolean(config.thirdRoundReversal)}
+                    onChange={(e) =>
+                      setConfig((prev) => ({
+                        ...prev,
+                        thirdRoundReversal: e.target.checked,
+                      }))
+                    }
+                    className="sr-only peer"
+                  />
+                  <div className="w-11 h-6 bg-slate-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-cyan-600"></div>
+                </label>
+              </div>
+
+              {/* Order preview visualizer */}
+              <div className="pt-2 border-t border-slate-800/80">
+                <div className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">
+                  Draft Order Flow
+                </div>
+                <div className="grid grid-cols-5 gap-1.5 text-center text-[10px]">
+                  <div className="bg-slate-900 border border-slate-800 rounded p-1">
+                    <div className="text-slate-400 font-bold">R1</div>
+                    <div className="text-slate-200 font-mono">1 → {config.numTeams}</div>
+                  </div>
+                  <div className="bg-slate-900 border border-slate-800 rounded p-1">
+                    <div className="text-slate-400 font-bold">R2</div>
+                    <div className="text-amber-400 font-mono">{config.numTeams} → 1</div>
+                  </div>
+                  <div
+                    className={`rounded p-1 border transition-colors ${
+                      config.thirdRoundReversal
+                        ? 'bg-cyan-950/60 border-cyan-500/40 text-cyan-300 font-bold'
+                        : 'bg-slate-900 border-slate-800 text-slate-200'
+                    }`}
+                  >
+                    <div className={config.thirdRoundReversal ? 'text-cyan-400 font-bold' : 'text-slate-400 font-bold'}>
+                      R3 {config.thirdRoundReversal && '★'}
+                    </div>
+                    <div className="font-mono">
+                      {config.thirdRoundReversal ? `${config.numTeams} → 1` : `1 → ${config.numTeams}`}
+                    </div>
+                  </div>
+                  <div className="bg-slate-900 border border-slate-800 rounded p-1">
+                    <div className="text-slate-400 font-bold">R4</div>
+                    <div className="font-mono">
+                      {config.thirdRoundReversal ? `1 → ${config.numTeams}` : `${config.numTeams} → 1`}
+                    </div>
+                  </div>
+                  <div className="bg-slate-900 border border-slate-800 rounded p-1">
+                    <div className="text-slate-400 font-bold">R5+</div>
+                    <div className="font-mono text-slate-400">Alternates</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div className="bg-slate-950/60 rounded-xl p-4 border border-slate-800/80 text-xs text-slate-400 space-y-1">
               <div>
                 <span className="font-semibold text-slate-300">Roster Size:</span>{' '}

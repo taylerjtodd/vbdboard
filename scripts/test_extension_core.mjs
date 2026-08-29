@@ -152,4 +152,50 @@ assert(draftedPlayer1 && draftedPlayer1.drafted === 1, 'Player 1 should be marke
 
 console.log('✓ vbdCore tests passed!\n');
 
-console.log('🎉 ALL TESTS PASSED SUCCESSFULLY!');
+// --- Test 4: Third Round Reversal (3RR) Logic ---
+console.log('Test 4: Testing Third Round Reversal (3RR) calculations...');
+import('../extension/lib/vbdCore.js').then(({ isRoundReversed }) => {
+  // Standard Snake:
+  // Round 1 (0): Normal (false)
+  // Round 2 (1): Reversed (true)
+  // Round 3 (2): Normal (false)
+  // Round 4 (3): Reversed (true)
+  // Round 5 (4): Normal (false)
+  // Round 6 (5): Reversed (true)
+  assert.strictEqual(isRoundReversed(0, false), false, 'Standard R1 should be normal');
+  assert.strictEqual(isRoundReversed(1, false), true, 'Standard R2 should be reversed');
+  assert.strictEqual(isRoundReversed(2, false), false, 'Standard R3 should be normal');
+  assert.strictEqual(isRoundReversed(3, false), true, 'Standard R4 should be reversed');
+  assert.strictEqual(isRoundReversed(4, false), false, 'Standard R5 should be normal');
+  assert.strictEqual(isRoundReversed(5, false), true, 'Standard R6 should be reversed');
+
+  // Third Round Reversal (3RR):
+  // Round 1 (0): Normal (false)
+  // Round 2 (1): Reversed (true)
+  // Round 3 (2): Reversed (true)
+  // Round 4 (3): Normal (false)
+  // Round 5 (4): Reversed (true)
+  // Round 6 (5): Normal (false)
+  // Round 7 (6): Reversed (true)
+  assert.strictEqual(isRoundReversed(0, true), false, '3RR R1 should be normal');
+  assert.strictEqual(isRoundReversed(1, true), true, '3RR R2 should be reversed');
+  assert.strictEqual(isRoundReversed(2, true), true, '3RR R3 should be reversed');
+  assert.strictEqual(isRoundReversed(3, true), false, '3RR R4 should be normal');
+  assert.strictEqual(isRoundReversed(4, true), true, '3RR R5 should be reversed');
+  assert.strictEqual(isRoundReversed(5, true), false, '3RR R6 should be normal');
+  assert.strictEqual(isRoundReversed(6, true), true, '3RR R7 should be reversed');
+
+  // Test Sleeper 3RR config mapping
+  const sleeper3RRDraft = {
+    settings: {
+      teams: 12,
+      reversal_round: 3,
+      slots: { qb: 1, rb: 2, wr: 2, te: 1, flex: 1, def: 1, k: 1, bn: 6 },
+    },
+  };
+  const config3RR = mapSleeperSettingsToConfig(sleeper3RRDraft, DEFAULT_CONFIG);
+  assert.strictEqual(config3RR.thirdRoundReversal, true, 'Should detect 3RR from Sleeper reversal_round');
+
+  console.log('✓ Third Round Reversal tests passed!\n');
+  console.log('🎉 ALL TESTS PASSED SUCCESSFULLY!');
+});

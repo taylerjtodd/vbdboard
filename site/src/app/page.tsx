@@ -20,6 +20,7 @@ import {
   calculateVbd,
   DEFAULT_CONFIG,
   isPlayerMatch,
+  isRoundReversed,
   recalculateConfigBounds,
 } from '../lib/vbdEngine';
 import {
@@ -288,7 +289,7 @@ export default function Home() {
     draftedPlayers.forEach((player, i) => {
       const round = Math.floor(i / numTeams);
       let pickInRound = i % numTeams;
-      if (round % 2 === 1) {
+      if (isRoundReversed(round, config.thirdRoundReversal)) {
         pickInRound = numTeams - 1 - pickInRound;
       }
       const slotForPick = pickInRound + 1;

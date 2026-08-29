@@ -76,6 +76,10 @@ export function mapSleeperSettingsToConfig(draftData, fallbackConfig) {
   const rosterSize = numStarters + benchSize;
   const baselineRangeStart = numStarters * numTeams;
   const baselineRangeEnd = numTeams * (rosterSize + 1);
+  const thirdRoundReversal =
+    settings.reversal_round !== undefined
+      ? Number(settings.reversal_round) > 0
+      : Boolean(fallbackConfig.thirdRoundReversal);
 
   return {
     ...fallbackConfig,
@@ -86,5 +90,6 @@ export function mapSleeperSettingsToConfig(draftData, fallbackConfig) {
     rosterSize,
     baselineRangeStart,
     baselineRangeEnd,
+    thirdRoundReversal,
   };
 }

@@ -28,7 +28,27 @@ export const DEFAULT_CONFIG = {
     dst: 1.0,
     k: 1.0,
   },
+  thirdRoundReversal: false,
 };
+
+/**
+ * Determines whether a round is in reversed draft order.
+ * - Standard snake: odd 0-based rounds (rounds 2, 4, 6, ...) are reversed.
+ * - Third Round Reversal (3RR): round 1 (idx 0) is normal, round 2 (idx 1) is reversed,
+ *   round 3 (idx 2) is reversed, and round 4+ alternates (even 0-based rounds reversed, odd normal).
+ */
+export function isRoundReversed(roundIndex, thirdRoundReversal = false) {
+  if (roundIndex === 0) return false;
+  if (roundIndex === 1) return true;
+  
+  const isOddRound = roundIndex % 2 === 0; // round 3 is odd but indexed as 2
+
+  if (!thirdRoundReversal) {
+    return isOddRound; 
+  } else {
+    return !isOddRound;
+  }
+}
 
 export function recalculateConfigBounds(config) {
   const numStarters =

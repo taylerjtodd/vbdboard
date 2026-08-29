@@ -53,6 +53,7 @@ export interface RosterConfig {
   baselineRangeStart: number;
   baselineRangeEnd: number;
   buffPercentages: Record<Position, number>;
+  thirdRoundReversal?: boolean;
 }
 
 export interface DraftedPlayer {

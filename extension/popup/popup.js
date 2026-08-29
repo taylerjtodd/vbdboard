@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const mySlotSelect = document.getElementById('my-slot');
   const numTeamsInput = document.getElementById('num-teams');
   const benchSizeInput = document.getElementById('bench-size');
+  const thirdRoundReversalCheckbox = document.getElementById('third-round-reversal');
   const autoDetectCheckbox = document.getElementById('auto-detect');
   const baseStartInput = document.getElementById('base-start');
   const baseEndInput = document.getElementById('base-end');
@@ -33,6 +34,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   if (numTeamsInput) numTeamsInput.value = config.numTeams || 10;
   if (benchSizeInput) benchSizeInput.value = config.benchSize || 7;
+  if (thirdRoundReversalCheckbox) thirdRoundReversalCheckbox.checked = Boolean(config.thirdRoundReversal);
   if (autoDetectCheckbox) autoDetectCheckbox.checked = Boolean(autoDetect);
   if (baseStartInput) baseStartInput.value = config.baselineRangeStart || 90;
   if (baseEndInput) baseEndInput.value = config.baselineRangeEnd || 170;
@@ -63,6 +65,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       ...config,
       numTeams: parseInt(numTeamsInput.value, 10) || 10,
       benchSize: parseInt(benchSizeInput.value, 10) || 7,
+      thirdRoundReversal: thirdRoundReversalCheckbox ? thirdRoundReversalCheckbox.checked : false,
       baselineRangeStart: parseInt(baseStartInput.value, 10) || 90,
       baselineRangeEnd: parseInt(baseEndInput.value, 10) || 170,
     };

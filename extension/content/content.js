@@ -357,6 +357,13 @@
           <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
             <span>Teams: <b>${config.numTeams}</b></span>
             <span>Roster: <b>${config.rosterSize}</b></span>
+            <span>Format: <b>${config.thirdRoundReversal ? '3RR' : 'Snake'}</b></span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; background:#1e293b; padding:6px 10px; border-radius:6px; margin-bottom:8px;">
+            <span style="font-size:11px; color:#cbd5e1;">Third Round Reversal (3RR)</span>
+            <button class="vbd-3rr-toggle" style="background:${config.thirdRoundReversal ? '#0284c7' : '#334155'}; color:#fff; border:none; border-radius:4px; padding:3px 8px; font-size:10px; font-weight:700; cursor:pointer;">
+              ${config.thirdRoundReversal ? 'Enabled' : 'Disabled'}
+            </button>
           </div>
           <div style="font-size:11px; font-weight:700; color:#cbd5e1; margin-top:10px; margin-bottom:6px;">POSITION MULTIPLIERS</div>
           <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap: 6px;">
@@ -410,6 +417,15 @@
     document.getElementById('vbd-slot-select')?.addEventListener('change', async (e) => {
       myDraftSlot = Number(e.target.value);
       await setStorageItem(STORAGE_KEYS.MY_SLOT, myDraftSlot);
+      processPicksAndRecalculate();
+    });
+
+    root.querySelector('.vbd-3rr-toggle')?.addEventListener('click', async () => {
+      config = {
+        ...config,
+        thirdRoundReversal: !config.thirdRoundReversal,
+      };
+      await setStorageItem(STORAGE_KEYS.CONFIG, config);
       processPicksAndRecalculate();
     });
 
