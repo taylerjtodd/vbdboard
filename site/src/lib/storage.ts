@@ -7,6 +7,7 @@ const STORAGE_KEYS = {
   TEAM: 'vbd_my_team',
   FILTER: 'vbd_position_filter',
   MY_SLOT: 'vbd_my_slot',
+  SLEEPER_DRAFT_URL: 'vbd_sleeper_draft_url',
 };
 
 const DEFAULT_FILTER: PositionFilter = {
@@ -138,4 +139,27 @@ export function clearDraftStorage() {
 export function clearConfigStorage() {
   if (typeof window === 'undefined') return;
   localStorage.removeItem(STORAGE_KEYS.CONFIG);
+}
+
+export function loadStoredSleeperDraftUrl(): string {
+  if (typeof window === 'undefined') return '';
+  try {
+    return localStorage.getItem(STORAGE_KEYS.SLEEPER_DRAFT_URL) || '';
+  } catch (e) {
+    console.error('Failed to load Sleeper draft URL from localStorage', e);
+    return '';
+  }
+}
+
+export function saveSleeperDraftUrl(url: string) {
+  if (typeof window === 'undefined') return;
+  try {
+    if (url) {
+      localStorage.setItem(STORAGE_KEYS.SLEEPER_DRAFT_URL, url);
+    } else {
+      localStorage.removeItem(STORAGE_KEYS.SLEEPER_DRAFT_URL);
+    }
+  } catch (e) {
+    console.error('Failed to save Sleeper draft URL to localStorage', e);
+  }
 }

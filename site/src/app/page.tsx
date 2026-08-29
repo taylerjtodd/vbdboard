@@ -30,11 +30,13 @@ import {
   loadStoredDraftedPlayers,
   loadStoredFilter,
   loadStoredMySlot,
+  loadStoredSleeperDraftUrl,
   loadStoredTeam,
   saveConfig,
   saveDraftedPlayers,
   saveFilter,
   saveMySlot,
+  saveSleeperDraftUrl,
   saveTeam,
 } from '../lib/storage';
 import { loadPlayerData } from '../data/initialData';
@@ -66,7 +68,7 @@ export default function Home() {
     dst: true,
     k: true,
   });
-  const [sleeperDraftId, setSleeperDraftId] = useState<string | null>(null);
+  const [sleeperDraftUrl, setSleeperDraftUrl] = useState<string>('');
   const [mySlot, setMySlot] = useState<number>(1);
 
   // Hydrate from localStorage + fetch player data on client render
@@ -76,20 +78,8 @@ export default function Home() {
     setTeam(loadStoredTeam());
     setFilter(loadStoredFilter());
     setMySlot(loadStoredMySlot());
+    setSleeperDraftUrl(loadStoredSleeperDraftUrl());
     setIsHydrated(true);
-
-    // Check URL params for Sleeper draft integration
-    const urlParams = new URLSearchParams(window.location.search);
-    const sDraftId = urlParams.get('sleeper_draft_id');
-    const sSlot = urlParams.get('my_slot');
-    if (sDraftId) {
-      setSleeperDraftId(sDraftId);
-      if (sSlot) {
-        const parsedSlot = parseInt(sSlot, 10);
-        setMySlot(parsedSlot);
-        saveMySlot(parsedSlot);
-      }
-    }
 
     // Fetch scraped player data
     loadPlayerData().then(({ projections: p, ranks: r }) => {
@@ -105,7 +95,21 @@ export default function Home() {
     }
   }, []);
 
-  // Poll Sleeper Draft if sleeper_draft_id is present
+  // Extract draft ID from the Sleeper URL
+  const sleeperDraftId = useMemo(() => {
+    if (!sleeperDraftUrl) return null;
+    const match = sleeperDraftUrl.match(/\/draft(?:\/nfl|\/[a-z]+)?\/([0-9]+)/i);
+    return match ? match[1] : null;
+  }, [sleeperDraftUrl]);
+
+  // Save Sleeper URL on changes (after hydration)
+  useEffect(() => {
+    if (isHydrated) {
+      saveSleeperDraftUrl(sleeperDraftUrl);
+    }
+  }, [sleeperDraftUrl, isHydrated]);
+
+  // Poll Sleeper Draft if a valid draft ID is present
   useEffect(() => {
     if (!sleeperDraftId) return;
 
@@ -349,7 +353,6 @@ export default function Home() {
         myTeamCount={myTeamCount}
         totalTeamVBD={totalTeamVBD}
         onResetDraft={handleResetDraft}
-        sleeperDraftId={sleeperDraftId}
       />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
@@ -392,6 +395,9 @@ export default function Home() {
             onBuff={handleBuff}
             onNerf={handleNerf}
             onResetConfig={handleResetConfig}
+            sleeperDraftUrl={sleeperDraftUrl}
+            onSleeperDraftUrlChange={setSleeperDraftUrl}
+            sleeperDraftId={sleeperDraftId}
           />
         )}
       </main>

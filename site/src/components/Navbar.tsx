@@ -21,7 +21,6 @@ interface NavbarProps {
   myTeamCount: number;
   totalTeamVBD: number;
   onResetDraft: () => void;
-  sleeperDraftId?: string | null;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -32,7 +31,6 @@ export const Navbar: React.FC<NavbarProps> = ({
   myTeamCount,
   totalTeamVBD,
   onResetDraft,
-  sleeperDraftId,
 }) => {
   const tabs = [
     { id: 'board' as TabType, label: 'Draft Board', icon: Trophy },
@@ -57,12 +55,6 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span className="ml-2 text-xs px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 font-medium">
                 Next.js
               </span>
-              {sleeperDraftId && (
-                <span className="ml-2 inline-flex items-center gap-1.5 text-xs px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 font-semibold animate-pulse">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-                  Sleeper Live Sync
-                </span>
-              )}
             </div>
           </div>
 
