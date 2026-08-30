@@ -97,21 +97,57 @@ export function determineBaseline(
   const replacementThreshold =
     initialThreshold + (finalThreshold - initialThreshold) * percentageDrafted;
 
-  let positionalIndex = -1;
-  const draftedAtPosition = draftedPlayers.filter((p) => p.pos === pos).length;
+  // Collect all positional players sorted by ADP (players array is already ADP-sorted)
+  const posPlayers = players.filter((p) => p.pos === pos);
 
-  for (const player of players) {
-    if (player.pos === pos) {
-      positionalIndex++;
-      if (
-        player.adp > replacementThreshold &&
-        positionalIndex > draftedAtPosition
-      ) {
-        return player;
-      }
+  // Find the two players whose ADPs bracket the replacement threshold.
+  // We work from the replacement threshold outward — one player just below
+  // (lower ADP) and one just above (higher ADP) — then interpolate their PPG
+  // based on fractional distance so the baseline shifts smoothly every pick
+  // instead of snapping when the threshold crosses a player boundary.
+  let below: Player | null = null;
+  let above: Player | null = null;
+
+  for (const player of posPlayers) {
+    if (player.adp <= replacementThreshold) {
+      below = player; // keep advancing; last one ≤ threshold wins
+    } else if (above === null) {
+      above = player; // first one > threshold
+      break;
     }
   }
 
+  // If we have both neighbors, interpolate PPG by fractional distance
+  if (below !== null && above !== null) {
+    const range = above.adp - below.adp;
+    // weight toward `above` as threshold approaches it (0 = at below, 1 = at above)
+    const t = range > 0 ? (replacementThreshold - below.adp) / range : 0.5;
+    const interpolatedPpg = below.ppg * (1 - t) + above.ppg * t;
+    const interpolatedPoints = below.points * (1 - t) + above.points * t;
+
+    return {
+      name: `${below.name} / ${above.name}`,
+      position: pos,
+      pos: pos,
+      points: Number(interpolatedPoints.toFixed(1)),
+      ppg: Number(interpolatedPpg.toFixed(3)),
+      tier: above.tier,
+      rank: above.rank,
+      adp: Number(replacementThreshold.toFixed(1)),
+    };
+  }
+
+  // Threshold is past all positional players — use the last one
+  if (below !== null) {
+    return below;
+  }
+
+  // Threshold is before all positional players — use the first one
+  if (above !== null) {
+    return above;
+  }
+
+  // Absolute fallback: no positional players found in ranks, use projections tail
   const allByPosition = projections[pos] || [];
   const lastProj = allByPosition[allByPosition.length - 1];
 
