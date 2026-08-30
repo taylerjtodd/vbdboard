@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useCallback, useEffect, useState, useMemo } from 'react';
 import { Navbar, TabType } from '../components/Navbar';
 import { DraftBoard } from '../components/DraftBoard';
 import { MyTeam } from '../components/MyTeam';
@@ -70,6 +70,7 @@ export default function Home() {
   });
   const [sleeperDraftUrl, setSleeperDraftUrl] = useState<string>('');
   const [mySlot, setMySlot] = useState<number>(1);
+  const [isSyncingSleeper, setIsSyncingSleeper] = useState(false);
 
   // Hydrate from localStorage + fetch player data on client render
   useEffect(() => {
@@ -109,52 +110,53 @@ export default function Home() {
     }
   }, [sleeperDraftUrl, isHydrated]);
 
-  // Poll Sleeper Draft if a valid draft ID is present
+  // Sleeper sync function (also used by manual sync button)
+  const syncSleeperPicks = useCallback(async () => {
+    if (!sleeperDraftId) return;
+    setIsSyncingSleeper(true);
+    try {
+      const res = await fetch(`https://api.sleeper.app/v1/draft/${sleeperDraftId}/picks`);
+      if (!res.ok) return;
+      const picks = await res.json();
+      if (!Array.isArray(picks)) return;
+
+      const newDrafted: DraftedPlayer[] = [];
+      const newTeam: TeamRoster = { qb: [], rb: [], wr: [], te: [], dst: [], k: [] };
+
+      picks.forEach((pick: any) => {
+        let pos = (pick.metadata?.position || '').toLowerCase() as Position;
+        if (pos === ('def' as any)) pos = 'dst';
+        const name =
+          pick.metadata?.player_name ||
+          `${pick.metadata?.first_name || ''} ${pick.metadata?.last_name || ''}`.trim();
+
+        const entry: DraftedPlayer = { name, pos };
+        newDrafted.push(entry);
+
+        if (mySlot && (pick.draft_slot === mySlot || pick.roster_id === mySlot)) {
+          if (newTeam[pos]) {
+            newTeam[pos].push(entry);
+          }
+        }
+      });
+
+      setDraftedPlayers(newDrafted);
+      if (mySlot) setTeam(newTeam);
+    } catch (err) {
+      console.debug('Sleeper sync error:', err);
+    } finally {
+      setIsSyncingSleeper(false);
+    }
+  }, [sleeperDraftId, mySlot]);
+
+  // Poll Sleeper Draft every 10 seconds if a valid draft ID is present
   useEffect(() => {
     if (!sleeperDraftId) return;
 
-    let isMounted = true;
-    const syncSleeperPicks = async () => {
-      try {
-        const res = await fetch(`https://api.sleeper.app/v1/draft/${sleeperDraftId}/picks`);
-        if (!res.ok) return;
-        const picks = await res.json();
-        if (!isMounted || !Array.isArray(picks)) return;
-
-        const newDrafted: DraftedPlayer[] = [];
-        const newTeam: TeamRoster = { qb: [], rb: [], wr: [], te: [], dst: [], k: [] };
-
-        picks.forEach((pick: any) => {
-          let pos = (pick.metadata?.position || '').toLowerCase() as Position;
-          if (pos === ('def' as any)) pos = 'dst';
-          const name =
-            pick.metadata?.player_name ||
-            `${pick.metadata?.first_name || ''} ${pick.metadata?.last_name || ''}`.trim();
-
-          const entry: DraftedPlayer = { name, pos };
-          newDrafted.push(entry);
-
-          if (mySlot && (pick.draft_slot === mySlot || pick.roster_id === mySlot)) {
-            if (newTeam[pos]) {
-              newTeam[pos].push(entry);
-            }
-          }
-        });
-
-        setDraftedPlayers(newDrafted);
-        if (mySlot) setTeam(newTeam);
-      } catch (err) {
-        console.debug('Sleeper sync error:', err);
-      }
-    };
-
     syncSleeperPicks();
-    const interval = setInterval(syncSleeperPicks, 3000);
-    return () => {
-      isMounted = false;
-      clearInterval(interval);
-    };
-  }, [sleeperDraftId, mySlot]);
+    const interval = setInterval(syncSleeperPicks, 10000);
+    return () => clearInterval(interval);
+  }, [sleeperDraftId, syncSleeperPicks]);
 
   // Update hash when tab changes
   const handleTabChange = (tab: TabType) => {
@@ -353,9 +355,12 @@ export default function Home() {
         myTeamCount={myTeamCount}
         totalTeamVBD={totalTeamVBD}
         onResetDraft={handleResetDraft}
+        onSyncSleeper={syncSleeperPicks}
+        isSyncingSleeper={isSyncingSleeper}
+        hasSleeperDraft={!!sleeperDraftId}
       />
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+      <main className="max-w-full mx-auto px-2 sm:px-4 pt-8">
         {activeTab === 'board' && (
           <DraftBoard
             players={players}

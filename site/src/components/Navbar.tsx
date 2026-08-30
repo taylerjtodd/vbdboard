@@ -9,6 +9,7 @@ import {
   RotateCcw,
   Sparkles,
   Zap,
+  RefreshCw,
 } from 'lucide-react';
 
 export type TabType = 'board' | 'team' | 'grid' | 'setup';
@@ -21,6 +22,9 @@ interface NavbarProps {
   myTeamCount: number;
   totalTeamVBD: number;
   onResetDraft: () => void;
+  onSyncSleeper: () => void;
+  isSyncingSleeper: boolean;
+  hasSleeperDraft: boolean;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -31,6 +35,9 @@ export const Navbar: React.FC<NavbarProps> = ({
   myTeamCount,
   totalTeamVBD,
   onResetDraft,
+  onSyncSleeper,
+  isSyncingSleeper,
+  hasSleeperDraft,
 }) => {
   const tabs = [
     { id: 'board' as TabType, label: 'Draft Board', icon: Trophy },
@@ -41,7 +48,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <header className="sticky top-0 z-50 backdrop-blur-xl bg-slate-950/80 border-b border-slate-800/80 shadow-2xl">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-full mx-auto px-2 sm:px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo / Brand */}
           <div className="flex items-center space-x-3">
@@ -111,6 +118,16 @@ export const Navbar: React.FC<NavbarProps> = ({
               </div>
             </div>
 
+            {hasSleeperDraft && (
+              <button
+                onClick={onSyncSleeper}
+                disabled={isSyncingSleeper}
+                title="Sync Sleeper Draft Now"
+                className="p-2 rounded-lg text-slate-400 hover:text-cyan-400 hover:bg-cyan-500/10 border border-transparent hover:border-cyan-500/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <RefreshCw className={`w-4 h-4 ${isSyncingSleeper ? 'animate-spin' : ''}`} />
+              </button>
+            )}
             <button
               onClick={onResetDraft}
               title="Reset Draft Progress"
