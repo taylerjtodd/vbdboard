@@ -2,34 +2,34 @@
   {
     "name": "Josh Allen",
     "position": "qb",
-    "points": 372.5,
-    "ppg": 21.9,
+    "points": 370.6,
+    "ppg": 21.8,
     "rank": 1,
     "tier": 1,
-    "adp": 22
+    "adp": 21
   },
   {
     "name": "Lamar Jackson",
     "position": "qb",
-    "points": 324.9,
+    "points": 324.8,
     "ppg": 19.1,
     "rank": 2,
     "tier": 1,
-    "adp": 32
+    "adp": 31
   },
   {
     "name": "Drake Maye",
     "position": "qb",
-    "points": 322.9,
-    "ppg": 19,
+    "points": 320.7,
+    "ppg": 18.9,
     "rank": 3,
     "tier": 1,
-    "adp": 48
+    "adp": 47
   },
   {
     "name": "Joe Burrow",
     "position": "qb",
-    "points": 310.9,
+    "points": 310.8,
     "ppg": 18.3,
     "rank": 4,
     "tier": 2,
@@ -38,17 +38,17 @@
   {
     "name": "Jayden Daniels",
     "position": "qb",
-    "points": 322.5,
+    "points": 322.2,
     "ppg": 19,
     "rank": 5,
     "tier": 2,
-    "adp": 64
+    "adp": 66
   },
   {
     "name": "Jalen Hurts",
     "position": "qb",
-    "points": 320.5,
-    "ppg": 18.9,
+    "points": 320.2,
+    "ppg": 18.8,
     "rank": 6,
     "tier": 2,
     "adp": 60
@@ -56,7 +56,7 @@
   {
     "name": "Caleb Williams",
     "position": "qb",
-    "points": 301.4,
+    "points": 301.5,
     "ppg": 17.7,
     "rank": 7,
     "tier": 2,
@@ -65,7 +65,7 @@
   {
     "name": "Justin Herbert",
     "position": "qb",
-    "points": 299.6,
+    "points": 299.5,
     "ppg": 17.6,
     "rank": 8,
     "tier": 2,
@@ -74,178 +74,178 @@
   {
     "name": "Dak Prescott",
     "position": "qb",
-    "points": 306.2,
+    "points": 305.8,
     "ppg": 18,
     "rank": 9,
     "tier": 2,
-    "adp": 78
+    "adp": 77
   },
   {
     "name": "Trevor Lawrence",
     "position": "qb",
-    "points": 306.2,
+    "points": 306.6,
     "ppg": 18,
     "rank": 10,
-    "tier": 3,
+    "tier": 2,
     "adp": 100
   },
   {
     "name": "Brock Purdy",
     "position": "qb",
-    "points": 307.5,
-    "ppg": 18.1,
+    "points": 306,
+    "ppg": 18,
     "rank": 11,
     "tier": 3,
-    "adp": 121
+    "adp": 123
   },
   {
     "name": "Bo Nix",
     "position": "qb",
-    "points": 298.2,
+    "points": 298,
     "ppg": 17.5,
     "rank": 12,
     "tier": 3,
-    "adp": 120
+    "adp": 117
   },
   {
     "name": "Jaxson Dart",
     "position": "qb",
-    "points": 309.9,
+    "points": 309.6,
     "ppg": 18.2,
     "rank": 13,
     "tier": 3,
-    "adp": 91
+    "adp": 94
   },
   {
     "name": "Patrick Mahomes II",
     "position": "qb",
-    "points": 303,
+    "points": 302.5,
     "ppg": 17.8,
     "rank": 14,
     "tier": 3,
-    "adp": 106
-  },
-  {
-    "name": "Matthew Stafford",
-    "position": "qb",
-    "points": 294,
-    "ppg": 17.3,
-    "rank": 15,
-    "tier": 3,
-    "adp": 96
+    "adp": 110
   },
   {
     "name": "Jared Goff",
     "position": "qb",
-    "points": 287.7,
+    "points": 288,
     "ppg": 16.9,
+    "rank": 15,
+    "tier": 3,
+    "adp": 131
+  },
+  {
+    "name": "Matthew Stafford",
+    "position": "qb",
+    "points": 293.9,
+    "ppg": 17.3,
     "rank": 16,
     "tier": 3,
-    "adp": 133
+    "adp": 95
   },
   {
     "name": "Kyler Murray",
     "position": "qb",
-    "points": 280.2,
-    "ppg": 16.5,
+    "points": 291.4,
+    "ppg": 17.1,
     "rank": 17,
     "tier": 4,
-    "adp": 159
-  },
-  {
-    "name": "Baker Mayfield",
-    "position": "qb",
-    "points": 281.9,
-    "ppg": 16.6,
-    "rank": 18,
-    "tier": 4,
-    "adp": 141
+    "adp": 162
   },
   {
     "name": "Jordan Love",
     "position": "qb",
-    "points": 267.7,
-    "ppg": 15.7,
+    "points": 271.2,
+    "ppg": 16,
+    "rank": 18,
+    "tier": 4,
+    "adp": 150
+  },
+  {
+    "name": "Baker Mayfield",
+    "position": "qb",
+    "points": 281.8,
+    "ppg": 16.6,
     "rank": 19,
     "tier": 4,
-    "adp": 148
+    "adp": 143
   },
   {
     "name": "Tyler Shough",
     "position": "qb",
-    "points": 285.3,
+    "points": 285.1,
     "ppg": 16.8,
     "rank": 20,
     "tier": 4,
-    "adp": 182
+    "adp": 187
   },
   {
     "name": "Malik Willis",
     "position": "qb",
-    "points": 271.5,
+    "points": 271.8,
     "ppg": 16,
     "rank": 21,
     "tier": 4,
-    "adp": 194
+    "adp": 208
   },
   {
     "name": "Sam Darnold",
     "position": "qb",
-    "points": 266.2,
+    "points": 266.1,
     "ppg": 15.7,
     "rank": 22,
     "tier": 4,
-    "adp": 176
+    "adp": 163
   },
   {
     "name": "C.J. Stroud",
     "position": "qb",
-    "points": 260.8,
+    "points": 260.6,
     "ppg": 15.3,
     "rank": 23,
-    "tier": 4,
-    "adp": 204
-  },
-  {
-    "name": "Daniel Jones",
-    "position": "qb",
-    "points": 274.6,
-    "ppg": 16.2,
-    "rank": 24,
     "tier": 4,
     "adp": 205
   },
   {
+    "name": "Daniel Jones",
+    "position": "qb",
+    "points": 274,
+    "ppg": 16.1,
+    "rank": 24,
+    "tier": 4,
+    "adp": 204
+  },
+  {
     "name": "Cam Ward",
     "position": "qb",
-    "points": 232.4,
-    "ppg": 13.7,
+    "points": 230.9,
+    "ppg": 13.6,
     "rank": 25,
     "tier": 4,
-    "adp": 214
+    "adp": 247
   },
   {
     "name": "Bryce Young",
     "position": "qb",
-    "points": 255.7,
-    "ppg": 15,
+    "points": 255.9,
+    "ppg": 15.1,
     "rank": 26,
     "tier": 4,
-    "adp": 237
+    "adp": 235
   },
   {
     "name": "Jacoby Brissett",
     "position": "qb",
-    "points": 232.2,
-    "ppg": 13.7,
+    "points": 230.2,
+    "ppg": 13.5,
     "rank": 27,
     "tier": 4,
-    "adp": 287
+    "adp": 305
   },
   {
     "name": "Geno Smith",
     "position": "qb",
-    "points": 234.8,
+    "points": 233.8,
     "ppg": 13.8,
     "rank": 28,
     "tier": 4,
@@ -254,25 +254,25 @@
   {
     "name": "Aaron Rodgers",
     "position": "qb",
-    "points": 223.5,
-    "ppg": 13.1,
+    "points": 224.7,
+    "ppg": 13.2,
     "rank": 29,
-    "tier": 4,
+    "tier": 5,
     "adp": 243
   },
   {
     "name": "Fernando Mendoza",
     "position": "qb",
-    "points": 191.8,
+    "points": 191.7,
     "ppg": 11.3,
     "rank": 30,
     "tier": 5,
-    "adp": 179
+    "adp": 183
   },
   {
     "name": "Jahmyr Gibbs",
     "position": "rb",
-    "points": 372.9,
+    "points": 373.1,
     "ppg": 21.9,
     "rank": 1,
     "tier": 1,
@@ -281,8 +281,8 @@
   {
     "name": "Bijan Robinson",
     "position": "rb",
-    "points": 369.5,
-    "ppg": 21.7,
+    "points": 356.6,
+    "ppg": 21,
     "rank": 2,
     "tier": 1,
     "adp": 2
@@ -290,7 +290,7 @@
   {
     "name": "Christian McCaffrey",
     "position": "rb",
-    "points": 334.7,
+    "points": 334.8,
     "ppg": 19.7,
     "rank": 3,
     "tier": 1,
@@ -308,16 +308,16 @@
   {
     "name": "James Cook",
     "position": "rb",
-    "points": 270.6,
+    "points": 270.7,
     "ppg": 15.9,
     "rank": 5,
     "tier": 2,
-    "adp": 10
+    "adp": 8
   },
   {
     "name": "Chase Brown",
     "position": "rb",
-    "points": 278.5,
+    "points": 278.8,
     "ppg": 16.4,
     "rank": 6,
     "tier": 2,
@@ -326,44 +326,44 @@
   {
     "name": "De'Von Achane",
     "position": "rb",
-    "points": 292.3,
+    "points": 292.8,
     "ppg": 17.2,
     "rank": 7,
-    "tier": 2,
-    "adp": 12
-  },
-  {
-    "name": "Saquon Barkley",
-    "position": "rb",
-    "points": 264.7,
-    "ppg": 15.6,
-    "rank": 8,
     "tier": 2,
     "adp": 13
   },
   {
-    "name": "Omarion Hampton",
+    "name": "Saquon Barkley",
     "position": "rb",
-    "points": 254.2,
-    "ppg": 15,
-    "rank": 9,
+    "points": 264.9,
+    "ppg": 15.6,
+    "rank": 8,
     "tier": 2,
-    "adp": 15
+    "adp": 12
   },
   {
     "name": "Kenneth Walker",
     "position": "rb",
-    "points": 257.9,
+    "points": 259.2,
     "ppg": 15.2,
-    "rank": 10,
+    "rank": 9,
     "tier": 2,
     "adp": 19
   },
   {
+    "name": "Omarion Hampton",
+    "position": "rb",
+    "points": 253.9,
+    "ppg": 14.9,
+    "rank": 10,
+    "tier": 2,
+    "adp": 15
+  },
+  {
     "name": "Ashton Jeanty",
     "position": "rb",
-    "points": 261.5,
-    "ppg": 15.4,
+    "points": 260.8,
+    "ppg": 15.3,
     "rank": 11,
     "tier": 3,
     "adp": 14
@@ -371,26 +371,26 @@
   {
     "name": "Derrick Henry",
     "position": "rb",
-    "points": 273.7,
-    "ppg": 16.1,
+    "points": 274.9,
+    "ppg": 16.2,
     "rank": 12,
     "tier": 3,
-    "adp": 21
+    "adp": 20
   },
   {
     "name": "Breece Hall",
     "position": "rb",
-    "points": 245.4,
+    "points": 245.6,
     "ppg": 14.4,
     "rank": 13,
     "tier": 3,
-    "adp": 33
+    "adp": 34
   },
   {
     "name": "Jeremiyah Love",
     "position": "rb",
-    "points": 255.4,
-    "ppg": 15,
+    "points": 252.2,
+    "ppg": 14.8,
     "rank": 14,
     "tier": 3,
     "adp": 26
@@ -398,497 +398,515 @@
   {
     "name": "Kyren Williams",
     "position": "rb",
-    "points": 240.2,
-    "ppg": 14.1,
+    "points": 235.3,
+    "ppg": 13.8,
     "rank": 15,
     "tier": 3,
-    "adp": 29
+    "adp": 28
   },
   {
     "name": "Javonte Williams",
     "position": "rb",
-    "points": 234.1,
-    "ppg": 13.8,
+    "points": 240.5,
+    "ppg": 14.1,
     "rank": 16,
     "tier": 3,
-    "adp": 35
-  },
-  {
-    "name": "Josh Jacobs",
-    "position": "rb",
-    "points": 248.6,
-    "ppg": 14.6,
-    "rank": 17,
-    "tier": 4,
-    "adp": 31
+    "adp": 33
   },
   {
     "name": "Travis Etienne Jr.",
     "position": "rb",
-    "points": 234.9,
-    "ppg": 13.8,
-    "rank": 18,
-    "tier": 4,
+    "points": 236.7,
+    "ppg": 13.9,
+    "rank": 17,
+    "tier": 3,
     "adp": 44
   },
   {
     "name": "D'Andre Swift",
     "position": "rb",
-    "points": 223.4,
+    "points": 223.2,
     "ppg": 13.1,
-    "rank": 19,
+    "rank": 18,
     "tier": 4,
-    "adp": 55
-  },
-  {
-    "name": "Cam Skattebo",
-    "position": "rb",
-    "points": 234.9,
-    "ppg": 13.8,
-    "rank": 20,
-    "tier": 4,
-    "adp": 43
+    "adp": 52
   },
   {
     "name": "Bucky Irving",
     "position": "rb",
-    "points": 223.7,
-    "ppg": 13.2,
-    "rank": 21,
+    "points": 219.5,
+    "ppg": 12.9,
+    "rank": 19,
     "tier": 4,
-    "adp": 41
+    "adp": 43
+  },
+  {
+    "name": "Cam Skattebo",
+    "position": "rb",
+    "points": 234.5,
+    "ppg": 13.8,
+    "rank": 20,
+    "tier": 4,
+    "adp": 42
   },
   {
     "name": "David Montgomery",
     "position": "rb",
-    "points": 195.9,
-    "ppg": 11.5,
-    "rank": 22,
+    "points": 198.4,
+    "ppg": 11.7,
+    "rank": 21,
     "tier": 4,
-    "adp": 49
+    "adp": 48
   },
   {
     "name": "Quinshon Judkins",
     "position": "rb",
-    "points": 214.7,
-    "ppg": 12.6,
-    "rank": 23,
+    "points": 216.3,
+    "ppg": 12.7,
+    "rank": 22,
     "tier": 4,
     "adp": 54
   },
   {
     "name": "Bhayshul Tuten",
     "position": "rb",
-    "points": 207.3,
-    "ppg": 12.2,
-    "rank": 24,
+    "points": 209.4,
+    "ppg": 12.3,
+    "rank": 23,
     "tier": 4,
-    "adp": 63
-  },
-  {
-    "name": "TreVeyon Henderson",
-    "position": "rb",
-    "points": 192.1,
-    "ppg": 11.3,
-    "rank": 25,
-    "tier": 4,
-    "adp": 53
+    "adp": 61
   },
   {
     "name": "Jadarian Price",
     "position": "rb",
-    "points": 189.6,
-    "ppg": 11.2,
-    "rank": 26,
-    "tier": 5,
-    "adp": 67
+    "points": 187.5,
+    "ppg": 11,
+    "rank": 24,
+    "tier": 4,
+    "adp": 65
   },
   {
-    "name": "Jaylen Warren",
+    "name": "TreVeyon Henderson",
     "position": "rb",
-    "points": 197.3,
-    "ppg": 11.6,
-    "rank": 27,
-    "tier": 5,
-    "adp": 73
+    "points": 191.5,
+    "ppg": 11.3,
+    "rank": 25,
+    "tier": 4,
+    "adp": 57
   },
   {
     "name": "Rhamondre Stevenson",
     "position": "rb",
-    "points": 191.1,
+    "points": 190.8,
     "ppg": 11.2,
-    "rank": 28,
-    "tier": 5,
+    "rank": 26,
+    "tier": 4,
     "adp": 81
+  },
+  {
+    "name": "Jaylen Warren",
+    "position": "rb",
+    "points": 196,
+    "ppg": 11.5,
+    "rank": 27,
+    "tier": 5,
+    "adp": 72
   },
   {
     "name": "Tony Pollard",
     "position": "rb",
-    "points": 187.8,
+    "points": 187.6,
     "ppg": 11,
-    "rank": 29,
+    "rank": 28,
     "tier": 5,
     "adp": 84
   },
   {
+    "name": "Jonathon Brooks",
+    "position": "rb",
+    "points": 168.7,
+    "ppg": 9.9,
+    "rank": 29,
+    "tier": 5,
+    "adp": 104
+  },
+  {
     "name": "Rico Dowdle",
     "position": "rb",
-    "points": 180.2,
+    "points": 180.9,
     "ppg": 10.6,
     "rank": 30,
     "tier": 5,
-    "adp": 85
-  },
-  {
-    "name": "Jonathon Brooks",
-    "position": "rb",
-    "points": 163.9,
-    "ppg": 9.6,
-    "rank": 31,
-    "tier": 5,
-    "adp": 109
+    "adp": 86
   },
   {
     "name": "RJ Harvey",
     "position": "rb",
     "points": 162.1,
     "ppg": 9.5,
-    "rank": 32,
+    "rank": 31,
     "tier": 5,
     "adp": 79
   },
   {
+    "name": "Kenny Gainwell",
+    "position": "rb",
+    "points": 171.5,
+    "ppg": 10.1,
+    "rank": 32,
+    "tier": 5,
+    "adp": 113
+  },
+  {
     "name": "Chuba Hubbard",
     "position": "rb",
-    "points": 173.2,
+    "points": 174.2,
     "ppg": 10.2,
     "rank": 33,
     "tier": 5,
-    "adp": 77
+    "adp": 78
+  },
+  {
+    "name": "MarShawn Lloyd",
+    "position": "rb",
+    "points": 151.8,
+    "ppg": 8.9,
+    "rank": 34,
+    "tier": 5,
+    "adp": 157
   },
   {
     "name": "J.K. Dobbins",
     "position": "rb",
-    "points": 176.1,
+    "points": 176,
     "ppg": 10.4,
-    "rank": 34,
-    "tier": 5,
-    "adp": 94
-  },
-  {
-    "name": "Kenny Gainwell",
-    "position": "rb",
-    "points": 168.1,
-    "ppg": 9.9,
     "rank": 35,
     "tier": 5,
-    "adp": 112
-  },
-  {
-    "name": "Rachaad White",
-    "position": "rb",
-    "points": 161.2,
-    "ppg": 9.5,
-    "rank": 36,
-    "tier": 5,
-    "adp": 131
+    "adp": 92
   },
   {
     "name": "Blake Corum",
     "position": "rb",
-    "points": 136.6,
-    "ppg": 8,
+    "points": 140.7,
+    "ppg": 8.3,
+    "rank": 36,
+    "tier": 5,
+    "adp": 102
+  },
+  {
+    "name": "Jordan Mason",
+    "position": "rb",
+    "points": 145.6,
+    "ppg": 8.6,
     "rank": 37,
     "tier": 5,
-    "adp": 103
+    "adp": 111
   },
   {
     "name": "Jacory Croskey-Merritt",
     "position": "rb",
-    "points": 147.4,
+    "points": 147.2,
     "ppg": 8.7,
     "rank": 38,
     "tier": 5,
-    "adp": 114
+    "adp": 115
   },
   {
-    "name": "Aaron Jones Sr.",
+    "name": "Rachaad White",
     "position": "rb",
     "points": 161.1,
     "ppg": 9.5,
     "rank": 39,
     "tier": 5,
-    "adp": 124
-  },
-  {
-    "name": "Jordan Mason",
-    "position": "rb",
-    "points": 145.1,
-    "ppg": 8.5,
-    "rank": 40,
-    "tier": 5,
-    "adp": 117
+    "adp": 133
   },
   {
     "name": "Kyle Monangai",
     "position": "rb",
-    "points": 156.2,
+    "points": 155.9,
     "ppg": 9.2,
-    "rank": 41,
+    "rank": 40,
     "tier": 5,
-    "adp": 99
+    "adp": 101
+  },
+  {
+    "name": "Aaron Jones Sr.",
+    "position": "rb",
+    "points": 161.5,
+    "ppg": 9.5,
+    "rank": 41,
+    "tier": 6,
+    "adp": 125
   },
   {
     "name": "Woody Marks",
     "position": "rb",
-    "points": 124.4,
-    "ppg": 7.3,
+    "points": 125.7,
+    "ppg": 7.4,
     "rank": 42,
     "tier": 6,
-    "adp": 162
-  },
-  {
-    "name": "Tyjae Spears",
-    "position": "rb",
-    "points": 138.1,
-    "ppg": 8.1,
-    "rank": 43,
-    "tier": 6,
-    "adp": 168
-  },
-  {
-    "name": "Tyler Allgeier",
-    "position": "rb",
-    "points": 98.2,
-    "ppg": 5.8,
-    "rank": 44,
-    "tier": 6,
-    "adp": 146
+    "adp": 160
   },
   {
     "name": "Chris Rodriguez Jr.",
     "position": "rb",
-    "points": 95.6,
+    "points": 95.7,
     "ppg": 5.6,
-    "rank": 45,
+    "rank": 43,
     "tier": 6,
-    "adp": 142
+    "adp": 140
   },
   {
-    "name": "Dylan Sampson",
+    "name": "Tyler Allgeier",
     "position": "rb",
-    "points": 108.6,
-    "ppg": 6.4,
-    "rank": 46,
+    "points": 94.3,
+    "ppg": 5.5,
+    "rank": 44,
     "tier": 6,
-    "adp": 188
+    "adp": 145
+  },
+  {
+    "name": "Tyjae Spears",
+    "position": "rb",
+    "points": 138,
+    "ppg": 8.1,
+    "rank": 45,
+    "tier": 6,
+    "adp": 165
   },
   {
     "name": "Keaton Mitchell",
     "position": "rb",
     "points": 84.4,
     "ppg": 5,
+    "rank": 46,
+    "tier": 6,
+    "adp": 186
+  },
+  {
+    "name": "Dylan Sampson",
+    "position": "rb",
+    "points": 111,
+    "ppg": 6.5,
     "rank": 47,
     "tier": 6,
-    "adp": 180
-  },
-  {
-    "name": "Tyrone Tracy Jr.",
-    "position": "rb",
-    "points": 103.1,
-    "ppg": 6.1,
-    "rank": 48,
-    "tier": 6,
-    "adp": 163
-  },
-  {
-    "name": "Alvin Kamara",
-    "position": "rb",
-    "points": 121.3,
-    "ppg": 7.1,
-    "rank": 49,
-    "tier": 6,
-    "adp": 161
+    "adp": 191
   },
   {
     "name": "Jonah Coleman",
     "position": "rb",
-    "points": 74.1,
-    "ppg": 4.4,
-    "rank": 50,
+    "points": 49.4,
+    "ppg": 2.9,
+    "rank": 48,
     "tier": 6,
-    "adp": 167
+    "adp": 170
   },
   {
     "name": "Zach Charbonnet",
     "position": "rb",
-    "points": 123.1,
-    "ppg": 7.2,
-    "rank": 51,
+    "points": 116.7,
+    "ppg": 6.9,
+    "rank": 49,
     "tier": 6,
-    "adp": 145
+    "adp": 149
   },
   {
-    "name": "Isiah Pacheco",
+    "name": "Josh Jacobs",
     "position": "rb",
-    "points": 115.9,
-    "ppg": 6.8,
-    "rank": 52,
+    "points": 155.6,
+    "ppg": 9.2,
+    "rank": 50,
     "tier": 6,
-    "adp": 185
-  },
-  {
-    "name": "Tank Bigsby",
-    "position": "rb",
-    "points": 82.2,
-    "ppg": 4.8,
-    "rank": 53,
-    "tier": 6,
-    "adp": 177
-  },
-  {
-    "name": "Braelon Allen",
-    "position": "rb",
-    "points": 96.5,
-    "ppg": 5.7,
-    "rank": 54,
-    "tier": 6,
-    "adp": 208
+    "adp": 36
   },
   {
     "name": "Mike Washington Jr.",
     "position": "rb",
-    "points": 100.9,
+    "points": 100.8,
     "ppg": 5.9,
-    "rank": 55,
-    "tier": 7,
-    "adp": 172
+    "rank": 51,
+    "tier": 6,
+    "adp": 158
   },
   {
-    "name": "MarShawn Lloyd",
+    "name": "Alvin Kamara",
     "position": "rb",
-    "points": 54,
-    "ppg": 3.2,
+    "points": 116.6,
+    "ppg": 6.9,
+    "rank": 52,
+    "tier": 6,
+    "adp": 166
+  },
+  {
+    "name": "Tyrone Tracy Jr.",
+    "position": "rb",
+    "points": 82.1,
+    "ppg": 4.8,
+    "rank": 53,
+    "tier": 6,
+    "adp": 173
+  },
+  {
+    "name": "Tank Bigsby",
+    "position": "rb",
+    "points": 82.1,
+    "ppg": 4.8,
+    "rank": 54,
+    "tier": 6,
+    "adp": 178
+  },
+  {
+    "name": "Isiah Pacheco",
+    "position": "rb",
+    "points": 113.1,
+    "ppg": 6.7,
+    "rank": 55,
+    "tier": 6,
+    "adp": 189
+  },
+  {
+    "name": "Braelon Allen",
+    "position": "rb",
+    "points": 96.6,
+    "ppg": 5.7,
     "rank": 56,
-    "tier": 7,
-    "adp": 199
+    "tier": 6,
+    "adp": 207
   },
   {
     "name": "Brian Robinson Jr.",
     "position": "rb",
-    "points": 93,
-    "ppg": 5.5,
+    "points": 86.1,
+    "ppg": 5.1,
     "rank": 57,
     "tier": 7,
-    "adp": 153
+    "adp": 169
   },
   {
     "name": "Kimani Vidal",
     "position": "rb",
     "points": 59,
     "ppg": 3.5,
-    "rank": 59,
+    "rank": 60,
     "tier": 7,
-    "adp": 263
+    "adp": 273
   },
   {
     "name": "James Conner",
     "position": "rb",
-    "points": 61.5,
-    "ppg": 3.6,
+    "points": 47.5,
+    "ppg": 2.8,
     "rank": 63,
     "tier": 7,
-    "adp": 219
-  },
-  {
-    "name": "Jaydon Blue",
-    "position": "rb",
-    "points": 54.6,
-    "ppg": 3.2,
-    "rank": 64,
-    "tier": 7,
-    "adp": 247
-  },
-  {
-    "name": "Emanuel Wilson",
-    "position": "rb",
-    "points": 51.3,
-    "ppg": 3,
-    "rank": 66,
-    "tier": 7,
-    "adp": 312
-  },
-  {
-    "name": "Jaylen Wright",
-    "position": "rb",
-    "points": 50.7,
-    "ppg": 3,
-    "rank": 67,
-    "tier": 7,
-    "adp": 302
-  },
-  {
-    "name": "Justice Hill",
-    "position": "rb",
-    "points": 112.1,
-    "ppg": 6.6,
-    "rank": 68,
-    "tier": 7,
-    "adp": 0
+    "adp": 254
   },
   {
     "name": "Kaelon Black",
     "position": "rb",
     "points": 88.6,
     "ppg": 5.2,
-    "rank": 72,
-    "tier": 8,
-    "adp": 0
+    "rank": 64,
+    "tier": 7,
+    "adp": 196
   },
   {
-    "name": "Samaje Perine",
+    "name": "Jaylen Wright",
     "position": "rb",
-    "points": 96.1,
-    "ppg": 5.7,
-    "rank": 74,
-    "tier": 8,
-    "adp": 0
+    "points": 51.9,
+    "ppg": 3.1,
+    "rank": 66,
+    "tier": 7,
+    "adp": 324
   },
   {
-    "name": "Ty Johnson",
+    "name": "Emanuel Wilson",
     "position": "rb",
-    "points": 94.5,
-    "ppg": 5.6,
-    "rank": 75,
-    "tier": 8,
-    "adp": 0
+    "points": 51.2,
+    "ppg": 3,
+    "rank": 67,
+    "tier": 7,
+    "adp": 335
   },
   {
-    "name": "Jordan James",
+    "name": "Justice Hill",
     "position": "rb",
-    "points": 75.8,
-    "ppg": 4.5,
-    "rank": 77,
-    "tier": 8,
+    "points": 115.1,
+    "ppg": 6.8,
+    "rank": 69,
+    "tier": 7,
     "adp": 0
   },
   {
     "name": "Chris Brooks",
     "position": "rb",
-    "points": 63.2,
-    "ppg": 3.7,
-    "rank": 78,
+    "points": 71.7,
+    "ppg": 4.2,
+    "rank": 70,
     "tier": 8,
     "adp": 0
   },
   {
     "name": "Najee Harris",
     "position": "rb",
-    "points": 59.8,
-    "ppg": 3.5,
-    "rank": 79,
+    "points": 74.5,
+    "ppg": 4.4,
+    "rank": 71,
     "tier": 8,
-    "adp": 228
+    "adp": 224
+  },
+  {
+    "name": "Malik Davis",
+    "position": "rb",
+    "points": 87.9,
+    "ppg": 5.2,
+    "rank": 72,
+    "tier": 8,
+    "adp": 0
+  },
+  {
+    "name": "Isaiah Davis",
+    "position": "rb",
+    "points": 43.4,
+    "ppg": 2.6,
+    "rank": 73,
+    "tier": 8,
+    "adp": 0
+  },
+  {
+    "name": "Samaje Perine",
+    "position": "rb",
+    "points": 96,
+    "ppg": 5.6,
+    "rank": 74,
+    "tier": 8,
+    "adp": 0
+  },
+  {
+    "name": "Jordan James",
+    "position": "rb",
+    "points": 76,
+    "ppg": 4.5,
+    "rank": 76,
+    "tier": 8,
+    "adp": 0
+  },
+  {
+    "name": "Ty Johnson",
+    "position": "rb",
+    "points": 94.4,
+    "ppg": 5.6,
+    "rank": 77,
+    "tier": 8,
+    "adp": 0
+  },
+  {
+    "name": "LeQuint Allen Jr.",
+    "position": "rb",
+    "points": 43.8,
+    "ppg": 2.6,
+    "rank": 78,
+    "tier": 8,
+    "adp": 0
   },
   {
     "name": "Ja'Marr Chase",
@@ -902,7 +920,7 @@
   {
     "name": "Puka Nacua",
     "position": "wr",
-    "points": 339.8,
+    "points": 339.5,
     "ppg": 20,
     "rank": 2,
     "tier": 1,
@@ -911,7 +929,7 @@
   {
     "name": "Jaxon Smith-Njigba",
     "position": "wr",
-    "points": 326.2,
+    "points": 326,
     "ppg": 19.2,
     "rank": 3,
     "tier": 1,
@@ -920,26 +938,26 @@
   {
     "name": "Amon-Ra St. Brown",
     "position": "wr",
-    "points": 319.8,
+    "points": 320,
     "ppg": 18.8,
     "rank": 4,
     "tier": 1,
-    "adp": 8
+    "adp": 9
   },
   {
     "name": "CeeDee Lamb",
     "position": "wr",
-    "points": 273,
-    "ppg": 16.1,
+    "points": 272.5,
+    "ppg": 16,
     "rank": 5,
     "tier": 2,
-    "adp": 9
+    "adp": 10
   },
   {
     "name": "Justin Jefferson",
     "position": "wr",
-    "points": 272.5,
-    "ppg": 16,
+    "points": 270.9,
+    "ppg": 15.9,
     "rank": 6,
     "tier": 2,
     "adp": 11
@@ -947,26 +965,26 @@
   {
     "name": "Drake London",
     "position": "wr",
-    "points": 287.1,
-    "ppg": 16.9,
+    "points": 276.3,
+    "ppg": 16.3,
     "rank": 7,
-    "tier": 2,
-    "adp": 17
-  },
-  {
-    "name": "A.J. Brown",
-    "position": "wr",
-    "points": 256.1,
-    "ppg": 15.1,
-    "rank": 8,
     "tier": 2,
     "adp": 18
   },
   {
+    "name": "A.J. Brown",
+    "position": "wr",
+    "points": 256.4,
+    "ppg": 15.1,
+    "rank": 8,
+    "tier": 2,
+    "adp": 17
+  },
+  {
     "name": "Nico Collins",
     "position": "wr",
-    "points": 248.2,
-    "ppg": 14.6,
+    "points": 250.4,
+    "ppg": 14.7,
     "rank": 9,
     "tier": 2,
     "adp": 25
@@ -974,7 +992,7 @@
   {
     "name": "Chris Olave",
     "position": "wr",
-    "points": 261.7,
+    "points": 261.8,
     "ppg": 15.4,
     "rank": 10,
     "tier": 2,
@@ -983,47 +1001,47 @@
   {
     "name": "George Pickens",
     "position": "wr",
-    "points": 252,
+    "points": 251.5,
     "ppg": 14.8,
     "rank": 11,
     "tier": 3,
-    "adp": 24
-  },
-  {
-    "name": "Rashee Rice",
-    "position": "wr",
-    "points": 274.1,
-    "ppg": 16.1,
-    "rank": 12,
-    "tier": 3,
-    "adp": 28
-  },
-  {
-    "name": "DeVonta Smith",
-    "position": "wr",
-    "points": 236.9,
-    "ppg": 13.9,
-    "rank": 13,
-    "tier": 3,
-    "adp": 36
+    "adp": 22
   },
   {
     "name": "Malik Nabers",
     "position": "wr",
-    "points": 240.3,
-    "ppg": 14.1,
-    "rank": 14,
+    "points": 241.3,
+    "ppg": 14.2,
+    "rank": 12,
     "tier": 3,
     "adp": 27
   },
   {
+    "name": "DeVonta Smith",
+    "position": "wr",
+    "points": 237,
+    "ppg": 13.9,
+    "rank": 13,
+    "tier": 3,
+    "adp": 32
+  },
+  {
+    "name": "Rashee Rice",
+    "position": "wr",
+    "points": 267.5,
+    "ppg": 15.7,
+    "rank": 14,
+    "tier": 3,
+    "adp": 29
+  },
+  {
     "name": "Zay Flowers",
     "position": "wr",
-    "points": 241.8,
+    "points": 241.7,
     "ppg": 14.2,
     "rank": 15,
     "tier": 3,
-    "adp": 42
+    "adp": 41
   },
   {
     "name": "Garrett Wilson",
@@ -1032,75 +1050,75 @@
     "ppg": 14.3,
     "rank": 16,
     "tier": 3,
-    "adp": 45
+    "adp": 46
   },
   {
-    "name": "Tetairoa McMillan",
+    "name": "Ladd McConkey",
     "position": "wr",
-    "points": 233.7,
-    "ppg": 13.7,
+    "points": 218.2,
+    "ppg": 12.8,
     "rank": 17,
     "tier": 3,
     "adp": 37
   },
   {
-    "name": "Ladd McConkey",
-    "position": "wr",
-    "points": 220.3,
-    "ppg": 13,
-    "rank": 18,
-    "tier": 3,
-    "adp": 38
-  },
-  {
     "name": "Jaylen Waddle",
     "position": "wr",
-    "points": 210.2,
+    "points": 210.5,
     "ppg": 12.4,
-    "rank": 19,
+    "rank": 18,
     "tier": 3,
-    "adp": 46
+    "adp": 45
   },
   {
     "name": "Tee Higgins",
     "position": "wr",
     "points": 221.7,
     "ppg": 13,
+    "rank": 19,
+    "tier": 3,
+    "adp": 35
+  },
+  {
+    "name": "Tetairoa McMillan",
+    "position": "wr",
+    "points": 233.6,
+    "ppg": 13.7,
     "rank": 20,
     "tier": 3,
-    "adp": 34
+    "adp": 38
   },
   {
     "name": "Emeka Egbuka",
     "position": "wr",
-    "points": 228.3,
+    "points": 228.2,
     "ppg": 13.4,
     "rank": 21,
     "tier": 4,
     "adp": 39
   },
   {
+    "name": "Luther Burden III",
+    "position": "wr",
+    "points": 208,
+    "ppg": 12.2,
+    "rank": 22,
+    "tier": 4,
+    "adp": 53
+  },
+  {
     "name": "Terry McLaurin",
     "position": "wr",
-    "points": 209.9,
+    "points": 209.3,
     "ppg": 12.3,
-    "rank": 22,
+    "rank": 23,
     "tier": 4,
     "adp": 56
   },
   {
-    "name": "Luther Burden III",
-    "position": "wr",
-    "points": 208.1,
-    "ppg": 12.2,
-    "rank": 23,
-    "tier": 4,
-    "adp": 52
-  },
-  {
     "name": "Davante Adams",
     "position": "wr",
-    "points": 222.3,
+    "points": 222.2,
     "ppg": 13.1,
     "rank": 24,
     "tier": 4,
@@ -1109,74 +1127,74 @@
   {
     "name": "DJ Moore",
     "position": "wr",
-    "points": 208.5,
-    "ppg": 12.3,
+    "points": 208.1,
+    "ppg": 12.2,
     "rank": 25,
     "tier": 4,
-    "adp": 57
-  },
-  {
-    "name": "Mike Evans",
-    "position": "wr",
-    "points": 203.6,
-    "ppg": 12,
-    "rank": 26,
-    "tier": 4,
-    "adp": 61
+    "adp": 55
   },
   {
     "name": "Jameson Williams",
     "position": "wr",
-    "points": 217.2,
+    "points": 217.4,
     "ppg": 12.8,
-    "rank": 27,
+    "rank": 26,
     "tier": 4,
-    "adp": 58
-  },
-  {
-    "name": "Rome Odunze",
-    "position": "wr",
-    "points": 205.1,
-    "ppg": 12.1,
-    "rank": 28,
-    "tier": 4,
-    "adp": 65
+    "adp": 59
   },
   {
     "name": "Christian Watson",
     "position": "wr",
-    "points": 195.2,
-    "ppg": 11.5,
-    "rank": 29,
+    "points": 196.4,
+    "ppg": 11.6,
+    "rank": 27,
     "tier": 4,
     "adp": 69
   },
   {
+    "name": "Rome Odunze",
+    "position": "wr",
+    "points": 205.4,
+    "ppg": 12.1,
+    "rank": 28,
+    "tier": 4,
+    "adp": 64
+  },
+  {
+    "name": "Mike Evans",
+    "position": "wr",
+    "points": 195.1,
+    "ppg": 11.5,
+    "rank": 29,
+    "tier": 4,
+    "adp": 62
+  },
+  {
     "name": "Parker Washington",
     "position": "wr",
-    "points": 184.4,
+    "points": 184.3,
     "ppg": 10.8,
     "rank": 30,
-    "tier": 5,
-    "adp": 76
+    "tier": 4,
+    "adp": 73
   },
   {
     "name": "Carnell Tate",
     "position": "wr",
-    "points": 178.4,
+    "points": 178.3,
     "ppg": 10.5,
     "rank": 31,
     "tier": 5,
-    "adp": 66
+    "adp": 67
   },
   {
     "name": "Marvin Harrison Jr.",
     "position": "wr",
-    "points": 197.2,
-    "ppg": 11.6,
+    "points": 196.3,
+    "ppg": 11.5,
     "rank": 32,
     "tier": 5,
-    "adp": 75
+    "adp": 76
   },
   {
     "name": "Chris Godwin Jr.",
@@ -1185,167 +1203,176 @@
     "ppg": 10.3,
     "rank": 33,
     "tier": 5,
-    "adp": 95
+    "adp": 93
+  },
+  {
+    "name": "DK Metcalf",
+    "position": "wr",
+    "points": 195.1,
+    "ppg": 11.5,
+    "rank": 34,
+    "tier": 5,
+    "adp": 75
+  },
+  {
+    "name": "Michael Pittman Jr.",
+    "position": "wr",
+    "points": 190.2,
+    "ppg": 11.2,
+    "rank": 35,
+    "tier": 5,
+    "adp": 105
   },
   {
     "name": "Brian Thomas Jr.",
     "position": "wr",
     "points": 181.1,
     "ppg": 10.7,
-    "rank": 34,
-    "tier": 5,
-    "adp": 72
-  },
-  {
-    "name": "DK Metcalf",
-    "position": "wr",
-    "points": 195.2,
-    "ppg": 11.5,
-    "rank": 35,
+    "rank": 36,
     "tier": 5,
     "adp": 74
   },
   {
-    "name": "Michael Pittman Jr.",
+    "name": "Wan'Dale Robinson",
     "position": "wr",
-    "points": 190.3,
-    "ppg": 11.2,
-    "rank": 36,
+    "points": 179,
+    "ppg": 10.5,
+    "rank": 37,
     "tier": 5,
-    "adp": 102
+    "adp": 119
   },
   {
     "name": "Courtland Sutton",
     "position": "wr",
-    "points": 198.6,
+    "points": 198.5,
     "ppg": 11.7,
-    "rank": 37,
+    "rank": 38,
     "tier": 5,
     "adp": 80
   },
   {
-    "name": "Wan'Dale Robinson",
-    "position": "wr",
-    "points": 179.1,
-    "ppg": 10.5,
-    "rank": 38,
-    "tier": 5,
-    "adp": 116
-  },
-  {
     "name": "Josh Downs",
     "position": "wr",
-    "points": 163.7,
+    "points": 163.9,
     "ppg": 9.6,
     "rank": 39,
     "tier": 5,
-    "adp": 107
+    "adp": 112
   },
   {
     "name": "Michael Wilson",
     "position": "wr",
-    "points": 176.6,
-    "ppg": 10.4,
+    "points": 177.9,
+    "ppg": 10.5,
     "rank": 40,
     "tier": 5,
-    "adp": 83
+    "adp": 85
   },
   {
     "name": "Quentin Johnston",
     "position": "wr",
-    "points": 169.9,
+    "points": 169.8,
     "ppg": 10,
     "rank": 41,
     "tier": 5,
-    "adp": 111
-  },
-  {
-    "name": "Alec Pierce",
-    "position": "wr",
-    "points": 192.3,
-    "ppg": 11.3,
-    "rank": 42,
-    "tier": 5,
-    "adp": 101
+    "adp": 114
   },
   {
     "name": "Stefon Diggs",
     "position": "wr",
-    "points": 166.3,
+    "points": 166.1,
     "ppg": 9.8,
+    "rank": 42,
+    "tier": 5,
+    "adp": 108
+  },
+  {
+    "name": "Alec Pierce",
+    "position": "wr",
+    "points": 192.2,
+    "ppg": 11.3,
     "rank": 43,
     "tier": 5,
-    "adp": 113
+    "adp": 99
+  },
+  {
+    "name": "Jayden Reed",
+    "position": "wr",
+    "points": 176.2,
+    "ppg": 10.4,
+    "rank": 44,
+    "tier": 5,
+    "adp": 109
+  },
+  {
+    "name": "Jordan Addison",
+    "position": "wr",
+    "points": 169.1,
+    "ppg": 9.9,
+    "rank": 45,
+    "tier": 6,
+    "adp": 103
   },
   {
     "name": "Jakobi Meyers",
     "position": "wr",
     "points": 178.7,
     "ppg": 10.5,
-    "rank": 44,
-    "tier": 5,
-    "adp": 110
-  },
-  {
-    "name": "Jayden Reed",
-    "position": "wr",
-    "points": 176.3,
-    "ppg": 10.4,
-    "rank": 45,
-    "tier": 5,
-    "adp": 115
-  },
-  {
-    "name": "Jordan Addison",
-    "position": "wr",
-    "points": 168.9,
-    "ppg": 9.9,
     "rank": 46,
-    "tier": 5,
-    "adp": 104
+    "tier": 6,
+    "adp": 122
   },
   {
     "name": "Makai Lemon",
     "position": "wr",
-    "points": 150.8,
+    "points": 150.9,
     "ppg": 8.9,
     "rank": 47,
     "tier": 6,
-    "adp": 87
+    "adp": 90
   },
   {
     "name": "KC Concepcion",
     "position": "wr",
-    "points": 161.1,
-    "ppg": 9.5,
+    "points": 164.7,
+    "ppg": 9.7,
     "rank": 48,
     "tier": 6,
-    "adp": 122
+    "adp": 121
+  },
+  {
+    "name": "Jalen Coker",
+    "position": "wr",
+    "points": 157.1,
+    "ppg": 9.2,
+    "rank": 49,
+    "tier": 6,
+    "adp": 146
   },
   {
     "name": "Khalil Shakir",
     "position": "wr",
     "points": 164.9,
     "ppg": 9.7,
-    "rank": 49,
-    "tier": 6,
-    "adp": 140
-  },
-  {
-    "name": "Jalen Coker",
-    "position": "wr",
-    "points": 157.7,
-    "ppg": 9.3,
     "rank": 50,
     "tier": 6,
     "adp": 144
   },
   {
+    "name": "Matthew Golden",
+    "position": "wr",
+    "points": 165.4,
+    "ppg": 9.7,
+    "rank": 51,
+    "tier": 6,
+    "adp": 127
+  },
+  {
     "name": "Romeo Doubs",
     "position": "wr",
-    "points": 163.7,
+    "points": 163.8,
     "ppg": 9.6,
-    "rank": 51,
+    "rank": 52,
     "tier": 6,
     "adp": 132
   },
@@ -1359,49 +1386,49 @@
     "adp": 139
   },
   {
-    "name": "Matthew Golden",
+    "name": "De'Zhaun Stribling",
     "position": "wr",
-    "points": 161.5,
-    "ppg": 9.5,
+    "points": 165.9,
+    "ppg": 9.8,
     "rank": 54,
     "tier": 6,
-    "adp": 128
+    "adp": 137
+  },
+  {
+    "name": "Jordyn Tyson",
+    "position": "wr",
+    "points": 108.8,
+    "ppg": 6.4,
+    "rank": 55,
+    "tier": 6,
+    "adp": 98
   },
   {
     "name": "Deebo Samuel Sr.",
     "position": "wr",
-    "points": 168.6,
-    "ppg": 9.9,
-    "rank": 55,
-    "tier": 6,
-    "adp": 138
-  },
-  {
-    "name": "Denzel Boston",
-    "position": "wr",
-    "points": 151.4,
-    "ppg": 8.9,
+    "points": 163.1,
+    "ppg": 9.6,
     "rank": 56,
     "tier": 6,
-    "adp": 165
-  },
-  {
-    "name": "De'Zhaun Stribling",
-    "position": "wr",
-    "points": 150.7,
-    "ppg": 8.9,
-    "rank": 57,
-    "tier": 6,
-    "adp": 156
+    "adp": 130
   },
   {
     "name": "Rashid Shaheed",
     "position": "wr",
-    "points": 156.8,
+    "points": 156.7,
     "ppg": 9.2,
-    "rank": 58,
+    "rank": 57,
     "tier": 6,
     "adp": 147
+  },
+  {
+    "name": "Denzel Boston",
+    "position": "wr",
+    "points": 151.7,
+    "ppg": 8.9,
+    "rank": 58,
+    "tier": 6,
+    "adp": 172
   },
   {
     "name": "Tre Tucker",
@@ -1410,157 +1437,148 @@
     "ppg": 8.4,
     "rank": 59,
     "tier": 6,
-    "adp": 203
+    "adp": 202
   },
   {
     "name": "Adonai Mitchell",
     "position": "wr",
-    "points": 113.8,
+    "points": 114.4,
     "ppg": 6.7,
     "rank": 60,
-    "tier": 6,
-    "adp": 256
+    "tier": 7,
+    "adp": 253
   },
   {
     "name": "Jerry Jeudy",
     "position": "wr",
-    "points": 146.4,
-    "ppg": 8.6,
+    "points": 155.4,
+    "ppg": 9.1,
     "rank": 61,
-    "tier": 6,
-    "adp": 190
-  },
-  {
-    "name": "Jauan Jennings",
-    "position": "wr",
-    "points": 134.1,
-    "ppg": 7.9,
-    "rank": 62,
-    "tier": 6,
-    "adp": 195
-  },
-  {
-    "name": "Jalen McMillan",
-    "position": "wr",
-    "points": 133.8,
-    "ppg": 7.9,
-    "rank": 63,
     "tier": 7,
-    "adp": 209
+    "adp": 190
   },
   {
     "name": "Kayshon Boutte",
     "position": "wr",
-    "points": 110.3,
-    "ppg": 6.5,
-    "rank": 67,
+    "points": 136.3,
+    "ppg": 8,
+    "rank": 62,
     "tier": 7,
-    "adp": 258
+    "adp": 201
+  },
+  {
+    "name": "Jalen McMillan",
+    "position": "wr",
+    "points": 133.7,
+    "ppg": 7.9,
+    "rank": 63,
+    "tier": 7,
+    "adp": 211
+  },
+  {
+    "name": "Jauan Jennings",
+    "position": "wr",
+    "points": 134.3,
+    "ppg": 7.9,
+    "rank": 66,
+    "tier": 7,
+    "adp": 215
   },
   {
     "name": "Jalen Nailor",
     "position": "wr",
     "points": 127.2,
     "ppg": 7.5,
-    "rank": 70,
+    "rank": 69,
     "tier": 7,
-    "adp": 183
+    "adp": 184
   },
   {
     "name": "Malik Washington",
     "position": "wr",
-    "points": 112.1,
-    "ppg": 6.6,
+    "points": 111.1,
+    "ppg": 6.5,
     "rank": 71,
     "tier": 7,
-    "adp": 200
-  },
-  {
-    "name": "Calvin Ridley",
-    "position": "wr",
-    "points": 148.1,
-    "ppg": 8.7,
-    "rank": 72,
-    "tier": 7,
-    "adp": 320
-  },
-  {
-    "name": "Travis Hunter",
-    "position": "wr",
-    "points": 111.8,
-    "ppg": 6.6,
-    "rank": 73,
-    "tier": 7,
-    "adp": 166
+    "adp": 175
   },
   {
     "name": "Keenan Allen",
     "position": "wr",
-    "points": 141.7,
+    "points": 141.6,
     "ppg": 8.3,
-    "rank": 74,
+    "rank": 72,
     "tier": 7,
-    "adp": 197
+    "adp": 198
   },
   {
-    "name": "Jaylin Noel",
+    "name": "Calvin Ridley",
     "position": "wr",
-    "points": 110.7,
-    "ppg": 6.5,
-    "rank": 75,
-    "tier": 7,
-    "adp": 215
-  },
-  {
-    "name": "Tank Dell",
-    "position": "wr",
-    "points": 147.7,
+    "points": 148,
     "ppg": 8.7,
-    "rank": 76,
+    "rank": 73,
     "tier": 7,
-    "adp": 174
+    "adp": 344
   },
   {
     "name": "Rashod Bateman",
     "position": "wr",
-    "points": 134.3,
+    "points": 134.2,
     "ppg": 7.9,
-    "rank": 77,
+    "rank": 75,
     "tier": 7,
-    "adp": 254
+    "adp": 258
+  },
+  {
+    "name": "Jaylin Noel",
+    "position": "wr",
+    "points": 120.1,
+    "ppg": 7.1,
+    "rank": 76,
+    "tier": 7,
+    "adp": 214
   },
   {
     "name": "Cooper Kupp",
     "position": "wr",
-    "points": 125.2,
+    "points": 125.1,
     "ppg": 7.4,
-    "rank": 79,
+    "rank": 77,
     "tier": 7,
-    "adp": 229
+    "adp": 199
   },
   {
-    "name": "Brock Bowers",
-    "position": "te",
-    "points": 244,
-    "ppg": 14.4,
-    "rank": 1,
-    "tier": 1,
-    "adp": 23
+    "name": "Germie Bernard",
+    "position": "wr",
+    "points": 109.1,
+    "ppg": 6.4,
+    "rank": 79,
+    "tier": 7,
+    "adp": 249
   },
   {
     "name": "Trey McBride",
     "position": "te",
-    "points": 254.2,
-    "ppg": 15,
+    "points": 256,
+    "ppg": 15.1,
+    "rank": 1,
+    "tier": 1,
+    "adp": 24
+  },
+  {
+    "name": "Brock Bowers",
+    "position": "te",
+    "points": 243.7,
+    "ppg": 14.3,
     "rank": 2,
     "tier": 1,
-    "adp": 20
+    "adp": 23
   },
   {
     "name": "Colston Loveland",
     "position": "te",
-    "points": 211.4,
-    "ppg": 12.4,
+    "points": 211.7,
+    "ppg": 12.5,
     "rank": 3,
     "tier": 1,
     "adp": 40
@@ -1568,74 +1586,74 @@
   {
     "name": "Tyler Warren",
     "position": "te",
-    "points": 199.2,
+    "points": 199.1,
     "ppg": 11.7,
     "rank": 4,
     "tier": 1,
-    "adp": 47
+    "adp": 49
   },
   {
     "name": "Harold Fannin Jr.",
     "position": "te",
-    "points": 192.2,
-    "ppg": 11.3,
+    "points": 198.8,
+    "ppg": 11.7,
     "rank": 5,
+    "tier": 2,
+    "adp": 70
+  },
+  {
+    "name": "Kyle Pitts Sr.",
+    "position": "te",
+    "points": 187.8,
+    "ppg": 11,
+    "rank": 6,
     "tier": 2,
     "adp": 68
   },
   {
     "name": "Tucker Kraft",
     "position": "te",
-    "points": 178.4,
-    "ppg": 10.5,
-    "rank": 6,
-    "tier": 2,
-    "adp": 62
-  },
-  {
-    "name": "Kyle Pitts Sr.",
-    "position": "te",
-    "points": 195.7,
-    "ppg": 11.5,
+    "points": 174.1,
+    "ppg": 10.2,
     "rank": 7,
     "tier": 2,
-    "adp": 70
+    "adp": 63
   },
   {
     "name": "Sam LaPorta",
     "position": "te",
-    "points": 179.5,
-    "ppg": 10.6,
+    "points": 184.2,
+    "ppg": 10.8,
     "rank": 8,
     "tier": 2,
-    "adp": 59
+    "adp": 58
   },
   {
     "name": "Travis Kelce",
     "position": "te",
-    "points": 182.1,
+    "points": 181.9,
     "ppg": 10.7,
     "rank": 9,
-    "tier": 2,
-    "adp": 92
+    "tier": 3,
+    "adp": 89
   },
   {
     "name": "George Kittle",
     "position": "te",
-    "points": 181.1,
-    "ppg": 10.7,
+    "points": 188.8,
+    "ppg": 11.1,
     "rank": 10,
-    "tier": 2,
-    "adp": 90
+    "tier": 3,
+    "adp": 83
   },
   {
     "name": "Dalton Kincaid",
     "position": "te",
-    "points": 160.2,
+    "points": 159.8,
     "ppg": 9.4,
     "rank": 11,
     "tier": 3,
-    "adp": 89
+    "adp": 87
   },
   {
     "name": "Jake Ferguson",
@@ -1647,121 +1665,121 @@
     "adp": 97
   },
   {
-    "name": "Dallas Goedert",
-    "position": "te",
-    "points": 179.4,
-    "ppg": 10.6,
-    "rank": 13,
-    "tier": 3,
-    "adp": 123
-  },
-  {
     "name": "Isaiah Likely",
     "position": "te",
-    "points": 165,
+    "points": 165.7,
     "ppg": 9.7,
-    "rank": 14,
+    "rank": 13,
     "tier": 3,
-    "adp": 108
+    "adp": 107
   },
   {
-    "name": "Mark Andrews",
+    "name": "Dallas Goedert",
     "position": "te",
-    "points": 167.2,
-    "ppg": 9.8,
-    "rank": 15,
+    "points": 179.5,
+    "ppg": 10.6,
+    "rank": 14,
     "tier": 3,
-    "adp": 129
+    "adp": 120
   },
   {
     "name": "Juwan Johnson",
     "position": "te",
-    "points": 154.7,
+    "points": 154.2,
     "ppg": 9.1,
+    "rank": 15,
+    "tier": 3,
+    "adp": 182
+  },
+  {
+    "name": "Mark Andrews",
+    "position": "te",
+    "points": 167.1,
+    "ppg": 9.8,
     "rank": 16,
     "tier": 3,
-    "adp": 187
+    "adp": 128
+  },
+  {
+    "name": "Dalton Schultz",
+    "position": "te",
+    "points": 148.7,
+    "ppg": 8.7,
+    "rank": 17,
+    "tier": 4,
+    "adp": 188
   },
   {
     "name": "Chig Okonkwo",
     "position": "te",
-    "points": 126.2,
+    "points": 126,
     "ppg": 7.4,
-    "rank": 17,
-    "tier": 3,
-    "adp": 186
+    "rank": 18,
+    "tier": 4,
+    "adp": 192
   },
   {
     "name": "Brenton Strange",
     "position": "te",
     "points": 151.8,
     "ppg": 8.9,
-    "rank": 18,
-    "tier": 3,
-    "adp": 152
-  },
-  {
-    "name": "Dalton Schultz",
-    "position": "te",
-    "points": 148.5,
-    "ppg": 8.7,
     "rank": 19,
     "tier": 4,
-    "adp": 193
+    "adp": 152
   },
   {
     "name": "Hunter Henry",
     "position": "te",
-    "points": 152.9,
+    "points": 153,
     "ppg": 9,
     "rank": 20,
     "tier": 4,
-    "adp": 135
+    "adp": 141
   },
   {
     "name": "T.J. Hockenson",
     "position": "te",
-    "points": 140.6,
+    "points": 140.9,
     "ppg": 8.3,
     "rank": 21,
     "tier": 4,
     "adp": 164
   },
   {
-    "name": "AJ Barner",
+    "name": "Terrance Ferguson",
     "position": "te",
-    "points": 124.4,
-    "ppg": 7.3,
+    "points": 122.7,
+    "ppg": 7.2,
     "rank": 22,
     "tier": 4,
-    "adp": 184
+    "adp": 206
+  },
+  {
+    "name": "AJ Barner",
+    "position": "te",
+    "points": 124.3,
+    "ppg": 7.3,
+    "rank": 23,
+    "tier": 4,
+    "adp": 181
   },
   {
     "name": "Gunnar Helm",
     "position": "te",
-    "points": 111.6,
+    "points": 111.5,
     "ppg": 6.6,
-    "rank": 23,
-    "tier": 4,
-    "adp": 255
-  },
-  {
-    "name": "Oronde Gadsden II",
-    "position": "te",
-    "points": 101.1,
-    "ppg": 5.9,
     "rank": 24,
     "tier": 4,
-    "adp": 125
+    "adp": 260
   },
   {
-    "name": "Terrance Ferguson",
+    "name": "Kenyon Sadiq",
     "position": "te",
-    "points": 121.4,
-    "ppg": 7.1,
+    "points": 125.4,
+    "ppg": 7.4,
     "rank": 25,
     "tier": 4,
-    "adp": 207
+    "adp": 171
   },
   {
     "name": "Pat Freiermuth",
@@ -1770,25 +1788,25 @@
     "ppg": 7.9,
     "rank": 26,
     "tier": 4,
-    "adp": 273
+    "adp": 285
+  },
+  {
+    "name": "Oronde Gadsden II",
+    "position": "te",
+    "points": 92.2,
+    "ppg": 5.4,
+    "rank": 27,
+    "tier": 4,
+    "adp": 138
   },
   {
     "name": "Cade Otton",
     "position": "te",
-    "points": 129.2,
+    "points": 128.8,
     "ppg": 7.6,
-    "rank": 27,
-    "tier": 4,
-    "adp": 261
-  },
-  {
-    "name": "Kenyon Sadiq",
-    "position": "te",
-    "points": 127.3,
-    "ppg": 7.5,
     "rank": 28,
     "tier": 4,
-    "adp": 150
+    "adp": 261
   },
   {
     "name": "Evan Engram",
@@ -1806,22 +1824,22 @@
     "ppg": 6.3,
     "rank": 30,
     "tier": 4,
-    "adp": 206
+    "adp": 228
   },
   {
     "name": "Brandon Aubrey",
     "position": "k",
-    "points": 153,
-    "ppg": 9,
+    "points": 151.4,
+    "ppg": 8.9,
     "rank": 1,
     "tier": 1,
-    "adp": 93
+    "adp": 91
   },
   {
     "name": "Cameron Dicker",
     "position": "k",
-    "points": 143.7,
-    "ppg": 8.5,
+    "points": 142.7,
+    "ppg": 8.4,
     "rank": 2,
     "tier": 1,
     "adp": 118
@@ -1829,17 +1847,17 @@
   {
     "name": "Ka'imi Fairbairn",
     "position": "k",
-    "points": 144.1,
+    "points": 144.5,
     "ppg": 8.5,
     "rank": 3,
     "tier": 1,
-    "adp": 130
+    "adp": 129
   },
   {
     "name": "Cam Little",
     "position": "k",
-    "points": 131.5,
-    "ppg": 7.7,
+    "points": 132,
+    "ppg": 7.8,
     "rank": 4,
     "tier": 1,
     "adp": 134
@@ -1851,79 +1869,79 @@
     "ppg": 8.8,
     "rank": 5,
     "tier": 2,
-    "adp": 127
+    "adp": 126
   },
   {
     "name": "Eddy Pineiro",
     "position": "k",
-    "points": 132.6,
+    "points": 132.1,
     "ppg": 7.8,
     "rank": 6,
     "tier": 2,
-    "adp": 171
+    "adp": 193
   },
   {
     "name": "Tyler Loop",
     "position": "k",
-    "points": 132.1,
+    "points": 132,
     "ppg": 7.8,
     "rank": 7,
     "tier": 2,
-    "adp": 201
+    "adp": 177
   },
   {
     "name": "Jake Bates",
     "position": "k",
-    "points": 135.9,
+    "points": 136,
     "ppg": 8,
     "rank": 8,
     "tier": 3,
-    "adp": 143
+    "adp": 142
   },
   {
     "name": "Evan McPherson",
     "position": "k",
-    "points": 128.7,
+    "points": 128.6,
     "ppg": 7.6,
     "rank": 9,
     "tier": 3,
-    "adp": 181
-  },
-  {
-    "name": "Cairo Santos",
-    "position": "k",
-    "points": 133.3,
-    "ppg": 7.8,
-    "rank": 10,
-    "tier": 3,
-    "adp": 217
-  },
-  {
-    "name": "Andy Borregales",
-    "position": "k",
-    "points": 119.4,
-    "ppg": 7,
-    "rank": 11,
-    "tier": 3,
-    "adp": 155
+    "adp": 179
   },
   {
     "name": "Chase McLaughlin",
     "position": "k",
     "points": 132.9,
     "ppg": 7.8,
+    "rank": 10,
+    "tier": 3,
+    "adp": 227
+  },
+  {
+    "name": "Cairo Santos",
+    "position": "k",
+    "points": 133.3,
+    "ppg": 7.8,
+    "rank": 11,
+    "tier": 3,
+    "adp": 250
+  },
+  {
+    "name": "Andy Borregales",
+    "position": "k",
+    "points": 120,
+    "ppg": 7.1,
     "rank": 12,
     "tier": 3,
-    "adp": 235
+    "adp": 174
   },
   {
     "name": "Harrison Mevis",
     "position": "k",
-    "points": 136.9,
-    "ppg": 8.1,
+    "points": 136.8,
+    "ppg": 8,
     "rank": 13,
     "tier": 3,
-    "adp": 149
+    "adp": 153
   },
   {
     "name": "Chris Boswell",
@@ -1932,16 +1950,16 @@
     "ppg": 7,
     "rank": 14,
     "tier": 3,
-    "adp": 158
+    "adp": 148
   },
   {
     "name": "Will Reichard",
     "position": "k",
-    "points": 130.7,
+    "points": 130.8,
     "ppg": 7.7,
     "rank": 15,
     "tier": 3,
-    "adp": 170
+    "adp": 168
   },
   {
     "name": "Houston Texans",
@@ -1953,19 +1971,19 @@
     "adp": 0
   },
   {
-    "name": "Denver Broncos",
+    "name": "Los Angeles Rams",
     "position": "dst",
-    "points": 118.3,
-    "ppg": 7,
+    "points": 109.3,
+    "ppg": 6.4,
     "rank": 2,
     "tier": 1,
     "adp": 0
   },
   {
-    "name": "Los Angeles Rams",
+    "name": "Denver Broncos",
     "position": "dst",
-    "points": 107.3,
-    "ppg": 6.3,
+    "points": 118.3,
+    "ppg": 7,
     "rank": 3,
     "tier": 1,
     "adp": 0
@@ -1973,7 +1991,7 @@
   {
     "name": "Seattle Seahawks",
     "position": "dst",
-    "points": 110.9,
+    "points": 110.6,
     "ppg": 6.5,
     "rank": 4,
     "tier": 1,
@@ -2000,7 +2018,7 @@
   {
     "name": "Pittsburgh Steelers",
     "position": "dst",
-    "points": 111.9,
+    "points": 112.4,
     "ppg": 6.6,
     "rank": 7,
     "tier": 2,
@@ -2009,7 +2027,7 @@
   {
     "name": "Minnesota Vikings",
     "position": "dst",
-    "points": 112.8,
+    "points": 112.6,
     "ppg": 6.6,
     "rank": 8,
     "tier": 2,
@@ -2018,7 +2036,7 @@
   {
     "name": "Jacksonville Jaguars",
     "position": "dst",
-    "points": 99.9,
+    "points": 99.8,
     "ppg": 5.9,
     "rank": 9,
     "tier": 3,
@@ -2036,7 +2054,7 @@
   {
     "name": "Baltimore Ravens",
     "position": "dst",
-    "points": 102,
+    "points": 101.7,
     "ppg": 6,
     "rank": 11,
     "tier": 3,
@@ -2045,8 +2063,8 @@
   {
     "name": "Kansas City Chiefs",
     "position": "dst",
-    "points": 92.6,
-    "ppg": 5.4,
+    "points": 93.2,
+    "ppg": 5.5,
     "rank": 12,
     "tier": 3,
     "adp": 0
@@ -2054,7 +2072,7 @@
   {
     "name": "Green Bay Packers",
     "position": "dst",
-    "points": 95.1,
+    "points": 95.2,
     "ppg": 5.6,
     "rank": 13,
     "tier": 3,
@@ -2063,7 +2081,7 @@
   {
     "name": "Detroit Lions",
     "position": "dst",
-    "points": 106.8,
+    "points": 106.9,
     "ppg": 6.3,
     "rank": 14,
     "tier": 4,
@@ -2072,7 +2090,7 @@
   {
     "name": "Buffalo Bills",
     "position": "dst",
-    "points": 106.6,
+    "points": 106.9,
     "ppg": 6.3,
     "rank": 15,
     "tier": 4,
