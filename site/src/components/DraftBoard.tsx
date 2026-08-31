@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import {
   Player,
   Position,
@@ -77,6 +77,17 @@ export const DraftBoard: React.FC<DraftBoardProps> = ({
 }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [showUndraftedOnly, setShowUndraftedOnly] = useState(false);
+  const [sortCol, setSortCol] = useState<'vrank' | 'rank' | 'adp' | null>(null);
+  const [sortDir, setSortDir] = useState<'asc' | 'desc'>('asc');
+
+  const handleSort = (col: 'vrank' | 'rank' | 'adp') => {
+    if (sortCol === col) {
+      setSortDir((d) => (d === 'asc' ? 'desc' : 'asc'));
+    } else {
+      setSortCol(col);
+      setSortDir('asc');
+    }
+  };
 
   const toggleFilter = (pos: Position) => {
     setFilter((prev) => ({ ...prev, [pos]: !prev[pos] }));
@@ -93,18 +104,29 @@ export const DraftBoard: React.FC<DraftBoardProps> = ({
     });
   };
 
-  const filteredPlayers = players.filter((player) => {
-    if (!filter[player.pos]) return false;
-    if (showUndraftedOnly && player.drafted) return false;
-    if (searchTerm.trim()) {
-      const q = searchTerm.toLowerCase();
-      return (
-        player.name.toLowerCase().includes(q) ||
-        player.pos.toLowerCase().includes(q)
-      );
-    }
-    return true;
-  });
+  const filteredPlayers = useMemo(() => {
+    const filtered = players.filter((player) => {
+      if (!filter[player.pos]) return false;
+      if (showUndraftedOnly && player.drafted) return false;
+      if (searchTerm.trim()) {
+        const q = searchTerm.toLowerCase();
+        return (
+          player.name.toLowerCase().includes(q) ||
+          player.pos.toLowerCase().includes(q)
+        );
+      }
+      return true;
+    });
+
+    if (!sortCol) return filtered;
+
+    return [...filtered].sort((a, b) => {
+      const aVal = a[sortCol] ?? Infinity;
+      const bVal = b[sortCol] ?? Infinity;
+      const cmp = (aVal as number) - (bVal as number);
+      return sortDir === 'asc' ? cmp : -cmp;
+    });
+  }, [players, filter, showUndraftedOnly, searchTerm, sortCol, sortDir]);
 
   return (
     <div className="space-y-6">
@@ -194,12 +216,48 @@ export const DraftBoard: React.FC<DraftBoardProps> = ({
           <table className="w-full text-left text-sm">
             <thead className="bg-slate-950/90 text-slate-400 text-xs uppercase tracking-wider border-b border-slate-800">
               <tr>
-                <th className="py-3.5 px-4 font-semibold">V-Rank</th>
+                <th className="py-3.5 px-4 font-semibold">
+                  <button
+                    onClick={() => handleSort('vrank')}
+                    className="flex items-center gap-1 hover:text-cyan-400 transition-colors"
+                  >
+                    V-Rank
+                    {sortCol === 'vrank' ? (
+                      sortDir === 'asc' ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />
+                    ) : (
+                      <span className="w-3 h-3 opacity-30">⇅</span>
+                    )}
+                  </button>
+                </th>
                 <th className="py-3.5 px-4 font-semibold">VORP (Pts Diff)</th>
                 <th className="py-3.5 px-4 font-semibold">Player</th>
                 <th className="py-3.5 px-4 font-semibold">Pos Rank</th>
-                <th className="py-3.5 px-4 font-semibold">ADP</th>
-                <th className="py-3.5 px-4 font-semibold">Exp Rank (Tier)</th>
+                <th className="py-3.5 px-4 font-semibold">
+                  <button
+                    onClick={() => handleSort('adp')}
+                    className="flex items-center gap-1 hover:text-cyan-400 transition-colors"
+                  >
+                    ADP
+                    {sortCol === 'adp' ? (
+                      sortDir === 'asc' ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />
+                    ) : (
+                      <span className="w-3 h-3 opacity-30">⇅</span>
+                    )}
+                  </button>
+                </th>
+                <th className="py-3.5 px-4 font-semibold">
+                  <button
+                    onClick={() => handleSort('rank')}
+                    className="flex items-center gap-1 hover:text-cyan-400 transition-colors"
+                  >
+                    Exp Rank (Tier)
+                    {sortCol === 'rank' ? (
+                      sortDir === 'asc' ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />
+                    ) : (
+                      <span className="w-3 h-3 opacity-30">⇅</span>
+                    )}
+                  </button>
+                </th>
                 <th className="py-3.5 px-4 font-semibold text-right">Draft Actions</th>
               </tr>
             </thead>

@@ -43,6 +43,7 @@ class FantasyProsSpider(scrapy.Spider):
             'https://www.fantasypros.com/nfl/rankings/ppr-te-cheatsheets.php',
             'https://www.fantasypros.com/nfl/rankings/k-cheatsheets.php',
             'https://www.fantasypros.com/nfl/rankings/dst-cheatsheets.php',
+            # 'https://www.fantasypros.com/nfl/rankings/ppr-cheatsheets.php',
         ]
 
         # ADP URL
