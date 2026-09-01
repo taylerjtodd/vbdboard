@@ -133,7 +133,7 @@ export default function Home() {
         const entry: DraftedPlayer = { name, pos };
         newDrafted.push(entry);
 
-        if (mySlot && (pick.draft_slot === mySlot || pick.roster_id === mySlot)) {
+        if (mySlot && (pick.draft_slot === mySlot)) {
           if (newTeam[pos]) {
             newTeam[pos].push(entry);
           }
