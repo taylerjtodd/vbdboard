@@ -98,22 +98,17 @@ const combined = [];
 let matchedCount = 0;
 let missedCount = 0;
 
-const LIMITS = {
-  qb: 30,
-  rb: 80,
-  wr: 80,
-  te: 30,
-  dst: 15,
-  k: 15
-};
+const OVERALL_RANK_LIMIT = 250;
 
 for (const rankEntry of ranks) {
   const pos = (rankEntry.pos || '').toLowerCase();
+  const overallRank = parseInt(rankEntry.overall_rank, 10) || 999;
   const posRank = parseInt(rankEntry.rank, 10) || 999;
-  const limit = LIMITS[pos];
 
-  if (limit === undefined || posRank > limit) {
-    continue; // Discard players outside the top positional limits
+  // Filter: keep only players within the overall rank limit and known positions
+  const knownPositions = ['qb', 'rb', 'wr', 'te', 'dst', 'k'];
+  if (!knownPositions.includes(pos) || overallRank > OVERALL_RANK_LIMIT) {
+    continue;
   }
 
   const key = normalise(rankEntry.name);
@@ -138,6 +133,7 @@ for (const rankEntry of ranks) {
     points: points,
     ppg: ppg,
     rank: posRank,
+    overall_rank: overallRank,
     tier: rankEntry.tier || 0,
     adp,
   });
@@ -151,18 +147,11 @@ if (!existsSync(outputDir)) {
   mkdirSync(outputDir, { recursive: true });
 }
 
-const extensionDataDir = resolve(ROOT, 'extension', 'data');
-if (!existsSync(extensionDataDir)) {
-  mkdirSync(extensionDataDir, { recursive: true });
-}
-const extensionOutputPath = resolve(extensionDataDir, 'players.json');
-
 // --- Write output ---
 const jsonString = JSON.stringify(combined, null, 2);
 writeFileSync(outputPath, jsonString, 'utf-8');
-writeFileSync(extensionOutputPath, jsonString, 'utf-8');
 
 console.log(`\nDone.`);
-console.log(`  Matched:  ${matchedCount} players written to ${outputPath} and ${extensionOutputPath}`);
+console.log(`  Matched:  ${matchedCount} players written to ${outputPath}`);
 console.log(`  Unmatched (ranked but no projection): ${missedCount}`);
 

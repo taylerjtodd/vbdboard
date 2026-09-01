@@ -12,6 +12,7 @@ export interface PlayerRank {
   name: string;
   tier: number;
   rank: number;
+  overall_rank?: number;
   adp: number;
   pos: Position;
 }
@@ -24,6 +25,7 @@ export interface Player {
   ppg: number;
   tier: number;
   rank: number;
+  overall_rank?: number;
   adp: number;
   vrank?: number;
   posrank?: string;

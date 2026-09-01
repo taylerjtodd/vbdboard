@@ -77,10 +77,10 @@ export const DraftBoard: React.FC<DraftBoardProps> = ({
 }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [showUndraftedOnly, setShowUndraftedOnly] = useState(false);
-  const [sortCol, setSortCol] = useState<'vrank' | 'rank' | 'adp' | null>(null);
+  const [sortCol, setSortCol] = useState<'vrank' | 'overall_rank' | 'adp' | null>(null);
   const [sortDir, setSortDir] = useState<'asc' | 'desc'>('asc');
 
-  const handleSort = (col: 'vrank' | 'rank' | 'adp') => {
+  const handleSort = (col: 'vrank' | 'overall_rank' | 'adp') => {
     if (sortCol === col) {
       setSortDir((d) => (d === 'asc' ? 'desc' : 'asc'));
     } else {
@@ -121,8 +121,8 @@ export const DraftBoard: React.FC<DraftBoardProps> = ({
     if (!sortCol) return filtered;
 
     return [...filtered].sort((a, b) => {
-      const aVal = a[sortCol] ?? Infinity;
-      const bVal = b[sortCol] ?? Infinity;
+      const aVal = (sortCol === 'overall_rank' ? (a.overall_rank ?? a.rank) : a[sortCol]) ?? Infinity;
+      const bVal = (sortCol === 'overall_rank' ? (b.overall_rank ?? b.rank) : b[sortCol]) ?? Infinity;
       const cmp = (aVal as number) - (bVal as number);
       return sortDir === 'asc' ? cmp : -cmp;
     });
@@ -247,11 +247,11 @@ export const DraftBoard: React.FC<DraftBoardProps> = ({
                 </th>
                 <th className="py-3.5 px-4 font-semibold">
                   <button
-                    onClick={() => handleSort('rank')}
+                    onClick={() => handleSort('overall_rank')}
                     className="flex items-center gap-1 hover:text-cyan-400 transition-colors"
                   >
                     Exp Rank (Tier)
-                    {sortCol === 'rank' ? (
+                    {sortCol === 'overall_rank' ? (
                       sortDir === 'asc' ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />
                     ) : (
                       <span className="w-3 h-3 opacity-30">⇅</span>
@@ -337,7 +337,7 @@ export const DraftBoard: React.FC<DraftBoardProps> = ({
 
                       {/* Expert Rank (Tier) */}
                       <td className="py-3 px-4 text-slate-400">
-                        Rank {player.rank} (Tier {player.tier})
+                        Rank {player.overall_rank ?? player.rank} (Tier {player.tier})
                       </td>
 
                       {/* Actions */}

@@ -35,15 +35,9 @@ class FantasyProsSpider(scrapy.Spider):
             'https://www.fantasypros.com/nfl/projections/dst.php?week=draft',
         ]
         
-        # Rankings URLs
+        # Rankings URL — overall PPR cheatsheet gives overall rank + pos_rank in one request
         rankings = [
-            'https://www.fantasypros.com/nfl/rankings/qb-cheatsheets.php',
-            'https://www.fantasypros.com/nfl/rankings/ppr-rb-cheatsheets.php',
-            'https://www.fantasypros.com/nfl/rankings/ppr-wr-cheatsheets.php',
-            'https://www.fantasypros.com/nfl/rankings/ppr-te-cheatsheets.php',
-            'https://www.fantasypros.com/nfl/rankings/k-cheatsheets.php',
-            'https://www.fantasypros.com/nfl/rankings/dst-cheatsheets.php',
-            # 'https://www.fantasypros.com/nfl/rankings/ppr-cheatsheets.php',
+            'https://www.fantasypros.com/nfl/rankings/ppr-cheatsheets.php',
         ]
 
         # ADP URL
@@ -102,11 +96,18 @@ class FantasyProsSpider(scrapy.Spider):
                     data = json.loads(match.group(1))
                     players = data.get('players', [])
                     for player in players:
+                        # rank_ecr is overall rank on the overall cheatsheet
+                        # pos_rank is the positional rank (e.g. RB5)
+                        pos_rank_raw = player.get('pos_rank', '') or ''
+                        # pos_rank is like "RB5" or "WR12" — extract the numeric part
+                        pos_rank_match = re.search(r'(\d+)$', str(pos_rank_raw))
+                        pos_rank = pos_rank_match.group(1) if pos_rank_match else '0'
                         yield {
                             'type': 'ranking',
                             'name': player.get('player_name', ''),
                             'pos': player.get('player_position_id', ''),
-                            'rank': str(player.get('rank_ecr', 0)),
+                            'rank': pos_rank,
+                            'overall_rank': str(player.get('rank_ecr', 0)),
                             'adp': str(player.get('adp', 0) or 0),
                             'tier': player.get('tier', 0)
                         }

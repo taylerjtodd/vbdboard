@@ -133,6 +133,7 @@ export function determineBaseline(
       ppg: Number(interpolatedPpg.toFixed(3)),
       tier: above.tier,
       rank: above.rank,
+      overall_rank: above.overall_rank,
       adp: Number(replacementThreshold.toFixed(1)),
     };
   }
@@ -159,6 +160,7 @@ export function determineBaseline(
     ppg: lastProj?.ppg || 0,
     tier: lastProj?.tier || 0,
     rank: 999,
+    overall_rank: 999,
     adp: 999,
   };
 }
@@ -302,6 +304,7 @@ export function calculateVbd(
         ppg: proj.ppg,
         tier: rankItem ? rankItem.tier : proj.tier || 0,
         rank: rankItem ? rankItem.rank : 999,
+        overall_rank: rankItem ? (rankItem.overall_rank ?? rankItem.rank) : 999,
         adp: rankItem ? rankItem.adp : 999,
         drafted: draftedIdx !== -1 ? draftedIdx + 1 : undefined,
       };
@@ -348,6 +351,8 @@ export function calculateVbd(
     player.vrank = i + 1;
     player.displayPosition = `${player.position.toUpperCase()}${player.posrank}`;
     player.rank = typeof player.rank === 'string' ? parseInt(player.rank, 10) : player.rank;
+    player.overall_rank =
+      typeof player.overall_rank === 'string' ? parseInt(player.overall_rank, 10) : player.overall_rank;
   });
 
   return {

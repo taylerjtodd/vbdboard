@@ -7,6 +7,7 @@ interface CombinedPlayer {
   points: number;
   ppg: number;
   rank: number;
+  overall_rank?: number;
   tier: number;
   adp: number;
 }
@@ -76,6 +77,7 @@ export async function loadPlayerData(): Promise<{
         name: p.name,
         tier: p.tier,
         rank: p.rank,
+        overall_rank: p.overall_rank,
         adp: p.adp,
         pos,
       });
